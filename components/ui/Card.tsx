@@ -1,0 +1,44 @@
+import { HTMLAttributes, ReactNode } from "react";
+
+type CardVariant = "default" | "flat" | "outlined";
+
+interface CardProps extends HTMLAttributes<HTMLDivElement> {
+  variant?: CardVariant;
+  children: ReactNode;
+  padding?: "none" | "sm" | "md" | "lg";
+}
+
+const variantStyles: Record<CardVariant, string> = {
+  default: "bg-white shadow-card border border-[#7A9BC4]/15",
+  flat: "bg-white/70 border border-[#7A9BC4]/20",
+  outlined: "bg-transparent border border-[#7A9BC4]/40",
+};
+
+const paddingStyles = {
+  none: "",
+  sm: "p-4",
+  md: "p-6",
+  lg: "p-8",
+};
+
+export default function Card({
+  variant = "default",
+  padding = "md",
+  children,
+  className = "",
+  ...rest
+}: CardProps) {
+  return (
+    <div
+      className={[
+        "rounded-lg font-body",
+        variantStyles[variant],
+        paddingStyles[padding],
+        className,
+      ].join(" ")}
+      {...rest}
+    >
+      {children}
+    </div>
+  );
+}
