@@ -17,3 +17,29 @@ const queryClient = new QueryClient({
 });
 
 export default queryClient;
+
+/* Flow:
+   - When the app starts, QueryClient is created as a global setup
+   - It stays idle until any React Query hook is used
+
+   - When useQuery / useMutation is called in a component:
+       → QueryClient becomes active
+       → It decides whether to fetch data or use cache
+       → It applies rules like staleTime, retry, and refetch behavior
+
+   - Result:
+       → API calls are managed automatically and efficiently across the app
+
+  - When useQuery is called:
+       → QueryClient applies query rules (staleTime, cache, refetch, retry)
+
+   - When useMutation is called:
+       → QueryClient applies mutation rules (retry, side effects handling)
+
+   - Overall:
+       → QueryClient controls API behavior automatically based on the type of operation
+
+// staleTime: data stays fresh for 5 minutes
+// → within this time: return cached data, no API call
+// → after this time(at 6 minutes): return cached data first, then trigger background API call to update it
+*/

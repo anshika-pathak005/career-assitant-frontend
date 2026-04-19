@@ -5,6 +5,21 @@ import { loginUser, LoginPayload, LoginResponse } from "@/services/authService";
 import { useAuth } from "@/hooks/useAuth";
 
 /**
+ * 
+ * useMutation:
+ * - Used to perform actions that change data on the server (POST, PUT, DELETE)
+ * - Returns a mutation object (mutate, isPending, isError, data, etc.)
+ *
+ * - mutate(data):
+ *     → manually triggers the API call (mutationFn)
+ *     → passes data to the API function
+ *
+ * - After API response:
+ *     → onSuccess runs if request is successful
+ *     → onError runs if request fails
+ *
+ * - Used for actions like form submit, login, signup, update, delete, etc.
+ * ____________________________________________________________________________
  * useLogin — wraps the login API call with React Query mutation.
  * On success: stores token, updates auth state, redirects to dashboard.
  * On error:   shows a toast notification.
