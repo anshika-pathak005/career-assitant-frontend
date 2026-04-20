@@ -9,7 +9,7 @@ const config: Config = {
   theme: {
     extend: {
       fontFamily: {
-        display: ["Instrument Serif", "Georgia", "serif"],
+        display: ["DM Serif Display", "Georgia", "serif"],
         body: ["Plus Jakarta Sans", "sans-serif"],
       },
       colors: {

@@ -19,6 +19,14 @@ import Card from "@/components/ui/Card";
 import { useLogin } from "@/hooks/useLogin";
 
 /* ─── Zod schema ─────────────────────────────────────────────────── */
+/*
+  Login validation schema (Zod)
+
+  • Defines form structure for login
+  • Email: required + valid email format
+  • Password: required field
+  • Used with react-hook-form for validation before submit
+*/
 const loginSchema = z.object({
   email: z
     .string()
@@ -27,6 +35,13 @@ const loginSchema = z.object({
   password: z.string().min(1, "Password is required"),
 });
 
+/*
+  LoginFormData type is inferred from Zod schema
+
+  • Automatically generates TypeScript type from loginSchema
+  • Keeps type and schema always in sync
+  • Avoids manual type definition and duplication
+*/
 type LoginFormData = z.infer<typeof loginSchema>;
 
 /* ─── Page ───────────────────────────────────────────────────────── */
@@ -39,6 +54,27 @@ export default function LoginPage() {
     handleSubmit,
     formState: { errors },
   } = useForm<LoginFormData>({ resolver: zodResolver(loginSchema) });
+  /*
+  Creates and configures React Hook Form (RHF) instance
+
+  • Initializes form state management (values, errors, submit handling)
+  • Defines form data structure using LoginFormData (TypeScript safety)
+  • Connects Zod validation using resolver (zodResolver)
+  • RHF will call Zod to validate form data on submit
+
+  • RHF delegates validation to Zod via zodResolver
+  • On submit, RHF sends form data to Zod
+  • Zod validates all rules (email, password, etc.)
+
+  • If invalid:
+      - Zod returns errors in its own format
+      - zodResolver converts them to RHF format
+      - RHF stores them in formState.errors for UI display
+
+  • If valid:
+      - No errors returned
+      - Data passed to onSubmit handler
+*/
 
   const onSubmit = (data: LoginFormData) => loginMutation.mutate(data);
 
@@ -61,7 +97,7 @@ export default function LoginPage() {
               <BriefcaseBusiness size={18} className="text-white" />
             </div>
             <span className="font-display italic text-[#000F22] text-2xl">
-              CareerAI
+              CareerPilot
             </span>
           </Link>
         </div>
@@ -144,7 +180,7 @@ export default function LoginPage() {
           <div className="my-6 flex items-center gap-3">
             <div className="flex-1 h-px bg-[#7A9BC4]/25" />
             <span className="text-xs text-[#537FAF] font-medium">
-              New to CareerAI?
+              New to CareerPilot?
             </span>
             <div className="flex-1 h-px bg-[#7A9BC4]/25" />
           </div>

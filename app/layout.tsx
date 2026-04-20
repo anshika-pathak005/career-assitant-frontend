@@ -5,7 +5,7 @@ import AuthProvider from "@/providers/AuthProvider";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "CareerAI — Your AI Career Growth Partner",
+  title: "CareerPilot — Your AI Career Growth Partner",
   description:
     "AI-powered career guidance, resume analysis, skill gap detection and job matching.",
 };

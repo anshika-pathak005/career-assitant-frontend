@@ -107,7 +107,7 @@ export default function RegisterStep1Page() {
               <BriefcaseBusiness size={18} className="text-white" />
             </div>
             <span className="font-display italic text-[#000F22] text-2xl">
-              CareerAI
+              CareerPilot
             </span>
           </Link>
         </div>

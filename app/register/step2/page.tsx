@@ -7,7 +7,7 @@ import { useRouter } from "next/navigation";
 import { useMutation } from "@tanstack/react-query";
 import { toast } from "sonner";
 import { useState, KeyboardEvent } from "react";
-import { ArrowLeft, ArrowRight, X, BriefcaseBusiness } from "lucide-react";
+import { ArrowLeft, ArrowRight, X ,GraduationCap, Sparkles, BriefcaseBusiness} from "lucide-react";
 import Link from "next/link";
 import Button from "@/components/ui/Button";
 import Input from "@/components/ui/Input";
@@ -21,21 +21,21 @@ const ROLES = [
     label: "Student",
     sub: "High School / College",
     desc: "Looking for internships",
-    icon: "🎓",
+    icon: GraduationCap,
   },
   {
     id: "fresher",
     label: "Fresher",
     sub: "Graduated, first job",
     desc: "Need resume help",
-    icon: "🚀",
+    icon: Sparkles,
   },
   {
     id: "professional",
     label: "Professional",
     sub: "Experienced",
     desc: "Looking for a job switch",
-    icon: "💼",
+    icon: BriefcaseBusiness,
   },
 ] as const;
 
@@ -177,7 +177,7 @@ export default function RegisterStep2Page() {
   const mutation = useMutation({
     mutationFn: completeStep2,
     onSuccess: () => {
-      toast.success("Profile complete! Welcome to CareerAI 🎉");
+      toast.success("Profile complete! Welcome to CareerPilot 🎉");
       router.push("/dashboard");
     },
     onError: (error: any) => {
@@ -201,7 +201,7 @@ export default function RegisterStep2Page() {
         <div className="absolute -bottom-32 -right-32 w-96 h-96 bg-[#557EB2]/10 rounded-full blur-3xl" />
       </div>
 
-      <div className="w-full max-w-xl relative">
+      <div className="w-full max-w-3xl relative">
         {/* Brand */}
         <div className="flex justify-center mb-8 animate-fade-up">
           <Link href="/" className="flex items-center gap-2.5">
@@ -209,7 +209,7 @@ export default function RegisterStep2Page() {
               <BriefcaseBusiness size={18} className="text-white" />
             </div>
             <span className="font-display italic text-[#000F22] text-2xl">
-              CareerAI
+              CareerPilot
             </span>
           </Link>
         </div>
@@ -261,7 +261,16 @@ export default function RegisterStep2Page() {
                           : "bg-white border-[#7A9BC4]/30 hover:border-[#557EB2] hover:bg-[#C2E8FF]/40",
                       ].join(" ")}
                     >
-                      <div className="text-2xl mb-2">{r.icon}</div>
+                      <div
+                        className={`w-9 h-9 rounded-md flex items-center justify-center mb-3 ${isSelected ? "bg-white/15" : "bg-[#C2E8FF]"}`}
+                      >
+                        <r.icon
+                          size={18}
+                          className={
+                            isSelected ? "text-white" : "text-[#557EB2]"
+                          }
+                        />
+                      </div>
                       <div
                         className={`font-bold text-sm mb-0.5 ${isSelected ? "text-white" : "text-[#000F22]"}`}
                       >

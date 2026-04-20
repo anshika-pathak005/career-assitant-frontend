@@ -41,7 +41,7 @@ export default function LandingPage() {
             <span className="text-white font-bold text-xs">CA</span>
           </div>
           <span className="font-display italic text-[#000F22] text-xl">
-            CareerAI
+            CareerPilot
           </span>
         </div>
         <div className="flex items-center gap-3">

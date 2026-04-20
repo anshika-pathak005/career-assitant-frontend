@@ -39,7 +39,7 @@ export default function Navbar() {
             <BriefcaseBusiness size={16} className="text-white" />
           </div>
           <span className="font-display italic text-[#000F22] text-xl leading-none hidden sm:block">
-            CareerAI
+            CareerPilot
           </span>
         </Link>
 
