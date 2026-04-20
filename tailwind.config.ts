@@ -52,3 +52,31 @@ const config: Config = {
 };
 
 export default config;
+
+/**
+ * Tailwind CSS configuration file:
+ * - Defines the design system and styling rules for the entire project
+ * - Tailwind scans the specified files to generate only the used CSS classes
+ *
+ * Note:
+ * - Tailwind comes with its own default design system
+ * - Here we override and extend it to match our custom UI design (fonts, colors, animations, etc.)
+ *   Example: instead of default font, we use "Plus Jakarta Sans"
+ *
+ * Content:
+ * - Specifies which folders/files Tailwind should scan for class names
+ *
+ * Theme extension:
+ * - fontFamily: Adds custom fonts (e.g. font-display, font-body)
+ *   Example: font-body → Plus Jakarta Sans
+ * - colors: Defines custom brand color palette for consistent UI styling
+ *   Example: text-brand-primary → #000F22
+ * - borderRadius: Custom rounded corners (sm, md, lg)
+ * - boxShadow: Custom shadows for cards and UI depth
+ *   Example: shadow-card for soft UI cards
+ * - keyframes & animation: Defines custom animations
+ *   Example: animate-fade-up, animate-fade-in
+ *
+ * Overall:
+ * - This file customizes Tailwind default design system to match the application's branding and UI requirements
+ */
