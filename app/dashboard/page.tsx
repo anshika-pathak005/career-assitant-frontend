@@ -71,7 +71,7 @@ export default function DashboardPage() {
 
   return (
     <div className="min-h-screen bg-[#C2E8FF] flex flex-col">
-      <Navbar />
+      {/* <Navbar /> */}
 
       <div className="flex flex-1 max-w-7xl mx-auto w-full px-4 sm:px-6 gap-6 py-6">
         <Sidebar />
@@ -83,8 +83,8 @@ export default function DashboardPage() {
               <p className="text-[#7A9BC4] text-xs font-semibold uppercase tracking-wider mb-1">
                 Welcome back
               </p>
-              <h1 className="font-display italic text-white text-2xl sm:text-3xl">
-                {user?.name ?? "there"} 👋
+              <h1 className="font-display  text-white text-2xl sm:text-3xl">
+                {user?.name ?? "there"}
               </h1>
               <p className="text-[#537FAF] text-sm mt-1">
                 Your AI career assistant is ready.

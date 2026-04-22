@@ -2,10 +2,12 @@ import type { Metadata } from "next";
 import { Toaster } from "sonner";
 import QueryProvider from "@/providers/QueryProvider";
 import AuthProvider from "@/providers/AuthProvider";
-import "./globals.css";
+import Header from "@/components/layout/Header";
+import Footer from "@/components/layout/Footer";
+import "@/styles/globals.css";
 
 export const metadata: Metadata = {
-  title: "CareerPilot — Your AI Career Growth Partner",
+  title: "CareerAI — Your AI Career Growth Partner",
   description:
     "AI-powered career guidance, resume analysis, skill gap detection and job matching.",
 };
@@ -29,11 +31,20 @@ export default function RootLayout({
           rel="stylesheet"
         />
       </head>
-      <body className="font-body bg-[#C2E8FF] text-[#000F22] antialiased">
-        {/* Order matters: QueryProvider wraps everything, AuthProvider sits inside */}
+      <body className="font-body bg-[#C2E8FF] text-[#000F22] antialiased flex flex-col min-h-screen">
         <QueryProvider>
           <AuthProvider>
-            {children}
+            {/*
+              Header is smart — it hides itself on auth pages (/login, /register)
+              and switches between public nav and app nav based on auth state.
+            */}
+            <Header />
+
+            {/* Page content grows to fill available space */}
+            <div className="flex-1 flex flex-col">{children}</div>
+
+            <Footer />
+
             {/* Global toast notifications */}
             <Toaster
               position="top-right"

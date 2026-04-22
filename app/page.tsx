@@ -35,12 +35,12 @@ export default function LandingPage() {
   return (
     <main className="min-h-screen bg-[#C2E8FF]">
       {/* ── Nav ─────────────────────────────────────────────────── */}
-      <nav className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+      {/* <nav className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
         <div className="flex items-center gap-2.5">
           <div className="w-8 h-8 bg-[#000F22] rounded-md flex items-center justify-center">
             <span className="text-white font-bold text-xs">CA</span>
           </div>
-          <span className="font-display italic text-[#000F22] text-xl">
+          <span className="font-display  text-[#000F22] text-xl">
             CareerPilot
           </span>
         </div>
@@ -54,7 +54,7 @@ export default function LandingPage() {
             <Button size="sm">Get started</Button>
           </Link>
         </div>
-      </nav>
+      </nav> */}
 
       {/* ── Hero ────────────────────────────────────────────────── */}
       <section className="max-w-4xl mx-auto px-6 pt-20 pb-24 text-center">
@@ -65,7 +65,7 @@ export default function LandingPage() {
           </span>
         </div>
 
-        <h1 className="animate-fade-up delay-1 font-display italic text-[#000F22] text-5xl sm:text-6xl leading-[1.15] mb-6">
+        <h1 className="animate-fade-up delay-1 font-display font-extrabold text-5xl sm:text-6xl lg:text-8xl leading-[1.1] mb-6">
           Your career, <br />
           <span className="text-[#557EB2]">accelerated by AI</span>
         </h1>

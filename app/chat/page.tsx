@@ -59,7 +59,7 @@ export default function ChatPage() {
 
   return (
     <div className="min-h-screen bg-[#C2E8FF] flex flex-col">
-      <Navbar />
+      {/* <Navbar /> */}
 
       <div className="flex flex-1 max-w-7xl mx-auto w-full px-4 sm:px-6 gap-6 py-6 min-h-0">
         <Sidebar />

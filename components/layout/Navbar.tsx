@@ -38,7 +38,7 @@ export default function Navbar() {
           <div className="w-8 h-8 bg-[#000F22] rounded-md flex items-center justify-center">
             <BriefcaseBusiness size={16} className="text-white" />
           </div>
-          <span className="font-display italic text-[#000F22] text-xl leading-none hidden sm:block">
+          <span className="font-display  text-[#000F22] text-xl leading-none hidden sm:block">
             CareerPilot
           </span>
         </Link>

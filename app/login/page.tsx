@@ -96,7 +96,7 @@ export default function LoginPage() {
             <div className="w-9 h-9 bg-[#000F22] rounded-md flex items-center justify-center">
               <BriefcaseBusiness size={18} className="text-white" />
             </div>
-            <span className="font-display italic text-[#000F22] text-2xl">
+            <span className="font-display  text-[#000F22] text-2xl">
               CareerPilot
             </span>
           </Link>
@@ -105,7 +105,7 @@ export default function LoginPage() {
         <Card className="animate-fade-up delay-1 shadow-lg">
           {/* Header */}
           <div className="mb-7">
-            <h1 className="font-display italic text-[#000F22] text-3xl mb-1">
+            <h1 className="font-display  text-[#000F22] text-3xl mb-1">
               Welcome back
             </h1>
             <p className="text-sm text-[#537FAF]">

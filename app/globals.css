@@ -21,8 +21,11 @@
   --color-warning: #D97706;
 
   /* Typography */
-  --font-display: 'Instrument Serif', Georgia, serif;
-  --font-body:    'Plus Jakarta Sans', sans-serif;
+  /* --font-display: 'Instrument Serif', Georgia, serif;
+  --font-body:    'Plus Jakarta Sans', sans-serif; */
+
+  --font-body: "Work Sans", sans-serif;
+  --font-display: "Roboto", sans-serif;
 
   /* Consistent font scale */
   --text-xs:   0.75rem;
