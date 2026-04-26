@@ -32,6 +32,9 @@ export interface Step2Payload {
   skills: string[];
   experienceYears: string;
   currentRole: string;
+  goalType: string;
+  projectLevel: string;
+  workPreference: string;
 }
 
 /* ─── Service functions ──────────────────────────────────────────── */

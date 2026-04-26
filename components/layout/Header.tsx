@@ -41,10 +41,10 @@ const PUBLIC_NAV = [
 function Brand() {
   return (
     <Link href="/" className="flex items-center gap-2.5 flex-shrink-0 group">
-      <div className="w-8 h-8 bg-white rounded-md flex items-center justify-center transition-transform group-hover:scale-105">
-        <BriefcaseBusiness size={15} className="text-[#000F22]" />
+      <div className="w-10 h-10 bg-white rounded-md flex items-center justify-center transition-transform group-hover:scale-105">
+        <BriefcaseBusiness size={20} className="text-[#000F22]" />
       </div>
-      <span className="font-display text-white text-xl leading-none">
+      <span className="font-display font-extrabold text-white text-2xl leading-none">
         CareerAI
       </span>
     </Link>

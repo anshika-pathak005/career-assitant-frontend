@@ -1,106 +1,36 @@
 "use client";
 
-import { useForm, Controller } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "zod";
 import { useRouter } from "next/navigation";
 import { useMutation } from "@tanstack/react-query";
 import { toast } from "sonner";
-import { useState, KeyboardEvent } from "react";
-import {
-  ArrowLeft,
-  ArrowRight,
-  X,
-  GraduationCap,
-  Sparkles,
-  BriefcaseBusiness,
-} from "lucide-react";
+import { useState, KeyboardEvent, useMemo } from "react";
+import { ArrowLeft, ArrowRight, X, BriefcaseBusiness } from "lucide-react";
 import Link from "next/link";
+
 import Button from "@/components/ui/Button";
 import Input from "@/components/ui/Input";
 import Card from "@/components/ui/Card";
+
 import { completeStep2 } from "@/services/authService";
+import {
+  step2Schema,
+  step2DefaultValues,
+  type Step2FormData,
+} from "./step2.schema";
+import {
+  ROLES,
+  GOAL_TYPES,
+  INDUSTRIES,
+  EXPERIENCE_OPTIONS,
+  PROJECT_LEVELS,
+  WORK_PREFERENCES,
+  INDUSTRY_SKILLS_MAP,
+  DEFAULT_SKILLS,
+} from "./step2.constants";
 
-/* ─── Constants ──────────────────────────────────────────────────── */
-const ROLES = [
-  {
-    id: "student",
-    label: "Student",
-    sub: "High School / College",
-    desc: "Looking for internships",
-    icon: GraduationCap,
-  },
-  {
-    id: "fresher",
-    label: "Fresher",
-    sub: "Graduated, first job",
-    desc: "Need resume help",
-    icon: Sparkles,
-  },
-  {
-    id: "professional",
-    label: "Professional",
-    sub: "Experienced",
-    desc: "Looking for a job switch",
-    icon: BriefcaseBusiness,
-  },
-] as const;
-
-const INDUSTRIES = [
-  "Technology & Software",
-  "Banking & Finance",
-  "Marketing & Advertising",
-  "Healthcare & Pharma",
-  "Design & Creative",
-  "Education & Teaching",
-  "Sales & Business Dev",
-  "Consulting",
-  "Data Science & AI",
-  "Operations & Supply Chain",
-] as const;
-
-const EXPERIENCE_OPTIONS = [
-  "0 years (Fresher)",
-  "1–2 years",
-  "3–5 years",
-  "5–8 years",
-  "8+ years",
-] as const;
-
-const POPULAR_SKILLS = [
-  "React",
-  "Java",
-  "Python",
-  "AWS",
-  "Docker",
-  "TypeScript",
-];
-
-/* ─── Zod schema ─────────────────────────────────────────────────── */
-// Define the shape explicitly as a plain interface — this is the single
-// source of truth for the form type. zodResolver works with this directly
-// because there is no Zod input/output split caused by .optional()/.default().
-interface Step2FormData {
-  role: string;
-  dreamJob: string;
-  industries: string[];
-  skills: string[];
-  experienceYears: string;
-  currentRole: string;
-}
-
-// Zod schema validates the same shape. No .optional() or .default() used,
-// so the inferred type matches Step2FormData exactly — no resolver conflict.
-const step2Schema = z.object({
-  role: z.string().min(1, "Please select your current stage"),
-  dreamJob: z.string().min(2, "Please enter your dream job").max(100),
-  industries: z.array(z.string()),
-  skills: z.array(z.string()),
-  experienceYears: z.string(),
-  currentRole: z.string(),
-}) satisfies z.ZodType<Step2FormData>;
-
-/* ─── Small sub-components ───────────────────────────────────────── */
+/* ─── SectionTitle — used only in this file, not worth extracting ── */
 function SectionTitle({
   children,
   optional,
@@ -128,36 +58,39 @@ export default function RegisterStep2Page() {
   const {
     register,
     handleSubmit,
-    control,
     watch,
     setValue,
     formState: { errors },
   } = useForm<Step2FormData>({
     resolver: zodResolver(step2Schema),
-    defaultValues: {
-      role: "",
-      dreamJob: "",
-      industries: [],
-      skills: [],
-      experienceYears: "",
-      currentRole: "",
-    },
+    defaultValues: step2DefaultValues,
   });
 
   const selectedRole = watch("role");
   const selectedIndustries = watch("industries") ?? [];
   const selectedSkills = watch("skills") ?? [];
   const selectedExp = watch("experienceYears");
+  const selectedGoal = watch("goalType");
+  const selectedProject = watch("projectLevel");
+  const selectedWork = watch("workPreference");
 
-  /* Toggle helpers */
-  const toggleIndustry = (ind: string) => {
-    const current = selectedIndustries;
-    setValue(
-      "industries",
-      current.includes(ind)
-        ? current.filter((i) => i !== ind)
-        : [...current, ind],
+  /* Derive suggested skills from selected industries — deduped & sorted */
+  const suggestedSkills = useMemo(() => {
+    if (selectedIndustries.length === 0) return DEFAULT_SKILLS;
+    const combined = new Set<string>();
+    selectedIndustries.forEach((ind) =>
+      (INDUSTRY_SKILLS_MAP[ind] ?? []).forEach((s) => combined.add(s)),
     );
+    return Array.from(combined).sort();
+  }, [selectedIndustries]);
+
+  /* ── Toggle / add / remove helpers ──────────────────────────── */
+
+  const toggleIndustry = (ind: string) => {
+    const next = selectedIndustries.includes(ind)
+      ? selectedIndustries.filter((i) => i !== ind)
+      : [...selectedIndustries, ind];
+    setValue("industries", next);
   };
 
   const addSkill = (skill: string) => {
@@ -181,6 +114,8 @@ export default function RegisterStep2Page() {
     }
   };
 
+  /* ── Mutation ────────────────────────────────────────────────── */
+
   const mutation = useMutation({
     mutationFn: completeStep2,
     onSuccess: () => {
@@ -196,6 +131,18 @@ export default function RegisterStep2Page() {
   });
 
   const onSubmit = (data: Step2FormData) => mutation.mutate(data);
+
+  /* ── Shared style builder ────────────────────────────────────── */
+
+  const pillCls = (selected: boolean) =>
+    [
+      "px-3 py-2.5 rounded-md border text-xs font-semibold text-center transition-all duration-150 cursor-pointer",
+      selected
+        ? "bg-[#000F22] border-[#000F22] text-white"
+        : "bg-white border-[#7A9BC4]/30 text-[#537FAF] hover:border-[#557EB2] hover:text-[#042558]",
+    ].join(" ");
+
+  /* ── Render ──────────────────────────────────────────────────── */
 
   return (
     <main className="min-h-screen bg-[#C2E8FF] flex items-center justify-center px-4 py-12">
@@ -215,7 +162,7 @@ export default function RegisterStep2Page() {
             <div className="w-9 h-9 bg-[#000F22] rounded-md flex items-center justify-center">
               <BriefcaseBusiness size={18} className="text-white" />
             </div>
-            <span className="font-display  text-[#000F22] text-2xl">
+            <span className="font-display text-[#000F22] text-2xl">
               CareerPilot
             </span>
           </Link>
@@ -237,7 +184,7 @@ export default function RegisterStep2Page() {
 
           {/* Header */}
           <div className="mb-7">
-            <h1 className="font-display  text-[#000F22] text-3xl mb-1">
+            <h1 className="font-display text-[#000F22] text-3xl mb-1">
               Complete your profile
             </h1>
             <p className="text-sm text-[#537FAF]">
@@ -248,7 +195,7 @@ export default function RegisterStep2Page() {
           <form
             onSubmit={handleSubmit(onSubmit)}
             noValidate
-            className="flex flex-col gap-7"
+            className="flex flex-col gap-8"
           >
             {/* ── 1. Role ─────────────────────────────────────── */}
             <div className="animate-fade-up delay-2">
@@ -264,7 +211,7 @@ export default function RegisterStep2Page() {
                       className={[
                         "text-left p-4 rounded-lg border transition-all duration-150",
                         isSelected
-                          ? "bg-[#000F22] border-[#000F22] text-white"
+                          ? "bg-[#000F22] border-[#000F22]"
                           : "bg-white border-[#7A9BC4]/30 hover:border-[#557EB2] hover:bg-[#C2E8FF]/40",
                       ].join(" ")}
                     >
@@ -304,7 +251,51 @@ export default function RegisterStep2Page() {
               )}
             </div>
 
-            {/* ── 2. Dream Job ─────────────────────────────────── */}
+            {/* ── 2. Goal Type ─────────────────────────────────── */}
+            <div className="animate-fade-up delay-2">
+              <SectionTitle>What is your primary goal?</SectionTitle>
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                {GOAL_TYPES.map((g) => {
+                  const isSelected = selectedGoal === g.id;
+                  return (
+                    <button
+                      key={g.id}
+                      type="button"
+                      onClick={() => setValue("goalType", g.id)}
+                      className={[
+                        "flex flex-col items-center gap-2.5 p-4 rounded-lg border transition-all duration-150",
+                        isSelected
+                          ? "bg-[#000F22] border-[#000F22]"
+                          : "bg-white border-[#7A9BC4]/30 hover:border-[#557EB2] hover:bg-[#C2E8FF]/40",
+                      ].join(" ")}
+                    >
+                      <div
+                        className={`w-9 h-9 rounded-md flex items-center justify-center ${isSelected ? "bg-white/15" : "bg-[#C2E8FF]"}`}
+                      >
+                        <g.icon
+                          size={18}
+                          className={
+                            isSelected ? "text-white" : "text-[#557EB2]"
+                          }
+                        />
+                      </div>
+                      <span
+                        className={`text-xs font-bold ${isSelected ? "text-white" : "text-[#000F22]"}`}
+                      >
+                        {g.label}
+                      </span>
+                    </button>
+                  );
+                })}
+              </div>
+              {errors.goalType && (
+                <p className="mt-1.5 text-xs text-red-500">
+                  {errors.goalType.message}
+                </p>
+              )}
+            </div>
+
+            {/* ── 3. Dream Job ─────────────────────────────────── */}
             <div className="animate-fade-up delay-3">
               <SectionTitle>Dream Job</SectionTitle>
               <Input
@@ -314,10 +305,10 @@ export default function RegisterStep2Page() {
               />
             </div>
 
-            {/* ── 3. Industries ────────────────────────────────── */}
+            {/* ── 4. Industries ────────────────────────────────── */}
             <div className="animate-fade-up delay-4">
               <SectionTitle optional>Industries of Interest</SectionTitle>
-              <div className="grid grid-cols-2 gap-2">
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
                 {INDUSTRIES.map((ind) => {
                   const isSelected = selectedIndustries.includes(ind);
                   return (
@@ -359,11 +350,11 @@ export default function RegisterStep2Page() {
               </div>
             </div>
 
-            {/* ── 4. Skills (tag input) ─────────────────────────── */}
+            {/* ── 5. Skills (tag input) ─────────────────────────── */}
             <div className="animate-fade-up delay-5">
               <SectionTitle optional>Your Skills</SectionTitle>
 
-              {/* Tags */}
+              {/* Skill tags */}
               {selectedSkills.length > 0 && (
                 <div className="flex flex-wrap gap-2 mb-3">
                   {selectedSkills.map((skill) => (
@@ -385,7 +376,7 @@ export default function RegisterStep2Page() {
                 </div>
               )}
 
-              {/* Input */}
+              {/* Text input */}
               <input
                 type="text"
                 value={skillInput}
@@ -395,57 +386,125 @@ export default function RegisterStep2Page() {
                 className="w-full h-11 rounded-md border border-[#7A9BC4]/60 bg-white px-3.5 text-sm text-[#000F22] placeholder:text-[#7A9BC4] focus:outline-none focus:border-[#557EB2] focus:ring-2 focus:ring-[#557EB2]/20 transition-all"
               />
 
-              {/* Popular skill suggestions */}
-              <div className="mt-2 flex flex-wrap gap-1.5">
-                <span className="text-xs text-[#537FAF]">Popular:</span>
-                {POPULAR_SKILLS.map((s) => (
+              {/* Industry-aware suggestions */}
+              <div className="mt-2.5">
+                <p className="text-xs text-[#537FAF] mb-1.5">
+                  {selectedIndustries.length > 0
+                    ? "Suggested for your selected industries:"
+                    : "Popular skills:"}
+                </p>
+                <div className="flex flex-wrap gap-1.5">
+                  {suggestedSkills.map((s) => (
+                    <button
+                      key={s}
+                      type="button"
+                      onClick={() => addSkill(s)}
+                      disabled={selectedSkills.includes(s)}
+                      className="text-xs bg-[#C2E8FF] text-[#042558] font-medium px-2.5 py-1 rounded-full border border-[#7A9BC4]/30 hover:bg-[#557EB2] hover:text-white hover:border-[#557EB2] disabled:opacity-30 disabled:cursor-not-allowed transition-all"
+                    >
+                      + {s}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* ── 6. Experience ─────────────────────────────────── */}
+            <div className="animate-fade-up delay-6">
+              <SectionTitle optional>Years of Experience</SectionTitle>
+              <div className="grid grid-cols-3 sm:grid-cols-5 gap-2">
+                {EXPERIENCE_OPTIONS.map((exp) => (
                   <button
-                    key={s}
+                    key={exp}
                     type="button"
-                    onClick={() => addSkill(s)}
-                    disabled={selectedSkills.includes(s)}
-                    className="text-xs text-[#557EB2] hover:text-[#042558] underline disabled:opacity-30 disabled:no-underline transition-colors"
+                    onClick={() =>
+                      setValue(
+                        "experienceYears",
+                        selectedExp === exp ? "" : exp,
+                      )
+                    }
+                    className={pillCls(selectedExp === exp)}
                   >
-                    {s}
+                    {exp}
                   </button>
                 ))}
               </div>
             </div>
 
-            {/* ── 5. Experience ─────────────────────────────────── */}
+            {/* ── 7. Project Experience Level ──────────────────── */}
             <div className="animate-fade-up delay-6">
-              <SectionTitle optional>Years of Experience</SectionTitle>
-              <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
-                {EXPERIENCE_OPTIONS.map((exp) => {
-                  const isSelected = selectedExp === exp;
+              <SectionTitle>Project Experience Level</SectionTitle>
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                {PROJECT_LEVELS.map((p) => {
+                  const isSelected = selectedProject === p.id;
                   return (
                     <button
-                      key={exp}
+                      key={p.id}
                       type="button"
-                      onClick={() =>
-                        setValue("experienceYears", isSelected ? "" : exp)
-                      }
+                      onClick={() => setValue("projectLevel", p.id)}
                       className={[
-                        "px-3 py-2.5 rounded-md border text-xs font-semibold text-center transition-all duration-150",
+                        "flex flex-col gap-1 p-3.5 rounded-lg border text-left transition-all duration-150",
                         isSelected
-                          ? "bg-[#000F22] border-[#000F22] text-white"
-                          : "bg-white border-[#7A9BC4]/30 text-[#537FAF] hover:border-[#557EB2] hover:text-[#042558]",
+                          ? "bg-[#000F22] border-[#000F22]"
+                          : "bg-white border-[#7A9BC4]/30 hover:border-[#557EB2] hover:bg-[#C2E8FF]/40",
                       ].join(" ")}
                     >
-                      {exp}
+                      <span
+                        className={`text-sm font-bold ${isSelected ? "text-white" : "text-[#000F22]"}`}
+                      >
+                        {p.label}
+                      </span>
+                      <span
+                        className={`text-[11px] leading-snug ${isSelected ? "text-white/65" : "text-[#537FAF]"}`}
+                      >
+                        {p.desc}
+                      </span>
                     </button>
                   );
                 })}
               </div>
+              {errors.projectLevel && (
+                <p className="mt-1.5 text-xs text-red-500">
+                  {errors.projectLevel.message}
+                </p>
+              )}
             </div>
 
-            {/* ── 6. Current / Past Role ────────────────────────── */}
+            {/* ── 8. Current / Past Role ────────────────────────── */}
             <div className="animate-fade-up delay-6">
               <SectionTitle optional>Current / Past Role</SectionTitle>
               <Input
                 placeholder="e.g., Software Engineer Intern"
                 {...register("currentRole")}
               />
+            </div>
+
+            {/* ── 9. Work Preference ───────────────────────────── */}
+            <div className="animate-fade-up delay-6">
+              <SectionTitle optional>Work Preference</SectionTitle>
+              <div className="grid grid-cols-3 gap-3">
+                {WORK_PREFERENCES.map((w) => {
+                  const isSelected = selectedWork === w.id;
+                  return (
+                    <button
+                      key={w.id}
+                      type="button"
+                      onClick={() =>
+                        setValue("workPreference", isSelected ? "" : w.id)
+                      }
+                      className={[
+                        "flex items-center justify-center gap-2 py-3 rounded-lg border text-sm font-semibold transition-all duration-150",
+                        isSelected
+                          ? "bg-[#000F22] border-[#000F22] text-white"
+                          : "bg-white border-[#7A9BC4]/30 text-[#537FAF] hover:border-[#557EB2] hover:text-[#042558] hover:bg-[#C2E8FF]/40",
+                      ].join(" ")}
+                    >
+                      <w.icon size={15} />
+                      {w.label}
+                    </button>
+                  );
+                })}
+              </div>
             </div>
 
             {/* ── Actions ───────────────────────────────────────── */}
