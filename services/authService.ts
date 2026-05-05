@@ -1,5 +1,6 @@
 import axiosInstance from "@/lib/axiosInstance";
 import type { AuthUser } from "@/providers/AuthProvider";
+import { convertExperienceToNumber } from "@/app/register/step2/step2.constants";
 
 /* ─── Request / Response types ───────────────────────────────────── */
 export interface RegisterStep1Payload {
@@ -9,10 +10,12 @@ export interface RegisterStep1Payload {
 }
 
 export interface RegisterStep1Response {
+  message: string;
   userId: number;
   email: string;
   name: string;
   wizardStep: number;
+  accessToken: string;
 }
 
 export interface LoginPayload {
@@ -26,15 +29,12 @@ export interface LoginResponse {
 }
 
 export interface Step2Payload {
-  role: string;
+  userCategory: string;
   dreamJob: string;
   industries: string[];
   skills: string[];
   experienceYears: string;
   currentRole: string;
-  goalType: string;
-  projectLevel: string;
-  workPreference: string;
 }
 
 /* ─── Service functions ──────────────────────────────────────────── */
@@ -47,6 +47,11 @@ export const registerStep1 = async (
     "/api/auth/register/step1",
     payload,
   );
+
+  if (data.accessToken) {
+    localStorage.setItem("accessToken", data.accessToken);
+  }
+
   return data;
 };
 
@@ -61,13 +66,19 @@ export const loginUser = async (
   return data;
 };
 
-/** PUT /api/auth/step2  (requires auth) */
-export const completeStep2 = async (
+/** PUT /api/auth/register/step2  (requires auth) */
+export const registerStep2 = async (
   payload: Step2Payload,
 ): Promise<AuthUser> => {
+
+  const transformedPayload = {
+  ...payload,
+  experienceYears: convertExperienceToNumber(payload.experienceYears),
+};
+
   const { data } = await axiosInstance.put<AuthUser>(
-    "/api/auth/step2",
-    payload,
+    "/api/auth/register/step2",
+    transformedPayload,
   );
   return data;
 };

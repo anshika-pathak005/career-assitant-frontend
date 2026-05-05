@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { getMe } from "@/services/userService";
+// import { getMe } from "@/services/userService";
 import { useAuth } from "@/hooks/useAuth";
 
 export const USER_QUERY_KEY = ["user", "me"] as const;
@@ -42,12 +42,12 @@ export const USER_QUERY_KEY = ["user", "me"] as const;
  * 
  * - Component calls this hook (useUser), and React Query internally executes queryFn (getMe) to fetch and cache user data automatically and returns it to the component, while also managing loading and error states behind the scenes
  */
-export const useUser = () => {
-  const { isAuthenticated } = useAuth();
+// export const useUser = () => {
+//   const { isAuthenticated } = useAuth();
 
-  return useQuery({
-    queryKey: USER_QUERY_KEY,
-    queryFn: getMe,
-    enabled: isAuthenticated,
-  });
-};
+//   return useQuery({
+//     queryKey: USER_QUERY_KEY,
+//     queryFn: getMe,
+//     enabled: isAuthenticated,
+//   });
+// };

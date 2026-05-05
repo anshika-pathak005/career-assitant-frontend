@@ -55,7 +55,7 @@ export default function Footer() {
                 <BriefcaseBusiness size={15} className="text-white" />
               </div>
               <span className="font-display text-white text-xl leading-none">
-                CareerAI
+                CareerPilot
               </span>
             </Link>
             <p className="text-sm text-[#537FAF] leading-relaxed max-w-[220px]">
@@ -104,7 +104,7 @@ export default function Footer() {
         {/* Bottom row — copyright + badge */}
         <div className="border-t border-white/8 pt-6 flex flex-col sm:flex-row items-center justify-between gap-3">
           <p className="text-xs text-[#537FAF]">
-            © {year} CareerAI. All rights reserved.
+            © {year} CareerPilot. All rights reserved.
           </p>
           <div className="flex items-center gap-1.5 bg-white/6 border border-white/10 px-3 py-1.5 rounded-full">
             <span className="w-1.5 h-1.5 bg-green-400 rounded-full animate-pulse" />

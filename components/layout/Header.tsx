@@ -44,8 +44,8 @@ function Brand() {
       <div className="w-10 h-10 bg-white rounded-md flex items-center justify-center transition-transform group-hover:scale-105">
         <BriefcaseBusiness size={20} className="text-[#000F22]" />
       </div>
-      <span className="font-display font-extrabold text-white text-2xl leading-none">
-        CareerAI
+      <span className="font-display font-bold text-white text-2xl leading-none">
+        CareerPilot
       </span>
     </Link>
   );
@@ -78,7 +78,7 @@ export default function Header() {
   return (
     <>
       <header className="sticky top-0 z-50 w-full bg-[#000F22]/95 backdrop-blur-md border-b border-white/10 shadow-sm">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 h-20 flex items-center gap-4">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center gap-4">
           {/* ── Brand ─────────────────────────────────────────── */}
           <Brand />
 
@@ -92,7 +92,7 @@ export default function Header() {
                       key={href}
                       href={href}
                       className={[
-                        "flex items-center gap-1.5 px-3.5 py-2 rounded-md text-m font-semibold transition-all duration-150",
+                        "flex items-center gap-1.5 px-3.5 py-2 rounded-md text-sm font-semibold transition-all duration-150",
                         active
                           ? "bg-white text-[#000F22]"
                           : "text-white/70 hover:text-white hover:bg-white/10",
@@ -125,11 +125,11 @@ export default function Header() {
                 {/* Notification bell */}
                 <button
                   aria-label="Notifications"
-                  className="relative w-9 h-9 flex items-center justify-center rounded-md text-white/70 hover:text-white hover:bg-white/10 transition-colors"
+                  className="relative w-7 h-7 flex items-center justify-center rounded-md text-white/70 hover:text-white hover:bg-white/10 transition-colors"
                 >
                   <Bell size={19} />
                   {/* Unread dot */}
-                  <span className="absolute top-2 right-2 w-1.5 h-1.5 bg-red-500 rounded-full" />
+                  <span className="absolute top-1 right-1 w-1.5 h-1.5 bg-red-500 rounded-full" />
                 </button>
 
                 {/* User avatar + dropdown */}
@@ -141,8 +141,8 @@ export default function Header() {
                     aria-haspopup="true"
                   >
                     {/* Avatar circle */}
-                    <div className="w-8 h-8 rounded-full bg-white/20 border-2 border-white/30 flex items-center justify-center flex-shrink-0">
-                      <span className="text-s font-bold text-white">
+                    <div className="w-7 h-7 rounded-full bg-white/20 border-2 border-white/30 flex items-center justify-center flex-shrink-0">
+                      <span className="text-sm font-bold text-white">
                         {user?.name?.charAt(0).toUpperCase() ?? "?"}
                       </span>
                     </div>

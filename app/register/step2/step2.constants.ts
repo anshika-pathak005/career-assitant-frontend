@@ -70,10 +70,23 @@ export const INDUSTRIES = [
 export const EXPERIENCE_OPTIONS = [
   "0 years (Fresher)",
   "1–2 years",
-  "3–5 years",
-  "5–8 years",
-  "8+ years",
+  "2–4 years",
+  "4–7 years",
+  "7+ years",
 ] as const;
+
+// keeping here as of now
+export const EXPERIENCE_TO_NUMBER: Record<string, number> = {
+  "0 years (Fresher)": 0,
+  "1–2 years": 1.5,
+  "2–4 years": 3,
+  "4–7 years": 5.5,
+  "7+ years": 8,
+};
+
+export const convertExperienceToNumber = (exp: string): number => {
+  return EXPERIENCE_TO_NUMBER[exp] ?? 0;
+};
 
 /* ─── Project experience levels ──────────────────────────────────── */
 export const PROJECT_LEVELS = [

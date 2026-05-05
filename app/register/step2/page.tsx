@@ -13,7 +13,7 @@ import Button from "@/components/ui/Button";
 import Input from "@/components/ui/Input";
 import Card from "@/components/ui/Card";
 
-import { completeStep2 } from "@/services/authService";
+import { registerStep2 } from "@/services/authService";
 import {
   step2Schema,
   step2DefaultValues,
@@ -66,13 +66,13 @@ export default function RegisterStep2Page() {
     defaultValues: step2DefaultValues,
   });
 
-  const selectedRole = watch("role");
+  const selectedRole = watch("userCategory");
   const selectedIndustries = watch("industries") ?? [];
   const selectedSkills = watch("skills") ?? [];
   const selectedExp = watch("experienceYears");
-  const selectedGoal = watch("goalType");
-  const selectedProject = watch("projectLevel");
-  const selectedWork = watch("workPreference");
+  // const selectedGoal = watch("goalType");
+  // const selectedProject = watch("projectLevel");
+  // const selectedWork = watch("workPreference");
 
   /* Derive suggested skills from selected industries — deduped & sorted */
   const suggestedSkills = useMemo(() => {
@@ -117,9 +117,9 @@ export default function RegisterStep2Page() {
   /* ── Mutation ────────────────────────────────────────────────── */
 
   const mutation = useMutation({
-    mutationFn: completeStep2,
+    mutationFn: registerStep2,
     onSuccess: () => {
-      toast.success("Profile complete! Welcome to CareerPilot 🎉");
+      toast.success("Profile complete! Welcome to CareerPilot");
       router.push("/dashboard");
     },
     onError: (error: any) => {
@@ -207,7 +207,7 @@ export default function RegisterStep2Page() {
                     <button
                       key={r.id}
                       type="button"
-                      onClick={() => setValue("role", r.id)}
+                      onClick={() => setValue("userCategory", r.id)}
                       className={[
                         "text-left p-4 rounded-lg border transition-all duration-150",
                         isSelected
@@ -244,14 +244,14 @@ export default function RegisterStep2Page() {
                   );
                 })}
               </div>
-              {errors.role && (
+              {errors.userCategory && (
                 <p className="mt-1.5 text-xs text-red-500">
-                  {errors.role.message}
+                  {errors.userCategory.message}
                 </p>
               )}
             </div>
 
-            {/* ── 2. Goal Type ─────────────────────────────────── */}
+            {/* ── 2. Goal Type ───────────────────────────────────
             <div className="animate-fade-up delay-2">
               <SectionTitle>What is your primary goal?</SectionTitle>
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
@@ -293,7 +293,7 @@ export default function RegisterStep2Page() {
                   {errors.goalType.message}
                 </p>
               )}
-            </div>
+            </div> */}
 
             {/* ── 3. Dream Job ─────────────────────────────────── */}
             <div className="animate-fade-up delay-3">
@@ -432,7 +432,7 @@ export default function RegisterStep2Page() {
             </div>
 
             {/* ── 7. Project Experience Level ──────────────────── */}
-            <div className="animate-fade-up delay-6">
+            {/* <div className="animate-fade-up delay-6">
               <SectionTitle>Project Experience Level</SectionTitle>
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
                 {PROJECT_LEVELS.map((p) => {
@@ -468,7 +468,7 @@ export default function RegisterStep2Page() {
                   {errors.projectLevel.message}
                 </p>
               )}
-            </div>
+            </div> */}
 
             {/* ── 8. Current / Past Role ────────────────────────── */}
             <div className="animate-fade-up delay-6">
@@ -480,7 +480,7 @@ export default function RegisterStep2Page() {
             </div>
 
             {/* ── 9. Work Preference ───────────────────────────── */}
-            <div className="animate-fade-up delay-6">
+            {/* <div className="animate-fade-up delay-6">
               <SectionTitle optional>Work Preference</SectionTitle>
               <div className="grid grid-cols-3 gap-3">
                 {WORK_PREFERENCES.map((w) => {
@@ -505,7 +505,7 @@ export default function RegisterStep2Page() {
                   );
                 })}
               </div>
-            </div>
+            </div> */}
 
             {/* ── Actions ───────────────────────────────────────── */}
             <div className="flex gap-3 mt-2 animate-fade-up delay-6">
