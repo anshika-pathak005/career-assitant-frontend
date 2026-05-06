@@ -13,6 +13,7 @@ import {
   setAccessToken,
   clearAccessToken,
 } from "@/lib/axiosInstance";
+import queryClient from "@/lib/queryClient";
 
 /* ─── Types ──────────────────────────────────────────────────────── */
 
@@ -116,6 +117,10 @@ export default function AuthProvider({ children }: { children: ReactNode }) {
    * - Updates React state → triggers re-render across app
    */
   const login = useCallback((token: string, authUser: AuthUser) => {
+    // IMPORTANT: Clear old cache before setting new user
+    queryClient.clear();
+
+    // Set new auth data
     setAccessToken(token);
     localStorage.setItem("authUser", JSON.stringify(authUser));
     setUser(authUser);
@@ -128,8 +133,33 @@ export default function AuthProvider({ children }: { children: ReactNode }) {
    * - Resets React state → user becomes null
    */
   const logout = useCallback(() => {
+    // Clear token from storage
+    clearAccessToken();
+
+    // Clear all React Query cache - THIS IS CRITICAL
+    queryClient.clear();
+
+    // Remove user from localStorage
+    localStorage.removeItem("authUser");
+
+    // Reset React state
+    setUser(null);
+
+    // Force reload to clear any lingering state in memory
+    if (typeof window !== "undefined") {
+      window.location.href = "/login";
+    }
+  }, []);
+
+  /**
+   * clearAuthData:
+   * - Completely wipes all auth-related data
+   * - Used internally by logout and login for clean state
+   */
+  const clearAuthData = useCallback(() => {
     clearAccessToken();
     localStorage.removeItem("authUser");
+    queryClient.clear();
     setUser(null);
   }, []);
 

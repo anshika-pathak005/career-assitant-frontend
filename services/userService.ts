@@ -47,6 +47,8 @@ export interface UserProfile {
   goalType: string | null;
   projectLevel: string | null;
   workPreference: string | null;
+  weeklyHours: number | null;
+  skillLevels: Record<string, string> | null;
   wizardStep: number;
   isProfileComplete: boolean;
 }

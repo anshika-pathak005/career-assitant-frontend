@@ -12,7 +12,10 @@ export const useUserProfile = () =>
   useQuery({
     queryKey: USER_PROFILE_KEY,
     queryFn: getUserProfile,
-    staleTime: 1000 * 60 * 5, // 5 min
+    staleTime: 0, // Always fetch fresh data
+    refetchOnMount: true,
+    refetchOnWindowFocus: true,
+    refetchOnReconnect: true,
   });
 
 /** Partially update the user's profile. */

@@ -3,6 +3,7 @@ import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import { loginUser, LoginPayload, LoginResponse } from "@/services/authService";
 import { useAuth } from "@/hooks/useAuth";
+import queryClient from "@/lib/queryClient";
 
 /**
  * 
@@ -31,6 +32,8 @@ export const useLogin = () => {
   return useMutation<LoginResponse, Error, LoginPayload>({
     mutationFn: loginUser,
     onSuccess: ({ accessToken, user }) => {
+      // IMPORTANT: Clear cache before login
+      queryClient.clear();
       login(accessToken, user);
       toast.success(`Welcome back, ${user.name}!`);
       router.push("/dashboard");
