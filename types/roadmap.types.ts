@@ -83,3 +83,12 @@ export interface Roadmap {
   generatedAt: string;
   phases: RoadmapPhase[];
 }
+
+export interface RoadmapUsage {
+  used: number;
+  total: number;
+  remaining: number;
+  plan: string;
+  resetsOn: string; // ISO date string
+  limitReached: boolean;
+}

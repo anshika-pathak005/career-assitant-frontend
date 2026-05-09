@@ -24,6 +24,7 @@ import {
   Sparkles,
   Info,
   CheckCircle2,
+  AlertCircle,
 } from "lucide-react";
 import Button from "@/components/ui/Button";
 import Input from "@/components/ui/Input";
@@ -43,6 +44,7 @@ import {
   EXPERIENCE_OPTIONS,
 } from "@/constants/roadmap.constants";
 import type { RoadmapGenerationRequest } from "@/types/roadmap.types";
+import ErrorText from "@/components/ui/ErrorText";
 
 /* ─── Form Schema ────────────────────────────────────────────────── */
 const generateSchema = z.object({
@@ -86,6 +88,7 @@ export default function RoadmapGeneratePage() {
     handleSubmit,
     watch,
     setValue,
+    setFocus,
     formState: { errors },
   } = useForm<FormData>({
     resolver: zodResolver(generateSchema),
@@ -116,6 +119,8 @@ export default function RoadmapGeneratePage() {
       if (profile.goalType) setValue("goalType", profile.goalType);
       if (profile.projectLevel) setValue("projectLevel", profile.projectLevel);
       if (profile.weeklyHours) setValue("weeklyHours", profile.weeklyHours);
+      if (profile.learningStyle)
+        setValue("learningStyle", profile.learningStyle);
 
       // Initialize skill levels
       if (profile.skills && profile.skills.length > 0) {
@@ -135,6 +140,39 @@ export default function RoadmapGeneratePage() {
     }
   }, [authLoading, isAuthenticated, router]);
 
+  // debugging
+  useEffect(() => {
+    if (Object.keys(errors).length > 0) {
+      console.log("Form errors:", errors);
+    }
+  }, [errors]);
+
+  // auto-focus
+  useEffect(() => {
+    // Find first field with error
+    const firstErrorField = Object.keys(errors)[0];
+
+    if (firstErrorField) {
+      // Find the element
+      const element = document.querySelector(
+        `[name="${firstErrorField}"]`,
+      ) as HTMLElement;
+
+      if (element) {
+        // Scroll to element
+        element.scrollIntoView({ behavior: "smooth", block: "center" });
+        // Focus on element
+        element.focus();
+        // Add highlight effect
+        element.classList.add("ring-2", "ring-red-500", "ring-offset-2");
+        // Remove highlight after 2 seconds
+        setTimeout(() => {
+          element.classList.remove("ring-2", "ring-red-500", "ring-offset-2");
+        }, 2000);
+      }
+    }
+  }, [errors]);
+
   if (authLoading || profileLoading) {
     return (
       <div className="min-h-screen bg-[#C2E8FF] flex items-center justify-center">
@@ -143,9 +181,92 @@ export default function RoadmapGeneratePage() {
     );
   }
 
-  if (!isAuthenticated) return null;
+  if (!isAuthenticated) return null; //render nothing from this component
 
-  /* ─── Profile completion check ─────────────────────────────────── */
+  // check for roadmap generate usage limit, if exceeds 3 then upgrade
+  // Limit reached UI - Enhanced Version
+  if (profile?.generationLimit?.limitReached) {
+    return (
+      <div className="min-h-screen bg-[#C2E8FF] flex items-center justify-center px-4">
+        <Card
+          variant="default"
+          padding="lg"
+          className="max-w-md text-center shadow-xl"
+        >
+          {/* Icon */}
+          <div className="w-16 h-16 rounded-full bg-gradient-to-br from-amber-100 to-amber-200 flex items-center justify-center mx-auto mb-4 shadow-inner">
+            <AlertCircle size={28} className="text-amber-600" />
+          </div>
+
+          {/* Title */}
+          <h2 className="font-display text-2xl font-bold text-[#000F22] mb-2">
+            Monthly generation limit reached
+          </h2>
+
+          {/* Subtitle */}
+          <p className="text-sm text-[#537FAF] mb-6 leading-relaxed">
+            You've used all{" "}
+            <span className="font-bold text-[#000F22]">
+              {profile.generationLimit.total}
+            </span>{" "}
+            free roadmap generations this month. Upgrade to unlock unlimited
+            roadmaps and accelerate your career journey.
+          </p>
+
+          {/* Stats Card */}
+          <div className="bg-[#C2E8FF]/50 rounded-lg p-4 mb-6">
+            <div className="flex justify-between text-sm mb-2">
+              <span className="text-[#537FAF]">Used this month</span>
+              <span className="font-semibold text-[#000F22]">
+                {profile.generationLimit.used} / {profile.generationLimit.total}
+              </span>
+            </div>
+            <div className="h-2 bg-[#C2E8FF] rounded-full overflow-hidden">
+              <div
+                className="h-full bg-[#557EB2] rounded-full"
+                style={{ width: "100%" }}
+              />
+            </div>
+            <p className="text-xs text-[#7A9BC4] mt-3">
+              Resets on{" "}
+              {new Date(profile.generationLimit.resetsOn).toLocaleDateString(
+                "en-US",
+                { year: "numeric", month: "long", day: "numeric" },
+              )}
+            </p>
+          </div>
+
+          {/* Upgrade CTA */}
+          <Button
+            variant="primary"
+            size="lg"
+            className="w-full mb-3"
+            onClick={() => router.push("/pricing")}
+            rightIcon={<Sparkles size={16} />}
+          >
+            Upgrade to Pro – Unlimited Roadmaps
+          </Button>
+
+          {/* Secondary action */}
+          <Button
+            variant="ghost"
+            size="md"
+            className="w-full"
+            onClick={() => router.push("/dashboard")}
+          >
+            Back to Dashboard
+          </Button>
+
+          {/* Small note */}
+          <p className="text-[10px] text-[#7A9BC4] mt-4">
+            Already upgraded? Contact support for assistance.
+          </p>
+        </Card>
+      </div>
+    );
+  }
+
+  /* ─── Profile completion check (basic info should be already filled like dream-job and all */
   if (profile && !profile.isProfileComplete) {
     return (
       <div className="min-h-screen bg-[#C2E8FF] flex items-center justify-center px-4">
@@ -209,6 +330,19 @@ export default function RoadmapGeneratePage() {
   };
 
   const onSubmit = (data: FormData) => {
+    // If there are validation errors, focus on the first field with error
+    if (Object.keys(errors).length > 0) {
+      const firstError = Object.keys(errors)[0];
+      const errorElement = document.querySelector(
+        `[name="${firstError}"]`,
+      ) as HTMLElement;
+      if (errorElement) {
+        errorElement.scrollIntoView({ behavior: "smooth", block: "center" });
+        errorElement.focus();
+      }
+      return;
+    }
+
     const request: RoadmapGenerationRequest = {
       currentRole: data.currentRole,
       industries: selectedIndustries,
@@ -255,6 +389,47 @@ export default function RoadmapGeneratePage() {
             </p>
           </div>
         </div>
+
+        {/* Usage info card - shows remaining generations */}
+        {profile?.generationLimit && (
+          <div className="mb-6">
+            <Card
+              variant="flat"
+              padding="sm"
+              className="border border-[#7A9BC4]/15 bg-white/50"
+            >
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-2">
+                  <Sparkles size={14} className="text-[#557EB2]" />
+                  <span className="text-xs font-medium text-[#042558]">
+                    {profile.generationLimit.remaining} of{" "}
+                    {profile.generationLimit.total} roadmap generations left
+                    this month
+                  </span>
+                </div>
+                {profile.generationLimit.remaining <= 1 && (
+                  <span className="text-[10px] text-[#7A9BC4]">
+                    Resets on{" "}
+                    {new Date(
+                      profile.generationLimit.resetsOn,
+                    ).toLocaleDateString(undefined, {
+                      month: "short",
+                      day: "numeric",
+                    })}
+                  </span>
+                )}
+              </div>
+              <div className="mt-1.5 h-1 bg-[#C2E8FF] rounded-full overflow-hidden">
+                <div
+                  className="h-full bg-[#7A9BC4] rounded-full"
+                  style={{
+                    width: `${(profile.generationLimit.used / profile.generationLimit.total) * 100}%`,
+                  }}
+                />
+              </div>
+            </Card>
+          </div>
+        )}
 
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
           {/* Fixed Information Card */}
@@ -435,7 +610,7 @@ export default function RoadmapGeneratePage() {
             <div className="space-y-5">
               <div>
                 <label className="text-sm font-semibold text-[#042558] block mb-2">
-                  Experience Level
+                  Experience Years
                 </label>
                 <div className="grid grid-cols-3 gap-2">
                   {EXPERIENCE_OPTIONS.map((exp) => (
@@ -456,11 +631,10 @@ export default function RoadmapGeneratePage() {
                     </button>
                   ))}
                 </div>
-                {errors.experienceYears && (
-                  <p className="text-xs text-red-500 mt-1">
-                    {errors.experienceYears.message}
-                  </p>
-                )}
+                <ErrorText
+                  message={errors.experienceYears?.message}
+                  fieldName="Experience level"
+                />
               </div>
 
               <div>
@@ -511,6 +685,10 @@ export default function RoadmapGeneratePage() {
                   </p>
                 )}
               </div>
+              <ErrorText
+                message={errors.goalType?.message}
+                fieldName="Career goal"
+              />
 
               <div>
                 <label className="text-sm font-semibold text-[#042558] block mb-2">
@@ -550,6 +728,10 @@ export default function RoadmapGeneratePage() {
                   </p>
                 )}
               </div>
+              <ErrorText
+                message={errors.projectLevel?.message}
+                fieldName="Project level"
+              />
 
               <div>
                 <label className="text-sm font-semibold text-[#042558] block mb-2">
@@ -593,6 +775,10 @@ export default function RoadmapGeneratePage() {
                     </button>
                   ))}
                 </div>
+                <ErrorText
+                  message={errors.learningStyle?.message}
+                  fieldName="Learning style"
+                />
               </div>
 
               <div>
@@ -624,6 +810,10 @@ export default function RoadmapGeneratePage() {
                   </p>
                 )}
               </div>
+              <ErrorText
+                message={errors.weeklyHours?.message}
+                fieldName="Weekly hours"
+              />
             </div>
           </Card>
 
@@ -674,7 +864,7 @@ export default function RoadmapGeneratePage() {
           )}
 
           {/* Section 4: Specialization */}
-          {specializations && specializations.length > 0 && (
+          {/* {specializations && specializations.length > 0 && (
             <Card variant="default" padding="lg">
               <h2 className="font-semibold text-[#000F22] text-lg mb-4">
                 Choose Specialization
@@ -720,6 +910,73 @@ export default function RoadmapGeneratePage() {
                     </div>
                   </button>
                 ))}
+              </div>
+            </Card>
+          )} */}
+
+          {specializations && specializations.length > 0 && (
+            <Card variant="default" padding="lg">
+              <h2 className="font-semibold text-[#000F22] text-lg mb-4">
+                Choose Specialization
+              </h2>
+              <p className="text-xs text-[#537FAF] mb-4 -mt-2">
+                Select a specialization for a more focused roadmap, or type your
+                own below.
+              </p>
+              <div className="grid grid-cols-1 gap-2">
+                {specializations.map((spec) => (
+                  <button
+                    key={spec.title}
+                    type="button"
+                    onClick={() => setValue("specialization", spec.title)}
+                    className={`
+            p-3 rounded-lg border text-left transition-all duration-150
+            ${
+              watch("specialization") === spec.title
+                ? "bg-[#000F22] border-[#000F22]"
+                : "bg-white border-[#7A9BC4]/30 hover:border-[#557EB2]"
+            }
+          `}
+                  >
+                    <p
+                      className={`font-semibold text-sm ${watch("specialization") === spec.title ? "text-white" : "text-[#000F22]"}`}
+                    >
+                      {spec.title}
+                    </p>
+                    <p
+                      className={`text-xs mt-0.5 ${watch("specialization") === spec.title ? "text-white/70" : "text-[#537FAF]"}`}
+                    >
+                      {spec.description}
+                    </p>
+                    <div className="flex flex-wrap gap-1.5 mt-2">
+                      {spec.coreTech.slice(0, 3).map((tech) => (
+                        <span
+                          key={tech}
+                          className={`text-[10px] px-2 py-0.5 rounded-full ${
+                            watch("specialization") === spec.title
+                              ? "bg-white/20 text-white/80"
+                              : "bg-[#C2E8FF] text-[#537FAF]"
+                          }`}
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+                  </button>
+                ))}
+              </div>
+
+              {/* Custom Specialization Input */}
+              <div className="mt-4 pt-4 border-t border-[#7A9BC4]/15">
+                <label className="text-xs font-semibold text-[#042558] block mb-2">
+                  Or specify your own specialization
+                </label>
+                <Input
+                  placeholder="e.g., MERN Stack Developer, AI/ML Engineer"
+                  value={watch("specialization") || ""}
+                  onChange={(e) => setValue("specialization", e.target.value)}
+                  hint="Leave empty for a general roadmap"
+                />
               </div>
             </Card>
           )}

@@ -10,6 +10,7 @@ import {
   updateStepCompletion,
 } from "@/services/roadmapService";
 import type { RoadmapGenerationRequest } from "@/types/roadmap.types";
+import { skip } from "node:test";
 
 /* ─── Query keys ─────────────────────────────────────────────────── */
 export const ROADMAP_KEYS = {
@@ -79,15 +80,19 @@ export const useUpdateStepCompletion = (roadmapId: number) => {
     mutationFn: ({
       stepId,
       completed,
+      skipped = false,
     }: {
       stepId: number;
       completed: boolean;
-    }) => updateStepCompletion(roadmapId, stepId, completed),
+      skipped :boolean;
+    }) => updateStepCompletion(roadmapId, stepId, completed,skipped),
     onSuccess: () => {
-      // Invalidate roadmap detail to refresh the UI
+      // Invalidate both roadmap detail and user roadmaps cache
       queryClient.invalidateQueries({
         queryKey: ROADMAP_KEYS.detail(roadmapId),
       });
+      queryClient.invalidateQueries({ queryKey: ROADMAP_KEYS.user() });
+      queryClient.invalidateQueries({ queryKey: ROADMAP_KEYS.latest() });
     },
     onError: (error: any) => {
       const message =

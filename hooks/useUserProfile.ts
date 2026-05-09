@@ -2,8 +2,9 @@ import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import {
   getUserProfile,
   updateUserProfile,
-  type UserProfile,
+  // type UserProfile,
 } from "@/services/userService";
+import { UserProfile } from "@/types/profile.types";
 
 export const USER_PROFILE_KEY = ["user", "profile"] as const;
 

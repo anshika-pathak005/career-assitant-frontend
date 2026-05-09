@@ -512,17 +512,17 @@ export default function RegisterStep2Page() {
               <Button
                 type="button"
                 variant="ghost"
-                size="md"
-                leftIcon={<ArrowLeft size={14} />}
-                onClick={() => router.push("/register")}
-                className="flex-shrink-0"
+                size="lg"
+                onClick={() => router.push("/dashboard")}
+                className="flex-1"
               >
-                Back
+                Skip for now
               </Button>
               <Button
                 type="submit"
-                className="flex-1"
+                variant="primary"
                 size="lg"
+                className="flex-1"
                 isLoading={mutation.isPending}
                 rightIcon={<ArrowRight size={16} />}
               >

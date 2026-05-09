@@ -1,4 +1,4 @@
-import axiosInstance from "@/lib/axiosInstance";
+import axiosInstance, { setAccessToken } from "@/lib/axiosInstance";
 import type { AuthUser } from "@/providers/AuthProvider";
 import { convertExperienceToNumber } from "@/app/register/step2/step2.constants";
 
@@ -49,9 +49,10 @@ export const registerStep1 = async (
   );
 
   if (data.accessToken) {
-    localStorage.setItem("accessToken", data.accessToken);
+    // localStorage.setItem("accessToken", data.accessToken);
+    setAccessToken(data.accessToken);
   }
-
+  
   return data;
 };
 

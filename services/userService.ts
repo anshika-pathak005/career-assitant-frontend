@@ -31,27 +31,29 @@
 // };
 
 import axiosInstance from "@/lib/axiosInstance";
+import { GenerationLimit, UserProfile } from "@/types/profile.types";
 
 /* ─── Types ──────────────────────────────────────────────────────── */
 
-export interface UserProfile {
-  userId: number;
-  name: string;
-  email: string;
-  userCategory: string | null;
-  dreamJob: string | null;
-  industries: string[];
-  skills: string[];
-  experienceYears: number | null;
-  currentRole: string | null;
-  goalType: string | null;
-  projectLevel: string | null;
-  workPreference: string | null;
-  weeklyHours: number | null;
-  skillLevels: Record<string, string> | null;
-  wizardStep: number;
-  isProfileComplete: boolean;
-}
+// export interface UserProfile {
+//   userId: number;
+//   name: string;
+//   email: string;
+//   userCategory: string | null;
+//   dreamJob: string | null;
+//   industries: string[];
+//   skills: string[];
+//   experienceYears: number | null;
+//   currentRole: string | null;
+//   goalType: string | null;
+//   projectLevel: string | null;
+//   workPreference: string | null;
+//   weeklyHours: number | null;
+//   skillLevels: Record<string, string> | null;
+//   wizardStep: number;
+//   isProfileComplete: boolean;
+//   generationLimit?: GenerationLimit;
+// }
 
 /* ─── Service functions ──────────────────────────────────────────── */
 

@@ -11,11 +11,11 @@ import type { Specialization } from "@/types/roadmap.types";
 export const getSpecializations = async (
   dreamJob: string,
 ): Promise<Specialization[]> => {
-  const { data } = await axiosInstance.get<Specialization[]>(
-    "/api/roadmap/specializations",
-    {
-      params: { dreamJob },
-    },
-  );
-  return data;
+  const { data } = await axiosInstance.get<{
+    dreamJob: string;
+    specializations: Specialization[];
+  }>("/api/roadmap/specializations", {
+    params: { dreamJob },
+  });
+  return data.specializations;
 };

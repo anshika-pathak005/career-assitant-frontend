@@ -26,6 +26,7 @@ import ProfileCompletionBanner from "@/components/dashboard/ProfileCompletionBan
 import { useAuth } from "@/hooks/useAuth";
 import { useUserProfile } from "@/hooks/useUserProfile";
 import { useLatestRoadmap } from "@/hooks/useRoadmap";
+import FeatureShowcase from "@/components/dashboard/FeatureShowcase";
 
 /* ─── Loading skeleton ───────────────────────────────────────────── */
 function Skeleton({ className = "" }: { className?: string }) {
@@ -320,25 +321,74 @@ export default function DashboardPage() {
             </p>
           </div>
 
-          {/* Profile Completion Banner */}
-          {!profileLoading && profile && !profile.isProfileComplete && (
+          {/* Usage Card - Show roadmap generation limit */}
+          {profile?.generationLimit && profile.isProfileComplete && (
             <div className="animate-fade-up delay-1">
-              <ProfileCompletionBanner profile={profile} />
+              <Card
+                variant="flat"
+                padding="sm"
+                className="border border-[#7A9BC4]/20"
+              >
+                <div className="flex items-center justify-between flex-wrap gap-3">
+                  <div className="flex items-center gap-3">
+                    <div className="w-8 h-8 rounded-full bg-[#C2E8FF] flex items-center justify-center">
+                      <Sparkles size={14} className="text-[#557EB2]" />
+                    </div>
+                    <div>
+                      <p className="text-xs font-semibold text-[#042558]">
+                        {profile.generationLimit.plan === "FREE"
+                          ? "Free Plan"
+                          : "Pro Plan"}
+                      </p>
+                      <p className="text-xs text-[#537FAF]">
+                        {profile.generationLimit.used} /{" "}
+                        {profile.generationLimit.total} roadmaps this month
+                      </p>
+                    </div>
+                  </div>
+                  {profile.generationLimit.limitReached &&
+                    profile.generationLimit.plan === "FREE" && (
+                      <Button
+                        variant="primary"
+                        size="sm"
+                        onClick={() => router.push("/pricing")}
+                      >
+                        Upgrade to Pro
+                      </Button>
+                    )}
+                </div>
+                <div className="mt-2 h-1.5 bg-[#C2E8FF] rounded-full overflow-hidden">
+                  <div
+                    className="h-full bg-[#557EB2] rounded-full transition-all"
+                    style={{
+                      width: `${(profile.generationLimit.used / profile.generationLimit.total) * 100}%`,
+                    }}
+                  />
+                </div>
+                <p className="text-[10px] text-[#7A9BC4] mt-1.5">
+                  Resets on{" "}
+                  {new Date(
+                    profile.generationLimit.resetsOn,
+                  ).toLocaleDateString()}
+                </p>
+              </Card>
             </div>
           )}
 
           {/* Quick Stats */}
-          <div className="animate-fade-up delay-1">
-            {isLoading ? (
-              <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-                {Array.from({ length: 4 }).map((_, i) => (
-                  <Skeleton key={i} className="h-32" />
-                ))}
-              </div>
-            ) : (
-              <QuickStats profile={profile} />
-            )}
-          </div>
+          {profile?.isProfileComplete && (
+            <div className="animate-fade-up delay-1">
+              {isLoading ? (
+                <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+                  {Array.from({ length: 4 }).map((_, i) => (
+                    <Skeleton key={i} className="h-32" />
+                  ))}
+                </div>
+              ) : (
+                <QuickStats profile={profile} />
+              )}
+            </div>
+          )}
 
           {/* Main Content */}
           {isLoading ? (
@@ -360,27 +410,19 @@ export default function DashboardPage() {
               </div>
             )
           ) : (
-            /* Profile Incomplete */
-            <div className="animate-fade-up delay-2 flex flex-col gap-4">
-              <Card variant="flat" padding="lg" className="text-center">
-                <div className="w-14 h-14 rounded-full bg-[#C2E8FF] flex items-center justify-center mx-auto mb-4">
-                  <BriefcaseBusiness size={22} className="text-[#557EB2]" />
+            !profileLoading &&
+            profile &&
+            !profile.isProfileComplete && (
+              /* Profile Incomplete */
+              <div className="flex flex-col gap-5">
+                <div className="animate-fade-up delay-1">
+                  <ProfileCompletionBanner profile={profile} />
                 </div>
-                <p className="text-sm font-semibold text-[#000F22] mb-1">
-                  Complete your profile first
-                </p>
-                <p className="text-xs text-[#537FAF] max-w-md mx-auto mb-4">
-                  Add your career preferences and skill set to receive a
-                  personalized roadmap.
-                </p>
-                <Link href="/register/step2">
-                  <Button variant="primary" size="md">
-                    Complete Profile
-                  </Button>
-                </Link>
-              </Card>
-              <FeatureCards />
-            </div>
+                <div className="animate-fade-up delay-2">
+                  <FeatureShowcase />
+                </div>
+              </div>
+            )
           )}
         </div>
       </main>
