@@ -28,16 +28,16 @@ const NAV_SECTIONS = [
         description: "Overview & insights",
       },
       {
-        label: "Career Roadmap",
-        href: "/roadmap/generate",
+        label: "My Roadmaps",
+        href: "/roadmap",
         icon: MapIcon,
         description: "Your personalized path",
       },
       {
-        label: "AI Chat Assistant",
-        href: "/chat",
-        icon: MessageSquare,
-        description: "Ask career questions",
+        label: "My Resume Analysis",
+        href: "/resume-analysis",
+        icon: FileText,
+        description: "ATS score & feedback",
       },
     ],
   },
@@ -45,10 +45,10 @@ const NAV_SECTIONS = [
     label: "Career Tools",
     items: [
       {
-        label: "Resume Analysis",
-        href: "/analysis",
-        icon: FileText,
-        description: "ATS score & feedback",
+        label: "AI Chat Assistant",
+        href: "/chat",
+        icon: MessageSquare,
+        description: "Ask career questions",
       },
       {
         label: "Skill Assessment",

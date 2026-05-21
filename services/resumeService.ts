@@ -85,3 +85,21 @@ export const getLatestAnalysis =
       return null;
     }
   };
+
+/**
+ * GET /api/resume/my-resumes
+ * Fetches the all resume analysis for the authenticated user.
+ */
+export const getUserResumes = async (): Promise<any[]> => {
+  const { data } = await axiosInstance.get("/api/resume/my-resumes");
+  return data;
+};
+
+/**
+ * GET /api/resume/${resumeId}
+ * Fetches the specific resume analysis according to userId for the authenticated user.
+ */
+export const getResumeAnalysis = async (resumeId: number): Promise<any> => {
+  const { data } = await axiosInstance.get(`/api/resume/${resumeId}`);
+  return data;
+};

@@ -5,6 +5,8 @@ import {
   uploadAndAnalyzeResume,
   analyzeFromProfile,
   getLatestAnalysis,
+  getUserResumes,
+  getResumeAnalysis,
   type ResumeAnalysisResponse,
 } from "@/services/resumeService";
 
@@ -42,5 +44,24 @@ export const useAnalyzeFromProfile = () => {
       router.push(`/analysis?resumeId=${data.resumeId}`);
     },
     onError: () => toast.error("Analysis failed. Please try again."),
+  });
+};
+
+/**Get all resusme analysis of the users */
+export const useUserResumes = () => {
+  return useQuery({
+    queryKey: ["resume", "user-resumes"],
+    queryFn: getUserResumes,
+    staleTime: 1000 * 60 * 5,
+  });
+};
+
+// Get the specific resume by id of that particular user //
+export const useResumeAnalysis = (resumeId: number) => {
+  return useQuery({
+    queryKey: ["resume", "analysis", resumeId],
+    queryFn: () => getResumeAnalysis(resumeId),
+    enabled: !!resumeId,
+    staleTime: 1000 * 60 * 5,
   });
 };

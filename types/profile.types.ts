@@ -10,6 +10,25 @@ export interface GenerationLimit {
   limitReached: boolean;
 }
 
+export interface ActiveRoadmap {
+  roadmapId: number;
+  dreamJob: string;
+  status: string;
+  overallProgress: number;
+  totalEstimatedWeeks: number;
+  generatedAt: string;
+}
+
+export interface LatestResume {
+  resumeId: number;
+  analysisId: number;
+  fileName: string;
+  overallScore: number;
+  atsScore: number;
+  interviewReadiness: string;
+  uploadedAt: string;
+}
+
 /* ─── User Profile (matches GET /api/user/profile response) ─────── */
 export interface UserProfile {
   userId: number;
@@ -30,6 +49,9 @@ export interface UserProfile {
   wizardStep: number;
   isProfileComplete: boolean;
   generationLimit?: GenerationLimit;
+  resumeUsage?: GenerationLimit; 
+  activeRoadmap?: ActiveRoadmap;
+  latestResume?: LatestResume;
 }
 
 /* ─── Profile Update Request (partial) ──────────────────────────── */

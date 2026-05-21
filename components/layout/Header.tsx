@@ -33,7 +33,7 @@ const APP_NAV = [
 /* ─── Public nav links ───────────────────────────────────────────── */
 const PUBLIC_NAV = [
   { label: "Features", href: "/#features" },
-  { label: "Pricing", href: "/#pricing" },
+  { label: "Pricing", href: "/pricing" },
   { label: "About", href: "/#about" },
 ];
 
@@ -205,7 +205,7 @@ export default function Header() {
               /* ── Public right side ────────────────────────── */
               <>
                 <Link href="/login" className="hidden sm:block">
-                  <Button variant="ghost" size="sm">
+                  <Button variant="ghost" size="sm" className="text-white">
                     Sign in
                   </Button>
                 </Link>

@@ -8,6 +8,7 @@ import Sidebar from "@/components/layout/Sidebar";
 import { useAuth } from "@/hooks/useAuth";
 import { useChat } from "@/hooks/useChat";
 import { formatTime } from "@/utils/formatDate";
+import ComingSoonModal from "@/components/ui/ComingSoonModal";
 
 /* ─── Suggested prompts ──────────────────────────────────────────── */
 const SUGGESTED_PROMPTS = [
@@ -24,6 +25,7 @@ export default function ChatPage() {
   const { messages, isSending, sendMessage } = useChat();
   const [input, setInput] = useState("");
   const bottomRef = useRef<HTMLDivElement>(null);
+  const [isComingSoonModalOpen, setIsComingSoonModalOpen] = useState(true);
 
   // Auth guard
   useEffect(() => {
@@ -35,12 +37,21 @@ export default function ChatPage() {
     bottomRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages, isSending]);
 
+  // const handleSend = () => {
+  //   const trimmed = input.trim();
+  //   if (!trimmed || isSending) return;
+  //   setInput("");
+  //   sendMessage(trimmed);
+  // };
+
   const handleSend = () => {
-    const trimmed = input.trim();
-    if (!trimmed || isSending) return;
-    setInput("");
-    sendMessage(trimmed);
-  };
+  const trimmed = input.trim();
+  if (!trimmed || isSending) return;
+  
+  // Show coming soon modal
+  setIsComingSoonModalOpen(true);
+  setInput("");
+};
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
     if (e.key === "Enter" && !e.shiftKey) {
@@ -61,8 +72,8 @@ export default function ChatPage() {
     <div className="min-h-screen bg-[#C2E8FF] flex flex-col">
       {/* <Navbar /> */}
 
-      <div className="flex flex-1 max-w-7xl mx-auto w-full px-4 sm:px-6 gap-6 py-6 min-h-0">
-        <Sidebar />
+      <div className="flex flex-1 max-w-5xl mx-auto w-full px-4 sm:px-6 gap-6 py-6 min-h-0">
+        {/* <Sidebar /> */}
 
         {/* Chat panel */}
         <main className="flex-1 min-w-0 flex flex-col bg-white rounded-lg border border-[#7A9BC4]/20 shadow-card overflow-hidden">
@@ -211,6 +222,11 @@ export default function ChatPage() {
           </div>
         </main>
       </div>
+      <ComingSoonModal
+        isOpen={isComingSoonModalOpen}
+        onClose={() => setIsComingSoonModalOpen(false)}
+        featureName="AI Chat Assistant"
+      />
     </div>
   );
 }
