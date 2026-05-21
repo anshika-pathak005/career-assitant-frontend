@@ -20,7 +20,7 @@ import Card from "@/components/ui/Card";
 import { useAuth } from "@/hooks/useAuth";
 import { useUserRoadmaps } from "@/hooks/useRoadmap";
 import { useUserProfile } from "@/hooks/useUserProfile";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ConfirmModal from "@/components/ui/ConfirmModal";
 
 /* ─── Skeleton Loader ───────────────────────────────────────────── */
@@ -74,13 +74,11 @@ function HeroCTA({ userName, generationLimit }: { userName: string; generationLi
             Get a step-by-step learning plan tailored to your dream job, skills,
             and experience level. Track your progress and stay on course.
           </p>
-
           <Button
             onClick={() => router.push("/roadmap/generate")}
             variant="primary"
             size="lg"
             rightIcon={<ArrowRight size={16} />}
-            className="bg-white text-black hover:bg-[#C2E8FF] font-semibold"
             disabled={limitReached}
           >
             Generate New Roadmap
@@ -89,7 +87,11 @@ function HeroCTA({ userName, generationLimit }: { userName: string; generationLi
       </Card>
 
       {/* Usage Card - Inside same component */}
-      <Card variant="flat" padding="sm" className="border border-[#7A9BC4]/20 bg-white/50">
+      <Card
+        variant="flat"
+        padding="sm"
+        className="border border-[#7A9BC4]/20 bg-white/50"
+      >
         <div className="flex items-center justify-between flex-wrap gap-3">
           <div className="flex items-center gap-3">
             <div className="w-8 h-8 rounded-full bg-[#C2E8FF] flex items-center justify-center">
@@ -104,7 +106,7 @@ function HeroCTA({ userName, generationLimit }: { userName: string; generationLi
               </p>
             </div>
           </div>
-          
+
           {limitReached && (
             <Button
               variant="primary"
@@ -125,10 +127,9 @@ function HeroCTA({ userName, generationLimit }: { userName: string; generationLi
         </div>
 
         <p className="text-[10px] text-[#7A9BC4] mt-1.5">
-          {limitReached 
+          {limitReached
             ? `Resets on ${new Date(generationLimit.resetsOn).toLocaleDateString()}`
-            : `${remaining} generation${remaining !== 1 ? 's' : ''} remaining this month`
-          }
+            : `${remaining} generation${remaining !== 1 ? "s" : ""} remaining this month`}
         </p>
       </Card>
     </div>
@@ -167,6 +168,11 @@ export default function RoadmapListPage() {
   const { data: roadmaps, isLoading: roadmapsLoading } = useUserRoadmaps();
   const router = useRouter();
 
+   /* Auth guard */
+    useEffect(() => {
+      if (!authLoading && !isAuthenticated) router.replace("/login");
+    }, [authLoading, isAuthenticated, router]);
+        
   if (authLoading) {
     return (
       <div className="min-h-screen bg-[#C2E8FF] flex items-center justify-center">

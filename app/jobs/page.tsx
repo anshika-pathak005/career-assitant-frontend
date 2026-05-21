@@ -2,15 +2,26 @@
 
 "use client";
 
-import { useState } from "react";
+import { use, useEffect, useState } from "react";
 import ComingSoonModal from "@/components/ui/ComingSoonModal";
 import Button from "@/components/ui/Button";
 import Card from "@/components/ui/Card";
 import { BriefcaseBusiness, Search } from "lucide-react";
+import { useAuth } from "@/hooks/useAuth";
+import { useRouter } from "next/navigation";
 
 export default function JobsPage() {
+  const {isAuthenticated, isLoading:authLoading} = useAuth();
   const [isModalOpen, setIsModalOpen] = useState(true); // Open by default
   // OR use button click to open
+
+  const router = useRouter();
+
+  useEffect(() => {
+    if(!authLoading && !isAuthenticated){
+      router.replace("/login")
+    }
+  }, [authLoading, isAuthenticated,router]);
 
   return (
     <div className="min-h-screen bg-[#C2E8FF] py-8 px-4 sm:px-6">

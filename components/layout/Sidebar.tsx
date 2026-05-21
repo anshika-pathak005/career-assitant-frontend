@@ -15,12 +15,20 @@ import {
   HelpCircle,
   Target,
   ChevronRight,
+  Currency,
+  CreditCard,
 } from "lucide-react";
 
 const NAV_SECTIONS = [
   {
     label: "Main",
     items: [
+      {
+        label: "My Profile",
+        href: "/profile",
+        icon: CreditCard,
+        description: "Overview & insights",
+      },
       {
         label: "Dashboard",
         href: "/dashboard",
@@ -51,6 +59,12 @@ const NAV_SECTIONS = [
         description: "Ask career questions",
       },
       {
+        label: "Job Readiness",
+        href: "/jobs",
+        icon: Target,
+        description: "Get Job Matchings",
+      },
+      {
         label: "Skill Assessment",
         href: "/skills",
         icon: Target,
@@ -67,6 +81,12 @@ const NAV_SECTIONS = [
   {
     label: "Support",
     items: [
+      {
+        label: "Pricing",
+        href: "/pricing",
+        icon: Currency,
+        description: "Guides & tutorials",
+      },
       {
         label: "Help Center",
         href: "/help",

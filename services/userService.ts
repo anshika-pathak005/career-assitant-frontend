@@ -55,6 +55,11 @@ import { GenerationLimit, UserProfile } from "@/types/profile.types";
 //   generationLimit?: GenerationLimit;
 // }
 
+export interface ChangePasswordPayload {
+  currentPassword: string;
+  newPassword: string;
+}
+
 /* ─── Service functions ──────────────────────────────────────────── */
 
 /** GET /api/user/profile */
@@ -72,4 +77,18 @@ export const updateUserProfile = async (
     payload,
   );
   return data;
+};
+
+// changeaccount password
+export const changePassword = async (
+  payload: ChangePasswordPayload,
+): Promise<void> => {
+  await axiosInstance.put("/api/user/settings/password", payload);
+};
+
+// delete account
+export const deleteAccount = async (password: string): Promise<void> => {
+  await axiosInstance.delete("/api/user/settings/account", {
+    params: { password },
+  });
 };

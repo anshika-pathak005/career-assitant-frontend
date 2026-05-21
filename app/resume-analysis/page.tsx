@@ -21,6 +21,7 @@ import Card from "@/components/ui/Card";
 import { useAuth } from "@/hooks/useAuth";
 import { useUserResumes } from "@/hooks/useResumeAnalysis";
 import { useUserProfile } from "@/hooks/useUserProfile";
+import { useEffect } from "react";
 
 /* ─── Skeleton Loader ───────────────────────────────────────────── */
 function SkeletonCard() {
@@ -80,13 +81,11 @@ function HeroCTA({
             Upload your resume to get detailed ATS score, skill gap analysis,
             and personalized recommendations to improve your chances.
           </p>
-
           <Button
-            onClick={() => router.push("/resume-analysis/analysis")}
+            onClick={() => router.push("/resume-analysis/analyze")}
             variant="primary"
             size="lg"
-            rightIcon={<Upload size={16} />}
-            className="bg-white text-black hover:bg-[#C2E8FF] font-semibold"
+            rightIcon={<ArrowRight size={16} />}
             disabled={limitReached}
           >
             Analyze New Resume
@@ -332,6 +331,11 @@ export default function ResumeAnalysisPage() {
   const { data: profile } = useUserProfile();
   const { data: resumes, isLoading: resumesLoading } = useUserResumes();
   const router = useRouter();
+
+   /* Auth guard */
+    useEffect(() => {
+      if (!authLoading && !isAuthenticated) router.replace("/login");
+    }, [authLoading, isAuthenticated, router]);
 
   if (authLoading) {
     return (

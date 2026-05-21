@@ -31,6 +31,7 @@ import Button from "@/components/ui/Button";
 import Card from "@/components/ui/Card";
 import { useAuth } from "@/hooks/useAuth";
 import { useResumeAnalysis } from "@/hooks/useResumeAnalysis";
+import { useEffect } from "react";
 
 /* ─── Score Ring Component ──────────────────────────────────────── */
 function ScoreRing({
@@ -116,6 +117,11 @@ export default function ResumeAnalysisDetailPage() {
   const resumeId = parseInt(params.id as string);
   const { isAuthenticated, isLoading: authLoading } = useAuth();
   const { data: analysis, isLoading } = useResumeAnalysis(resumeId);
+
+   /* Auth guard */
+    useEffect(() => {
+      if (!authLoading && !isAuthenticated) router.replace("/login");
+    }, [authLoading, isAuthenticated, router]);
 
   if (authLoading || isLoading) {
     return (

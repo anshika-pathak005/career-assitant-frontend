@@ -2,7 +2,7 @@
 
 "use client";
 
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import {
   Upload,
@@ -34,6 +34,11 @@ export default function ResumeUploadPage() {
   const [error, setError] = useState<string | null>(null);
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
+
+   /* Auth guard */
+    useEffect(() => {
+      if (!authLoading && !isAuthenticated) router.replace("/login");
+    }, [authLoading, isAuthenticated, router]);
 
   if (authLoading) {
     return (

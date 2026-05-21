@@ -25,8 +25,8 @@ import { logoutUser } from "@/services/authService";
 /* ─── Authenticated nav links ────────────────────────────────────── */
 const APP_NAV = [
   { label: "Dashboard", href: "/dashboard", icon: LayoutDashboard },
-  { label: "AI Chat", href: "/chat", icon: MessageSquare },
-  { label: "Resume", href: "/resume", icon: FileText },
+  { label: "Roadmap", href: "/roadmap", icon: MessageSquare },
+  { label: "Resume", href: "/resume-analysis", icon: FileText },
   { label: "Jobs", href: "/jobs", icon: Target },
 ];
 
