@@ -47,7 +47,7 @@ axiosInstance.interceptors.request.use(
   (config: InternalAxiosRequestConfig) => {
     const token = getAccessToken();
 
-    console.log("TOKEN FROM INTERCEPTOR:", token);
+    // console.log("TOKEN FROM INTERCEPTOR:", token);
 
     if (token && config.headers) {
       config.headers["Authorization"] = `Bearer ${token}`;
@@ -89,8 +89,12 @@ axiosInstance.interceptors.response.use(
       _retry?: boolean;
     };
 
+    // SKIP refresh for login/register endpoints - prevents unnecessary refresh calls
+    const isAuthEndpoint = originalRequest.url?.includes("/api/auth/login") ||
+                           originalRequest.url?.includes("/api/auth/register");
+
     // If token expired (401) and request not retried yet
-    if (error.response?.status === 401 && !originalRequest._retry) {
+    if (error.response?.status === 401 && !originalRequest._retry && !isAuthEndpoint) {
       
       // If a refresh request is already running,
       // do not start another one —
@@ -127,8 +131,12 @@ axiosInstance.interceptors.response.use(
         processQueue(refreshError, null); // Reject all queued requests with error
         clearAccessToken(); // Clear tokens from storage
 
-        /* Redirect user to login page (session expired) */
-        if (typeof window !== "undefined") window.location.href = "/login";
+        /* Redirect user to login page (session expired) only when it is not login page itself , to prevent redicrection loop*/
+        if (
+          typeof window !== "undefined" &&
+          !window.location.pathname.includes("/login")
+        )
+          window.location.href = "/login";
         return Promise.reject(refreshError);
       } finally {
         isRefreshing = false; // Reset refresh flag after process ends

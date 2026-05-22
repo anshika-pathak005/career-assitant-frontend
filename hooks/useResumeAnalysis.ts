@@ -3,12 +3,11 @@ import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import {
   uploadAndAnalyzeResume,
-  analyzeFromProfile,
   getLatestAnalysis,
   getUserResumes,
   getResumeAnalysis,
-  type ResumeAnalysisResponse,
 } from "@/services/resumeService";
+import type { ResumeAnalysisResponse } from "@/types/resume.types";
 
 export const LATEST_ANALYSIS_KEY = ["resume", "latest"] as const;
 
@@ -31,19 +30,6 @@ export const useUploadResume = () => {
       router.push(`/analysis?resumeId=${data.resumeId}`);
     },
     onError: () => toast.error("Failed to analyze resume. Please try again."),
-  });
-};
-
-/** Analyze from profile data (with optional overrides) → redirect. */
-export const useAnalyzeFromProfile = () => {
-  const router = useRouter();
-  return useMutation<ResumeAnalysisResponse, Error, Record<string, unknown>>({
-    mutationFn: analyzeFromProfile,
-    onSuccess: (data) => {
-      toast.success("Career analysis ready!");
-      router.push(`/analysis?resumeId=${data.resumeId}`);
-    },
-    onError: () => toast.error("Analysis failed. Please try again."),
   });
 };
 

@@ -61,6 +61,7 @@ function ChangePasswordSection() {
     changePassword.mutate({
       currentPassword,
       newPassword,
+      confirmPassword,
     });
   };
 

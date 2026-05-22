@@ -23,10 +23,10 @@ import Sidebar from "@/components/layout/Sidebar";
 import Button from "@/components/ui/Button";
 import Card from "@/components/ui/Card";
 import ProfileCompletionBanner from "@/components/dashboard/ProfileCompletionBanner";
-import { useAuth } from "@/hooks/useAuth";
-import { useUserProfile } from "@/hooks/useUserProfile";
-import { useLatestRoadmap } from "@/hooks/useRoadmap";
 import FeatureShowcase from "@/components/dashboard/FeatureShowcase";
+import { useAuth } from "@/hooks/useAuth";
+import { useDashboard } from "@/hooks/useDashboard";
+import { useUserProfile } from "@/hooks/useUserProfile";
 
 /* ─── Loading skeleton ───────────────────────────────────────────── */
 function Skeleton({ className = "" }: { className?: string }) {
@@ -78,9 +78,11 @@ function GenerateRoadmapCTA({ userName }: { userName: string }) {
   );
 }
 
-/* ─── Roadmap Preview Card ───────────────────────────────────────── */
+/* ─── Roadmap Preview Card (Updated with new API) ────────────────── */
 function RoadmapPreview({ roadmap }: { roadmap: any }) {
-  const firstThreePhases = roadmap.phases?.slice(0, 3) || [];
+  const router = useRouter();
+  const phaseProgress = roadmap.phaseProgress || [];
+  const firstThreePhases = phaseProgress.slice(0, 3);
 
   return (
     <Card variant="default" padding="md">
@@ -101,9 +103,29 @@ function RoadmapPreview({ roadmap }: { roadmap: any }) {
         </Link>
       </div>
 
-      <p className="text-xs text-[#537FAF] leading-relaxed mb-4 line-clamp-2">
-        {roadmap.summary}
-      </p>
+      {/* Current Phase Progress */}
+      {roadmap.currentPhase && (
+        <div className="mb-4 p-3 bg-[#C2E8FF]/30 rounded-lg">
+          <div className="flex items-center justify-between mb-1">
+            <p className="text-xs font-semibold text-[#000F22]">
+              Current Phase: {roadmap.currentPhase.title}
+            </p>
+            <p className="text-xs font-semibold text-[#557EB2]">
+              {roadmap.currentPhase.phaseProgress}%
+            </p>
+          </div>
+          <div className="h-1.5 bg-[#C2E8FF] rounded-full overflow-hidden">
+            <div
+              className="h-full bg-[#557EB2] rounded-full transition-all"
+              style={{ width: `${roadmap.currentPhase.phaseProgress}%` }}
+            />
+          </div>
+          <p className="text-[10px] text-[#537FAF] mt-1.5">
+            {roadmap.currentPhase.completedSkills} of{" "}
+            {roadmap.currentPhase.totalSkills} skills completed
+          </p>
+        </div>
+      )}
 
       <div className="grid grid-cols-3 gap-3 mb-5">
         <div className="bg-[#C2E8FF]/30 rounded-lg p-2.5 text-center">
@@ -116,32 +138,45 @@ function RoadmapPreview({ roadmap }: { roadmap: any }) {
         <div className="bg-[#C2E8FF]/30 rounded-lg p-2.5 text-center">
           <Target size={14} className="text-[#557EB2] mx-auto mb-1" />
           <p className="text-xs font-semibold text-[#000F22]">
-            {roadmap.phases?.length || 0} phases
+            {phaseProgress.length} phases
           </p>
           <p className="text-[10px] text-[#537FAF]">Learning phases</p>
         </div>
         <div className="bg-[#C2E8FF]/30 rounded-lg p-2.5 text-center">
           <CheckCircle2 size={14} className="text-[#557EB2] mx-auto mb-1" />
-          <p className="text-xs font-semibold text-[#000F22]">0%</p>
+          <p className="text-xs font-semibold text-[#000F22]">
+            {roadmap.overallProgress}%
+          </p>
           <p className="text-[10px] text-[#537FAF]">Completed</p>
         </div>
       </div>
 
       <div className="space-y-3">
-        <p className="text-xs font-semibold text-[#000F22]">Upcoming phases</p>
+        <p className="text-xs font-semibold text-[#000F22]">Phase Progress</p>
         {firstThreePhases.map((phase: any, idx: number) => (
           <div key={phase.phaseId} className="flex items-start gap-3">
-            <div className="flex-shrink-0 w-6 h-6 rounded-full bg-[#C2E8FF] flex items-center justify-center text-xs font-semibold text-[#557EB2]">
-              {idx + 1}
+            <div
+              className={`flex-shrink-0 w-6 h-6 rounded-full flex items-center justify-center text-xs font-semibold ${
+                phase.isCurrent
+                  ? "bg-[#557EB2] text-white"
+                  : "bg-[#C2E8FF] text-[#557EB2]"
+              }`}
+            >
+              {phase.phaseOrder}
             </div>
             <div className="flex-1 min-w-0">
-              <p className="text-sm font-medium text-[#000F22]">
-                {phase.title}
-              </p>
-              <p className="text-xs text-[#537FAF]">
-                {phase.estimatedWeeks} weeks • {phase.skills?.length || 0}{" "}
-                skills
-              </p>
+              <div className="flex items-center justify-between">
+                <p className="text-sm font-medium text-[#000F22]">
+                  {phase.title}
+                </p>
+                <p className="text-xs text-[#537FAF]">{phase.progress}%</p>
+              </div>
+              <div className="h-1 bg-[#C2E8FF] rounded-full overflow-hidden mt-1">
+                <div
+                  className="h-full bg-[#557EB2] rounded-full transition-all"
+                  style={{ width: `${phase.progress}%` }}
+                />
+              </div>
             </div>
           </div>
         ))}
@@ -150,127 +185,125 @@ function RoadmapPreview({ roadmap }: { roadmap: any }) {
   );
 }
 
-/* ─── Quick Stats Cards ──────────────────────────────────────────── */
-function QuickStats({ profile }: { profile: any }) {
-  const stats = [
+/* ─── Resume Preview Card (New) ──────────────────────────────────── */
+function ResumePreview({ resume }: { resume: any }) {
+  const router = useRouter();
+
+  const getScoreColor = (score: number) => {
+    if (score >= 70) return "#16A34A";
+    if (score >= 50) return "#D97706";
+    return "#DC2626";
+  };
+
+  return (
+    <Card
+      variant="default"
+      padding="md"
+      className="cursor-pointer hover:shadow-lg transition-all duration-200"
+      onClick={() => router.push(`/resume-analysis/${resume.resumeId}`)}
+    >
+      <div className="flex items-center justify-between mb-3">
+        <div className="flex items-center gap-2">
+          <FileText size={16} className="text-[#557EB2]" />
+          <p className="text-xs font-medium uppercase tracking-wider text-[#557EB2]">
+            Latest Analysis
+          </p>
+        </div>
+        <span className="text-[10px] font-medium text-[#537FAF]">
+          {new Date(resume.uploadedAt).toLocaleDateString()}
+        </span>
+      </div>
+
+      <p className="font-semibold text-[#000F22] text-sm mb-2 truncate">
+        {resume.fileName}
+      </p>
+
+      <p className="text-xs text-[#537FAF] leading-relaxed mb-3 line-clamp-2">
+        {resume.resumeVerdict}
+      </p>
+
+      <div className="flex items-center gap-4">
+        <div className="text-center">
+          <p
+            className="text-xl font-bold text-[#000F22]"
+            style={{ color: getScoreColor(resume.overallScore) }}
+          >
+            {resume.overallScore}
+          </p>
+          <p className="text-[9px] text-[#537FAF]">Overall</p>
+        </div>
+        <div className="text-center">
+          <p
+            className="text-xl font-bold text-[#000F22]"
+            style={{ color: getScoreColor(resume.atsScore) }}
+          >
+            {resume.atsScore}
+          </p>
+          <p className="text-[9px] text-[#537FAF]">ATS Score</p>
+        </div>
+        <div className="text-center">
+          <p className="text-sm font-semibold text-[#000F22]">
+            {resume.interviewReadiness}
+          </p>
+          <p className="text-[9px] text-[#537FAF]">Readiness</p>
+        </div>
+      </div>
+    </Card>
+  );
+}
+
+/* ─── Stats Summary Card (New) ───────────────────────────────────── */
+function StatsSummary({ stats }: { stats: any }) {
+  const statItems = [
     {
-      label: "Skills mastered",
-      value: profile?.skills?.length || 0,
-      icon: TrendingUp,
-      description: "Technologies in your stack",
+      label: "Steps Completed",
+      value: stats.totalStepsCompleted,
+      total: stats.totalSteps,
+      icon: CheckCircle2,
+      color: "#16A34A",
     },
     {
-      label: "Target role",
-      value:
-        profile?.dreamJob?.split(" ").slice(0, 2).join(" ") || "Not defined",
-      icon: BriefcaseBusiness,
-      description: "Your career destination",
+      label: "Resumes Analyzed",
+      value: stats.totalResumesAnalyzed,
+      icon: FileText,
+      color: "#557EB2",
     },
     {
-      label: "Industries",
-      value: profile?.industries?.length || 0,
+      label: "Roadmaps Generated",
+      value: stats.totalRoadmapsGenerated,
       icon: MapPin,
-      description: "Sectors you are targeting",
+      color: "#D97706",
     },
     {
-      label: "Experience",
-      value:
-        profile?.experienceYears !== null
-          ? `${profile.experienceYears}+ years`
-          : "Not defined",
-      icon: BarChart3,
-      description: "Professional background",
+      label: "Phases Completed",
+      value: stats.totalPhasesCompleted,
+      icon: Target,
+      color: "#7A9BC4",
     },
   ];
 
   return (
     <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-      {stats.map((stat) => (
+      {statItems.map((item) => (
         <Card
-          key={stat.label}
-          variant="default"
+          key={item.label}
+          variant="flat"
           padding="md"
-          className="hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200"
+          className="text-center"
         >
-          <div className="flex items-start justify-between mb-3">
-            <div className="w-10 h-10 rounded-lg bg-[#C2E8FF] flex items-center justify-center">
-              <stat.icon size={18} className="text-[#557EB2]" />
-            </div>
+          <div className="w-8 h-8 rounded-full bg-[#C2E8FF] flex items-center justify-center mx-auto mb-2">
+            <item.icon size={14} className="text-[#557EB2]" />
           </div>
-          <p className="text-2xl font-bold text-[#000F22] mb-1">{stat.value}</p>
-          <p className="text-sm font-medium text-[#000F22] mb-0.5">
-            {stat.label}
-          </p>
-          <p className="text-xs text-[#537FAF]">{stat.description}</p>
+          <p className="text-xl font-bold text-[#000F22]">{item.value}</p>
+          <p className="text-xs text-[#537FAF]">{item.label}</p>
+          {item.total && (
+            <p className="text-[10px] text-[#7A9BC4] mt-0.5">
+              out of {item.total}
+            </p>
+          )}
         </Card>
       ))}
     </div>
-  );
-}
-
-/* ─── Feature Cards (when no roadmap) ────────────────────────────── */
-function FeatureCards() {
-  const features = [
-    {
-      icon: FileText,
-      title: "Personalized Roadmap",
-      description:
-        "Step-by-step plan tailored to your skills and career goals.",
-    },
-    {
-      icon: MessageSquare,
-      title: "AI Career Assistant",
-      description: "Get instant answers to your career questions and concerns.",
-    },
-    {
-      icon: TrendingUp,
-      title: "Progress Tracking",
-      description: "Monitor your learning journey and celebrate milestones.",
-    },
-  ];
-
-  return (
-    <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-      {features.map((feature) => (
-        <Card
-          key={feature.title}
-          variant="default"
-          padding="md"
-          className="hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200"
-        >
-          <div className="w-10 h-10 rounded-lg bg-[#C2E8FF] flex items-center justify-center mb-3">
-            <feature.icon size={18} className="text-[#557EB2]" />
-          </div>
-          <p className="font-semibold text-[#000F22] text-sm mb-1">
-            {feature.title}
-          </p>
-          <p className="text-xs text-[#537FAF] leading-relaxed">
-            {feature.description}
-          </p>
-        </Card>
-      ))}
-    </div>
-  );
-}
-
-/* ─── Empty State ─────────────────────────────────────────────────── */
-function EmptyState() {
-  return (
-    <Card
-      variant="flat"
-      padding="lg"
-      className="flex flex-col items-center justify-center text-center"
-    >
-      <div className="w-14 h-14 rounded-full bg-[#C2E8FF] flex items-center justify-center mb-4">
-        <Clock size={22} className="text-[#557EB2]" />
-      </div>
-      <p className="text-sm font-semibold text-[#000F22] mb-1">
-        No activity yet
-      </p>
-      <p className="text-xs text-[#537FAF] max-w-xs">
-        Generate your first career roadmap to begin your journey.
-      </p>
-    </Card>
   );
 }
 
@@ -278,11 +311,9 @@ function EmptyState() {
 export default function DashboardPage() {
   const { isAuthenticated, isLoading: authLoading } = useAuth();
   const router = useRouter();
-
+  const { data: dashboard, isLoading: dashboardLoading } = useDashboard();
   const { data: profile, isLoading: profileLoading } = useUserProfile();
-  const { data: latestRoadmap, isLoading: roadmapLoading } = useLatestRoadmap();
 
-  /* Auth guard */
   useEffect(() => {
     if (!authLoading && !isAuthenticated) router.replace("/login");
   }, [authLoading, isAuthenticated, router]);
@@ -297,7 +328,38 @@ export default function DashboardPage() {
 
   if (!isAuthenticated) return null;
 
-  const isLoading = profileLoading || roadmapLoading;
+  const isLoading = dashboardLoading || profileLoading;
+  const dashboardData = dashboard;
+  const profileData = profile;
+
+  // Profile incomplete case
+  if (!isLoading && profileData && !dashboardData?.profileStatus?.isComplete) {
+    return (
+      <div className="min-h-screen bg-[#C2E8FF] flex">
+        <Sidebar />
+        <main className="flex-1 min-w-0 max-w-7xl mx-auto px-4 sm:px-6 py-6">
+          <div className="flex flex-col gap-5">
+            <div className="animate-fade-up">
+              <h1 className="font-display text-[#000F22] text-2xl sm:text-3xl">
+                Good day, {profileData?.name?.split(" ")[0] ?? "there"}
+              </h1>
+              <p className="text-sm text-[#537FAF] mt-0.5">
+                Complete your profile to unlock personalized career guidance.
+              </p>
+            </div>
+            <div className="flex flex-col gap-5">
+              <div className="animate-fade-up delay-1">
+                <ProfileCompletionBanner profile={profileData} />
+              </div>
+              <div className="animate-fade-up delay-2">
+                <FeatureShowcase />
+              </div>
+            </div>
+          </div>
+        </main>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-[#C2E8FF] flex">
@@ -308,85 +370,108 @@ export default function DashboardPage() {
           {/* Welcome Section */}
           <div className="animate-fade-up">
             <h1 className="font-display text-[#000F22] text-2xl sm:text-3xl">
-              {profileLoading
+              {isLoading
                 ? "Welcome back"
-                : `Good day, ${profile?.name?.split(" ")[0] ?? "there"}`}
+                : `Good day, ${dashboardData?.user?.name?.split(" ")[0] ?? "there"}`}
             </h1>
             <p className="text-sm text-[#537FAF] mt-0.5">
-              {latestRoadmap
+              {dashboardData?.roadmap
                 ? "Continue your career journey with your personalized roadmap."
-                : profile?.isProfileComplete
-                  ? "Generate your career roadmap to get started."
-                  : "Complete your profile to unlock personalized career guidance."}
+                : "Generate your career roadmap to get started."}
             </p>
           </div>
 
-          {/* Usage Card - Show roadmap generation limit */}
-          {profile?.generationLimit && profile.isProfileComplete && (
-            <div className="animate-fade-up delay-1">
+          {/* Usage Cards Row - Roadmap + Resume Limits */}
+          {!isLoading && dashboardData && (
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 animate-fade-up delay-1">
+              {/* Roadmap Limit Card */}
               <Card
                 variant="flat"
                 padding="sm"
                 className="border border-[#7A9BC4]/20"
               >
-                <div className="flex items-center justify-between flex-wrap gap-3">
-                  <div className="flex items-center gap-3">
-                    <div className="w-8 h-8 rounded-full bg-[#C2E8FF] flex items-center justify-center">
-                      <Sparkles size={14} className="text-[#557EB2]" />
+                <div className="flex items-center justify-between flex-wrap gap-2">
+                  <div className="flex items-center gap-2">
+                    <div className="w-7 h-7 rounded-full bg-[#C2E8FF] flex items-center justify-center">
+                      <Target size={12} className="text-[#557EB2]" />
                     </div>
                     <div>
                       <p className="text-xs font-semibold text-[#042558]">
-                        {profile.generationLimit.plan === "FREE"
-                          ? "Free Plan"
-                          : "Pro Plan"}
+                        Roadmap Limit
                       </p>
-                      <p className="text-xs text-[#537FAF]">
-                        {profile.generationLimit.used} /{" "}
-                        {profile.generationLimit.total} roadmaps this month
+                      <p className="text-[10px] text-[#537FAF]">
+                        {dashboardData.limits.roadmapLimit.used} /{" "}
+                        {dashboardData.limits.roadmapLimit.total} used
                       </p>
                     </div>
                   </div>
-                  {profile.generationLimit.limitReached &&
-                    profile.generationLimit.plan === "FREE" && (
-                      <Button
-                        variant="primary"
-                        size="sm"
-                        onClick={() => router.push("/pricing")}
-                      >
-                        Upgrade to Pro
-                      </Button>
-                    )}
+                  {dashboardData.limits.roadmapLimit.limitReached && (
+                    <Button
+                      variant="primary"
+                      size="sm"
+                      onClick={() => router.push("/pricing")}
+                    >
+                      Upgrade
+                    </Button>
+                  )}
                 </div>
-                <div className="mt-2 h-1.5 bg-[#C2E8FF] rounded-full overflow-hidden">
+                <div className="mt-1.5 h-1 bg-[#C2E8FF] rounded-full overflow-hidden">
                   <div
-                    className="h-full bg-[#557EB2] rounded-full transition-all"
+                    className="h-full bg-[#557EB2] rounded-full"
                     style={{
-                      width: `${(profile.generationLimit.used / profile.generationLimit.total) * 100}%`,
+                      width: `${(dashboardData.limits.roadmapLimit.used / dashboardData.limits.roadmapLimit.total) * 100}%`,
                     }}
                   />
                 </div>
-                <p className="text-[10px] text-[#7A9BC4] mt-1.5">
-                  Resets on{" "}
-                  {new Date(
-                    profile.generationLimit.resetsOn,
-                  ).toLocaleDateString()}
-                </p>
+              </Card>
+
+              {/* Resume Limit Card */}
+              <Card
+                variant="flat"
+                padding="sm"
+                className="border border-[#7A9BC4]/20"
+              >
+                <div className="flex items-center justify-between flex-wrap gap-2">
+                  <div className="flex items-center gap-2">
+                    <div className="w-7 h-7 rounded-full bg-[#C2E8FF] flex items-center justify-center">
+                      <FileText size={12} className="text-[#557EB2]" />
+                    </div>
+                    <div>
+                      <p className="text-xs font-semibold text-[#042558]">
+                        Resume Limit
+                      </p>
+                      <p className="text-[10px] text-[#537FAF]">
+                        {dashboardData.limits.resumeLimit.used} /{" "}
+                        {dashboardData.limits.resumeLimit.total} used
+                      </p>
+                    </div>
+                  </div>
+                  {dashboardData.limits.resumeLimit.limitReached && (
+                    <Button
+                      variant="primary"
+                      size="sm"
+                      onClick={() => router.push("/pricing")}
+                    >
+                      Upgrade
+                    </Button>
+                  )}
+                </div>
+                <div className="mt-1.5 h-1 bg-[#C2E8FF] rounded-full overflow-hidden">
+                  <div
+                    className="h-full bg-[#557EB2] rounded-full"
+                    style={{
+                      width: `${(dashboardData.limits.resumeLimit.used / dashboardData.limits.resumeLimit.total) * 100}%`,
+                    }}
+                  />
+                </div>
               </Card>
             </div>
           )}
 
-          {/* Quick Stats */}
-          {profile?.isProfileComplete && (
+          {/* Stats Summary */}
+          {!isLoading && dashboardData && (
             <div className="animate-fade-up delay-1">
-              {isLoading ? (
-                <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-                  {Array.from({ length: 4 }).map((_, i) => (
-                    <Skeleton key={i} className="h-32" />
-                  ))}
-                </div>
-              ) : (
-                <QuickStats profile={profile} />
-              )}
+              <StatsSummary stats={dashboardData.stats} />
             </div>
           )}
 
@@ -396,33 +481,20 @@ export default function DashboardPage() {
               <Skeleton className="h-64" />
               <Skeleton className="h-40" />
             </div>
-          ) : profile?.isProfileComplete ? (
-            latestRoadmap ? (
-              /* Has Roadmap */
-              <div className="animate-fade-up delay-2">
-                <RoadmapPreview roadmap={latestRoadmap} />
-              </div>
-            ) : (
-              /* Profile Complete but No Roadmap */
-              <div className="animate-fade-up delay-2 flex flex-col gap-4">
-                <GenerateRoadmapCTA userName={profile.name} />
-                <FeatureCards />
-              </div>
-            )
+          ) : dashboardData?.roadmap ? (
+            /* Has Roadmap */
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 animate-fade-up delay-2">
+              <RoadmapPreview roadmap={dashboardData.roadmap} />
+              {dashboardData.resume && (
+                <ResumePreview resume={dashboardData.resume} />
+              )}
+            </div>
           ) : (
-            !profileLoading &&
-            profile &&
-            !profile.isProfileComplete && (
-              /* Profile Incomplete */
-              <div className="flex flex-col gap-5">
-                <div className="animate-fade-up delay-1">
-                  <ProfileCompletionBanner profile={profile} />
-                </div>
-                <div className="animate-fade-up delay-2">
-                  <FeatureShowcase />
-                </div>
-              </div>
-            )
+            /* Profile Complete but No Roadmap */
+            <div className="animate-fade-up delay-2 flex flex-col gap-4">
+              <GenerateRoadmapCTA userName={dashboardData?.user?.name || ""} />
+              <FeatureShowcase />
+            </div>
           )}
         </div>
       </main>

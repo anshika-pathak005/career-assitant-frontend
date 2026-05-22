@@ -126,9 +126,12 @@ export default function PricingPage() {
               Simple Pricing
             </span>
           </div>
-          <h1 className="font-display text-[#000F22] text-3xl sm:text-4xl mb-3">
-            Choose the plan that fits your journey
+          
+          <h1 className="animate-fade-up delay-1 font-display font-bold text-2xl sm:text-5xl lg:text-6xl leading-[1.1] mb-6 text-[#000F22]">
+            Choose the plan that{" "}
+            <span className="text-[#557EB2]">fits your journey</span>
           </h1>
+
           <p className="text-sm text-[#537FAF] max-w-md mx-auto">
             Start for free, upgrade when you need more. No hidden fees.
           </p>
@@ -147,7 +150,7 @@ export default function PricingPage() {
               "3 resume analyses per month",
               "Basic AI chat assistance",
               "Standard support",
-              "7-day roadmap history",
+              // "7-day roadmap history",
             ]}
             buttonText={isAuthenticated ? "Current Plan" : "Get Started"}
             onButtonClick={
@@ -174,56 +177,6 @@ export default function PricingPage() {
             isPopular={true}
             onButtonClick={handleUpgrade}
           />
-        </div>
-
-        {/* Feature Comparison Section */}
-        <div className="mt-16">
-          <h2 className="font-display text-[#000F22] text-2xl text-center mb-8">
-            Everything you need to accelerate your career
-          </h2>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            <div className="text-center p-4">
-              <div className="w-10 h-10 rounded-full bg-[#C2E8FF] flex items-center justify-center mx-auto mb-2">
-                <Target size={16} className="text-[#557EB2]" />
-              </div>
-              <p className="text-sm font-semibold text-[#000F22]">
-                Smart Roadmaps
-              </p>
-              <p className="text-xs text-[#537FAF]">
-                Personalized learning paths
-              </p>
-            </div>
-            <div className="text-center p-4">
-              <div className="w-10 h-10 rounded-full bg-[#C2E8FF] flex items-center justify-center mx-auto mb-2">
-                <FileText size={16} className="text-[#557EB2]" />
-              </div>
-              <p className="text-sm font-semibold text-[#000F22]">
-                Resume Analysis
-              </p>
-              <p className="text-xs text-[#537FAF]">
-                ATS score & improvement tips
-              </p>
-            </div>
-            <div className="text-center p-4">
-              <div className="w-10 h-10 rounded-full bg-[#C2E8FF] flex items-center justify-center mx-auto mb-2">
-                <MessageSquare size={16} className="text-[#557EB2]" />
-              </div>
-              <p className="text-sm font-semibold text-[#000F22]">
-                AI Career Chat
-              </p>
-              <p className="text-xs text-[#537FAF]">24/7 career guidance</p>
-            </div>
-            <div className="text-center p-4">
-              <div className="w-10 h-10 rounded-full bg-[#C2E8FF] flex items-center justify-center mx-auto mb-2">
-                <BriefcaseBusiness size={16} className="text-[#557EB2]" />
-              </div>
-              <p className="text-sm font-semibold text-[#000F22]">
-                Job Matching
-              </p>
-              <p className="text-xs text-[#537FAF]">Find your perfect role</p>
-            </div>
-          </div>
         </div>
 
         {/* FAQ Section */}

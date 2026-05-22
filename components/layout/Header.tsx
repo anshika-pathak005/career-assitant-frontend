@@ -32,9 +32,9 @@ const APP_NAV = [
 
 /* ─── Public nav links ───────────────────────────────────────────── */
 const PUBLIC_NAV = [
-  { label: "Features", href: "/#features" },
+  { label: "Home", href: "/" },
   { label: "Pricing", href: "/pricing" },
-  { label: "About", href: "/#about" },
+  { label: "About", href: "/about" },
 ];
 
 /* ─── Brand logo ─────────────────────────────────────────────────── */
@@ -216,13 +216,13 @@ export default function Header() {
             )}
 
             {/* Mobile menu toggle */}
-            <button
+            {/* <button
               className="md:hidden w-9 h-9 flex items-center justify-center rounded-md text-white/70 hover:text-white hover:bg-white/10 transition-colors ml-1"
               onClick={() => setMobileOpen((v) => !v)}
               aria-label="Toggle menu"
             >
               {mobileOpen ? <X size={18} /> : <Menu size={18} />}
-            </button>
+            </button> */}
           </div>
         </div>
 

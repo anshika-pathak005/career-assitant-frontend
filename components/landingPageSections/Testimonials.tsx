@@ -1,10 +1,12 @@
+// components/sections/Testimonials.tsx
+
 import { Quote } from "lucide-react";
 
 const testimonials = [
   {
     name: "Priya S.",
     role: "CS Student, Delhi",
-    text: "This helped me understand exactly what to learn next. I finally had a clear roadmap instead of randomly watching tutorials.",
+    text: "CareerPilot helped me understand exactly what skills to learn. I finally had a clear roadmap instead of randomly watching tutorials.",
     score: "Resume: 40 → 78",
     initials: "PS",
   },
@@ -27,41 +29,31 @@ const testimonials = [
 export default function Testimonials() {
   return (
     <section className="max-w-6xl mx-auto px-6 py-24">
-      {/* Header */}
       <div className="text-center mb-16">
         <span className="inline-block text-xs font-bold uppercase tracking-widest text-[#557EB2] bg-[#557EB2]/10 px-4 py-1.5 rounded-full mb-4">
           Testimonials
         </span>
         <h2 className="font-display font-bold text-4xl sm:text-5xl text-[#000F22] leading-tight">
-          Loved by students &{" "}
-          <span className="text-[#557EB2]">job seekers</span>
+          Loved by <span className="text-[#557EB2]">job seekers</span>
         </h2>
         <p className="mt-4 text-[#537FAF] text-base max-w-xl mx-auto leading-relaxed">
           Real people. Real results.
         </p>
       </div>
 
-      {/* Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {testimonials.map(({ name, role, text, score, initials }) => (
           <div
             key={name}
             className="group bg-white rounded-2xl p-7 border border-[#7A9BC4]/15 shadow-card hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col gap-5"
           >
-            {/* Quote icon */}
             <Quote size={20} className="text-[#7A9BC4] opacity-50" />
-
-            {/* Text */}
             <p className="text-[#3a4a5c] text-sm leading-relaxed flex-1">
               "{text}"
             </p>
-
-            {/* Score badge */}
             <span className="inline-block self-start text-[10px] font-bold text-[#557EB2] bg-[#C2E8FF]/70 border border-[#7A9BC4]/20 rounded-full px-3 py-1">
               {score}
             </span>
-
-            {/* Author */}
             <div className="flex items-center gap-3 pt-1 border-t border-[#7A9BC4]/10">
               <div className="w-9 h-9 rounded-full bg-gradient-to-br from-[#557EB2] to-[#7AC4FF] flex items-center justify-center text-white text-xs font-bold shrink-0">
                 {initials}

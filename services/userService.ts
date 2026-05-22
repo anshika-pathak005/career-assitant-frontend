@@ -58,6 +58,7 @@ import { GenerationLimit, UserProfile } from "@/types/profile.types";
 export interface ChangePasswordPayload {
   currentPassword: string;
   newPassword: string;
+  confirmPassword: string;
 }
 
 /* ─── Service functions ──────────────────────────────────────────── */
