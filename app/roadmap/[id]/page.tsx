@@ -105,9 +105,24 @@ function PhaseCard({
             </p>
           </div>
         </div>
-        <div className="flex items-center gap-4">
+        {/* <div className="flex items-center gap-4">
           <div className="w-24">
             <ProgressBar progress={phaseProgress} />
+          </div>
+          {isExpanded ? (
+            <ChevronUp size={18} className="text-[#537FAF]" />
+          ) : (
+            <ChevronDown size={18} className="text-[#537FAF]" />
+          )}
+        </div> */}
+        <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2">
+            <div className="w-24">
+              <ProgressBar progress={phaseProgress} />
+            </div>
+            <span className="text-xs font-semibold text-[#557EB2] min-w-[35px]">
+              {phaseProgress}%
+            </span>
           </div>
           {isExpanded ? (
             <ChevronUp size={18} className="text-[#537FAF]" />

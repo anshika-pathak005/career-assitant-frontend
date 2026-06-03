@@ -18,6 +18,8 @@ import {
 import Button from "@/components/ui/Button";
 import Card from "@/components/ui/Card";
 import { useAuth } from "@/hooks/useAuth";
+import { useState } from "react";
+import ComingSoonModal from "@/components/ui/ComingSoonModal";
 
 /* ─── Feature Item Component ────────────────────────────────────── */
 function FeatureItem({ text }: { text: string }) {
@@ -105,10 +107,11 @@ function PricingCard({
 export default function PricingPage() {
   const router = useRouter();
   const { isAuthenticated, isLoading: authLoading } = useAuth();
+  const [isUpgradeModalOpen, setIsUpgradeModalOpen] = useState(false);
 
   const handleUpgrade = () => {
-    // Redirect to payment/checkout page (to be implemented)
-    console.log("Proceed to checkout");
+    // Redirect to payment/checkout page (to be implemented) in future as of now show coming soon
+    setIsUpgradeModalOpen(true);
   };
 
   const handleLogin = () => {
@@ -126,7 +129,7 @@ export default function PricingPage() {
               Simple Pricing
             </span>
           </div>
-          
+
           <h1 className="animate-fade-up delay-1 font-display font-bold text-2xl sm:text-5xl lg:text-6xl leading-[1.1] mb-6 text-[#000F22]">
             Choose the plan that{" "}
             <span className="text-[#557EB2]">fits your journey</span>
@@ -186,6 +189,11 @@ export default function PricingPage() {
           </p>
         </div>
       </div>
+      <ComingSoonModal
+        isOpen={isUpgradeModalOpen}
+        onClose={() => setIsUpgradeModalOpen(false)}
+        featureName="Payment and subscription system"
+      />
     </div>
   );
 }

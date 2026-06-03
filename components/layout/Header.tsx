@@ -17,6 +17,7 @@ import {
   Menu,
   X,
   ChevronDown,
+  Bot,
 } from "lucide-react";
 import Button from "@/components/ui/Button";
 import { useAuth } from "@/hooks/useAuth";
@@ -28,6 +29,7 @@ const APP_NAV = [
   { label: "Roadmap", href: "/roadmap", icon: MessageSquare },
   { label: "Resume", href: "/resume-analysis", icon: FileText },
   { label: "Jobs", href: "/jobs", icon: Target },
+  { label: "AIChat", href: "/chat", icon: Bot },
 ];
 
 /* ─── Public nav links ───────────────────────────────────────────── */
@@ -65,7 +67,10 @@ export default function Header() {
       // Always clear client state regardless of server response
       logout();
       toast.success("Logged out successfully.");
-      router.push("/login");
+      // Little delay while redirection
+      setTimeout(() => {
+        router.push("/login");
+      }, 100);
     },
   });
 
@@ -181,6 +186,13 @@ export default function Header() {
                             className="flex items-center gap-2.5 px-4 py-2.5 text-sm text-[#042558] hover:bg-[#C2E8FF]/50 transition-colors"
                           >
                             Settings
+                          </Link>
+                          <Link
+                            href="/dashboard"
+                            onClick={() => setUserMenuOpen(false)}
+                            className="flex items-center gap-2.5 px-4 py-2.5 text-sm text-[#042558] hover:bg-[#C2E8FF]/50 transition-colors"
+                          >
+                            Dashboard
                           </Link>
                           <button
                             onClick={() => {

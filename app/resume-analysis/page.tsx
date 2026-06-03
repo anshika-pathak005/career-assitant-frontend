@@ -161,7 +161,7 @@ function EmptyState() {
         Upload your first resume to get AI-powered insights and improve your job
         prospects.
       </p>
-      <Button variant="primary" onClick={() => router.push("/analysis")}>
+      <Button variant="primary" onClick={() => router.push("/resume-analysis/analyze")}>
         Analyze Your First Resume
       </Button>
     </div>
@@ -299,14 +299,14 @@ function ResumeHistoryCard({ resume }: { resume: any }) {
               label="ATS Score"
               color={getScoreColor(atsScore)}
             />
-            <div className="flex flex-col">
+            {/* <div className="flex flex-col">
               <span className="text-xs font-semibold text-[#000F22]">
                 {resume.missingSkills?.length || 0} gaps
               </span>
               <span className="text-[10px] text-[#537FAF]">
                 Skills to improve
               </span>
-            </div>
+            </div> */}
           </div>
         </div>
 

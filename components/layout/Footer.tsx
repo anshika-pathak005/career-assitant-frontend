@@ -7,28 +7,29 @@ const FOOTER_LINKS = [
   {
     heading: "Product",
     links: [
-      { label: "Features", href: "/#features" },
-      { label: "Pricing", href: "/#pricing" },
-      { label: "Changelog", href: "/changelog" },
-      { label: "Roadmap", href: "/roadmap" },
+      { label: "Roadmap Generation", href: "/roadmap" },
+      { label: "Resume Analysis", href: "/resume-analysis" },
+      { label: "Pricing", href: "/pricing" },
+      // { label: "Changelog", href: "/changelog" },
+      { label: "AI Assistance", href: "/chat" },
     ],
   },
   {
     heading: "Resources",
     links: [
-      { label: "Blog", href: "/blog" },
-      { label: "Career Tips", href: "/tips" },
-      { label: "Documentation", href: "/docs" },
-      { label: "Support", href: "/support" },
+      { label: "Blog", href: "/#" },
+      { label: "Career Tips", href: "/#" },
+      { label: "Documentation", href: "/#" },
+      { label: "Support", href: "/help" },
     ],
   },
   {
     heading: "Company",
     links: [
       { label: "About", href: "/about" },
-      { label: "Privacy", href: "/privacy" },
-      { label: "Terms", href: "/terms" },
-      { label: "Contact", href: "/contact" },
+      { label: "Privacy", href: "/#" },
+      { label: "Terms", href: "/#" },
+      { label: "Help & Support", href: "/help" },
     ],
   },
 ];

@@ -265,8 +265,8 @@ export default function Sidebar() {
       </div>
 
       {/* Desktop Sidebar */}
-      <aside className="hidden md:flex flex-col w-64 shrink-0 sticky top-6 h-[calc(100vh-3rem)] overflow-y-auto">
-        <div className="bg-white/80 backdrop-blur-sm rounded-xl border border-[#7A9BC4]/20 shadow-card overflow-hidden">
+      <aside className="hidden md:flex flex-col w-64 shrink-0">
+        <div className="bg-white/80 backdrop-blur-sm rounded-xl border border-[#7A9BC4]/20 shadow-card sticky top-6">
           <div className="p-3">{sidebarContent}</div>
         </div>
       </aside>

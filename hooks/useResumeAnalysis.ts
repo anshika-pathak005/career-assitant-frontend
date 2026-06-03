@@ -27,7 +27,8 @@ export const useUploadResume = () => {
     onSuccess: (data) => {
       toast.success("Resume analyzed successfully!");
       // Pass resumeId via query param so the analysis page can fetch it
-      router.push(`/analysis?resumeId=${data.resumeId}`);
+      // router.push(`/analysis?resumeId=${data.resumeId}`);
+      router.push(`/resume-analysis/${data.resumeId}`);
     },
     onError: () => toast.error("Failed to analyze resume. Please try again."),
   });

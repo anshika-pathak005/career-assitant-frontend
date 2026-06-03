@@ -103,29 +103,19 @@ function RoadmapPreview({ roadmap }: { roadmap: any }) {
         </Link>
       </div>
 
-      {/* Current Phase Progress */}
-      {roadmap.currentPhase && (
-        <div className="mb-4 p-3 bg-[#C2E8FF]/30 rounded-lg">
-          <div className="flex items-center justify-between mb-1">
-            <p className="text-xs font-semibold text-[#000F22]">
-              Current Phase: {roadmap.currentPhase.title}
-            </p>
-            <p className="text-xs font-semibold text-[#557EB2]">
-              {roadmap.currentPhase.phaseProgress}%
-            </p>
-          </div>
-          <div className="h-1.5 bg-[#C2E8FF] rounded-full overflow-hidden">
-            <div
-              className="h-full bg-[#557EB2] rounded-full transition-all"
-              style={{ width: `${roadmap.currentPhase.phaseProgress}%` }}
-            />
-          </div>
-          <p className="text-[10px] text-[#537FAF] mt-1.5">
-            {roadmap.currentPhase.completedSkills} of{" "}
-            {roadmap.currentPhase.totalSkills} skills completed
-          </p>
+      {/* Overall Progress */}
+      <div className="mb-4 p-3 bg-[#C2E8FF]/30 rounded-lg">
+        <div className="flex items-center justify-between mb-1">
+          <p className="text-xs font-semibold text-[#000F22]">Overall Progress</p>
+          <p className="text-xs font-semibold text-[#557EB2]">{roadmap.overallProgress}%</p>
         </div>
-      )}
+        <div className="h-1.5 bg-[#C2E8FF] rounded-full overflow-hidden">
+          <div
+            className="h-full bg-[#557EB2] rounded-full transition-all"
+            style={{ width: `${roadmap.overallProgress}%` }}
+          />
+        </div>
+      </div>
 
       <div className="grid grid-cols-3 gap-3 mb-5">
         <div className="bg-[#C2E8FF]/30 rounded-lg p-2.5 text-center">
@@ -185,7 +175,7 @@ function RoadmapPreview({ roadmap }: { roadmap: any }) {
   );
 }
 
-/* ─── Resume Preview Card (New) ──────────────────────────────────── */
+/* ─── Resume Preview Card (Enhanced) ──────────────────────────────────── */
 function ResumePreview({ resume }: { resume: any }) {
   const router = useRouter();
 
@@ -194,6 +184,10 @@ function ResumePreview({ resume }: { resume: any }) {
     if (score >= 50) return "#D97706";
     return "#DC2626";
   };
+
+  // Get missing skills from analysis object
+  const missingSkills = resume.analysis?.missingSkills || [];
+  const topMissingSkills = missingSkills.slice(0, 3);
 
   return (
     <Card
@@ -214,18 +208,31 @@ function ResumePreview({ resume }: { resume: any }) {
         </span>
       </div>
 
-      <p className="font-semibold text-[#000F22] text-sm mb-2 truncate">
+      <p className="font-semibold text-[#000F22] text-sm mb-1 truncate">
         {resume.fileName}
       </p>
 
-      <p className="text-xs text-[#537FAF] leading-relaxed mb-3 line-clamp-2">
-        {resume.resumeVerdict}
-      </p>
+      {/* Experience Level Badge */}
+      {resume.basicInfo?.experienceLevel && (
+        <div className="mb-2">
+          <span className="text-[9px] font-medium text-[#557EB2] bg-[#C2E8FF] px-2 py-0.5 rounded-full">
+            {resume.basicInfo.experienceLevel} Level
+          </span>
+        </div>
+      )}
 
-      <div className="flex items-center gap-4">
+      {/* Resume Verdict / Summary */}
+      {resume.resumeVerdict && (
+        <p className="text-xs text-[#537FAF] leading-relaxed mb-3 line-clamp-2">
+          {resume.resumeVerdict}
+        </p>
+      )}
+
+      {/* Scores */}
+      <div className="flex items-center gap-4 mb-3">
         <div className="text-center">
           <p
-            className="text-xl font-bold text-[#000F22]"
+            className="text-xl font-bold"
             style={{ color: getScoreColor(resume.overallScore) }}
           >
             {resume.overallScore}
@@ -234,7 +241,7 @@ function ResumePreview({ resume }: { resume: any }) {
         </div>
         <div className="text-center">
           <p
-            className="text-xl font-bold text-[#000F22]"
+            className="text-xl font-bold"
             style={{ color: getScoreColor(resume.atsScore) }}
           >
             {resume.atsScore}
@@ -243,11 +250,35 @@ function ResumePreview({ resume }: { resume: any }) {
         </div>
         <div className="text-center">
           <p className="text-sm font-semibold text-[#000F22]">
-            {resume.interviewReadiness}
+            {resume.interviewReadiness || resume.basicInfo?.interviewReadiness || "Beginner"}
           </p>
           <p className="text-[9px] text-[#537FAF]">Readiness</p>
         </div>
       </div>
+
+      {/* Missing Skills */}
+      {topMissingSkills.length > 0 && (
+        <div className="mt-2 pt-2 border-t border-[#7A9BC4]/15">
+          <p className="text-[9px] font-semibold text-[#D97706] mb-1.5">
+            Missing Skills
+          </p>
+          <div className="flex flex-wrap gap-1.5">
+            {topMissingSkills.map((skill: string) => (
+              <span
+                key={skill}
+                className="text-[9px] text-[#D97706] bg-[#D97706]/10 px-1.5 py-0.5 rounded"
+              >
+                {skill}
+              </span>
+            ))}
+            {missingSkills.length > 3 && (
+              <span className="text-[9px] text-[#537FAF]">
+                +{missingSkills.length - 3} more
+              </span>
+            )}
+          </div>
+        </div>
+      )}
     </Card>
   );
 }
@@ -397,7 +428,7 @@ export default function DashboardPage() {
                     </div>
                     <div>
                       <p className="text-xs font-semibold text-[#042558]">
-                        Roadmap Limit
+                        Roadmap Limit this Month
                       </p>
                       <p className="text-[10px] text-[#537FAF]">
                         {dashboardData.limits.roadmapLimit.used} /{" "}
@@ -438,7 +469,7 @@ export default function DashboardPage() {
                     </div>
                     <div>
                       <p className="text-xs font-semibold text-[#042558]">
-                        Resume Limit
+                        Resume Limit this Month
                       </p>
                       <p className="text-[10px] text-[#537FAF]">
                         {dashboardData.limits.resumeLimit.used} /{" "}

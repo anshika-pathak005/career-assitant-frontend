@@ -70,12 +70,13 @@ export default function ResumeUploadPage() {
   const handleFileSelect = (file: File) => {
     if (validateFile(file)) {
       setSelectedFile(file);
-      // Auto-upload after selection
-      uploadMutation.mutate(file, {
-        onSuccess: () => {
-          router.push("/resume-analysis");
-        },
-      });
+      // Auto-upload after selection, and redirect on success, but lets not refirect here beacuse it is overriding hook ka redirection so, let hook handle that
+      // uploadMutation.mutate(file, {
+      //   onSuccess: () => {
+      //     router.push("/resume-analysis");
+      //   },
+      // });
+      uploadMutation.mutate(file);
     }
   };
 

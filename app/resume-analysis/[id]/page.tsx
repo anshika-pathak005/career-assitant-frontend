@@ -118,10 +118,10 @@ export default function ResumeAnalysisDetailPage() {
   const { isAuthenticated, isLoading: authLoading } = useAuth();
   const { data: analysis, isLoading } = useResumeAnalysis(resumeId);
 
-   /* Auth guard */
-    useEffect(() => {
-      if (!authLoading && !isAuthenticated) router.replace("/login");
-    }, [authLoading, isAuthenticated, router]);
+  /* Auth guard */
+  useEffect(() => {
+    if (!authLoading && !isAuthenticated) router.replace("/login");
+  }, [authLoading, isAuthenticated, router]);
 
   if (authLoading || isLoading) {
     return (
@@ -225,33 +225,35 @@ export default function ResumeAnalysisDetailPage() {
         </Card>
 
         {/* Scores Grid */}
-        <div className="grid grid-cols-2 sm:grid-cols-5 gap-4 mb-6">
-          <ScoreRing
-            value={scores.overallScore}
-            label="Overall"
-            color={getScoreColor(scores.overallScore)}
-          />
-          <ScoreRing
-            value={scores.atsScore}
-            label="ATS Score"
-            color={getScoreColor(scores.atsScore)}
-          />
-          <ScoreRing
-            value={scores.technicalSkillsScore}
-            label="Technical"
-            color={getScoreColor(scores.technicalSkillsScore)}
-          />
-          <ScoreRing
-            value={scores.projectQualityScore}
-            label="Projects"
-            color={getScoreColor(scores.projectQualityScore)}
-          />
-          <ScoreRing
-            value={scores.formattingScore}
-            label="Formatting"
-            color={getScoreColor(scores.formattingScore)}
-          />
-        </div>
+        <Card variant="default" padding="md" className="mb-6">
+          <div className="grid grid-cols-2 sm:grid-cols-5 gap-4 mb-6">
+            <ScoreRing
+              value={scores.overallScore}
+              label="Overall"
+              color={getScoreColor(scores.overallScore)}
+            />
+            <ScoreRing
+              value={scores.atsScore}
+              label="ATS Score"
+              color={getScoreColor(scores.atsScore)}
+            />
+            <ScoreRing
+              value={scores.technicalSkillsScore}
+              label="Technical"
+              color={getScoreColor(scores.technicalSkillsScore)}
+            />
+            <ScoreRing
+              value={scores.projectQualityScore}
+              label="Projects"
+              color={getScoreColor(scores.projectQualityScore)}
+            />
+            <ScoreRing
+              value={scores.formattingScore}
+              label="Formatting"
+              color={getScoreColor(scores.formattingScore)}
+            />
+          </div>
+        </Card>
 
         {/* Summary */}
         <Card variant="default" padding="lg" className="mb-6">
@@ -538,13 +540,13 @@ export default function ResumeAnalysisDetailPage() {
           >
             Back to Analyses
           </Button>
-          <Button
+          {/* <Button
             variant="primary"
             size="md"
-            onClick={() => router.push("/resume-analysis/analysis")}
+            onClick={() => router.push("/resume-analysis/analyze")}
           >
             Analyze Another Resume
-          </Button>
+          </Button> */}
         </div>
       </div>
     </div>
