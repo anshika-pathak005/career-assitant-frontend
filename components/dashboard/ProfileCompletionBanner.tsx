@@ -1,44 +1,16 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowRight, Circle, Sparkles, Target, Clock } from "lucide-react";
+import { ArrowRight, Sparkles } from "lucide-react";
 import type { UserProfile } from "@/types/profile.types";
-
-/* ─── Which profile fields count toward completion ───────────────── */
-const COMPLETION_FIELDS: { key: keyof UserProfile; label: string }[] = [
-  { key: "userCategory", label: "Role" },
-  { key: "dreamJob", label: "Dream Job" },
-  { key: "skills", label: "Skills" },
-  { key: "industries", label: "Industries" },
-  { key: "experienceYears", label: "Experience" },
-  { key: "workPreference", label: "Work Preference" },
-];
-
-function getCompletionPercent(profile: UserProfile): number {
-  const filled = COMPLETION_FIELDS.filter(({ key }) => {
-    const val = profile[key];
-    if (Array.isArray(val)) return val.length > 0;
-    return val !== null && val !== undefined && val !== "";
-  }).length;
-  return Math.round((filled / COMPLETION_FIELDS.length) * 100);
-}
 
 interface Props {
   profile: UserProfile;
 }
 
 export default function ProfileCompletionBanner({ profile }: Props) {
-  const pct = getCompletionPercent(profile);
-
-  if (profile.isProfileComplete && pct === 100) return null;
-
-  const missingFields = COMPLETION_FIELDS.filter(({ key }) => {
-    const val = profile[key];
-    if (Array.isArray(val)) return val.length === 0;
-    return val === null || val === undefined || val === "";
-  });
-
-  const missing = missingFields.slice(0, 4);
+  // Simply check backend's isProfileComplete flag
+  if (profile.isProfileComplete) return null;
 
   return (
     <div className="relative overflow-hidden rounded-xl bg-gradient-to-br from-white to-[#C2E8FF]/20 border border-[#7A9BC4]/20 shadow-md">
@@ -67,45 +39,6 @@ export default function ProfileCompletionBanner({ profile }: Props) {
               We'll create a personalized AI-powered roadmap tailored just for
               you.
             </p>
-
-            {/* Progress Section */}
-            <div className="mt-4">
-              <div className="flex items-center justify-between text-xs text-[#537FAF] mb-1">
-                <span>Profile completion</span>
-                <span className="font-semibold text-[#557EB2]">{pct}%</span>
-              </div>
-              <div className="h-1.5 bg-[#C2E8FF] rounded-full overflow-hidden">
-                <div
-                  className="h-full bg-[#557EB2] rounded-full transition-all duration-500"
-                  style={{ width: `${pct}%` }}
-                />
-              </div>
-            </div>
-
-            {/* Missing Fields */}
-            {missing.length > 0 && (
-              <div className="mt-3">
-                <p className="text-xs text-[#537FAF] mb-1.5">
-                  Missing information:
-                </p>
-                <div className="flex flex-wrap gap-1.5">
-                  {missing.map(({ label }) => (
-                    <span
-                      key={label}
-                      className="inline-flex items-center gap-1 text-[10px] font-medium text-[#537FAF] bg-[#C2E8FF] px-2 py-0.5 rounded-full"
-                    >
-                      <Circle size={6} />
-                      {label}
-                    </span>
-                  ))}
-                  {missingFields.length > 4 && (
-                    <span className="text-[10px] font-medium text-[#537FAF]">
-                      +{missingFields.length - 4} more
-                    </span>
-                  )}
-                </div>
-              </div>
-            )}
           </div>
 
           {/* Right CTA */}

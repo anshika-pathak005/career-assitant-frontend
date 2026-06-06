@@ -364,7 +364,8 @@ export default function DashboardPage() {
   const profileData = profile;
 
   // Profile incomplete case
-  if (!isLoading && profileData && !dashboardData?.profileStatus?.isComplete) {
+  // if (!isLoading && profileData && !dashboardData?.profileStatus?.isComplete) {
+  if (!isLoading && profileData && !profileData.isProfileComplete) {
     return (
       <div className="min-h-screen bg-[#C2E8FF] flex">
         <Sidebar />

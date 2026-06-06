@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useRegister } from "@/hooks/useRegister";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -22,6 +23,7 @@ import Button from "@/components/ui/Button";
 import Input from "@/components/ui/Input";
 import Card from "@/components/ui/Card";
 import { registerStep1 } from "@/services/authService";
+import { useAuth } from "@/hooks/useAuth";
 
 /* ─── Zod schema ─────────────────────────────────────────────────── */
 const step1Schema = z
@@ -54,6 +56,7 @@ const passwordRules = [
 
 /* ─── Page ───────────────────────────────────────────────────────── */
 export default function RegisterStep1Page() {
+  const registerMutation = useRegister();
   const router = useRouter();
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
@@ -67,22 +70,8 @@ export default function RegisterStep1Page() {
 
   const passwordValue = watch("password", "");
 
-  const mutation = useMutation({
-    mutationFn: registerStep1,
-    onSuccess: () => {
-      toast.success("Account created! Complete your profile.");
-      router.push("/register/step2");
-    },
-    onError: (error: any) => {
-      const message =
-        error?.response?.data?.message ??
-        "Registration failed. Please try again.";
-      toast.error(message);
-    },
-  });
-
   const onSubmit = (data: Step1FormData) =>
-    mutation.mutate({
+    registerMutation.mutate({
       name: data.name,
       email: data.email,
       password: data.password,
@@ -259,7 +248,7 @@ export default function RegisterStep1Page() {
                 type="submit"
                 className="w-full"
                 size="lg"
-                isLoading={mutation.isPending}
+                isLoading={registerMutation.isPending}
                 rightIcon={<ArrowRight size={16} />}
               >
                 Continue to Step 2

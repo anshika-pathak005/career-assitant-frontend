@@ -8,7 +8,7 @@ import {
   TrendingUp,
   AlertCircle,
 } from "lucide-react";
-import type { ResumeAnalysisResponse } from "@/services/resumeService";
+import type { ResumeAnalysisResponse } from "@/types/resume.types";
 
 /* ─── Score ring ─────────────────────────────────────────────────── */
 function ScoreRing({

@@ -50,9 +50,9 @@ export default function FeatureShowcase() {
             What you'll get
           </span>
         </div>
-        <h4 className="font-display text-[#000F22] text-lg">
+        {/* <h4 className="font-display text-[#000F22] text-lg">
           After completing your profile
-        </h4>
+        </h4> */}
         <p className="text-xs text-[#537FAF] mt-0.5">
           Unlock these features to accelerate your career journey
         </p>

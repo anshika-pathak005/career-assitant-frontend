@@ -16,6 +16,7 @@ export interface RegisterStep1Response {
   name: string;
   wizardStep: number;
   accessToken: string;
+  user: AuthUser;
 }
 
 export interface LoginPayload {
@@ -46,13 +47,7 @@ export const registerStep1 = async (
   const { data } = await axiosInstance.post<RegisterStep1Response>(
     "/api/auth/register/step1",
     payload,
-  );
-
-  if (data.accessToken) {
-    // localStorage.setItem("accessToken", data.accessToken);
-    setAccessToken(data.accessToken);
-  }
-  
+  );  
   return data;
 };
 

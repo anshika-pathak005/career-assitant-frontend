@@ -174,7 +174,7 @@ export default function RoadmapPreview() {
               </span>
             </li>
           </ul>
-          <Link href="/register">
+          <Link href="/login">
             <Button
               variant="primary"
               size="lg"
