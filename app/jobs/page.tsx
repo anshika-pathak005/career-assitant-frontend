@@ -2,26 +2,16 @@
 
 "use client";
 
-import { use, useEffect, useState } from "react";
+import { useState } from "react";
 import ComingSoonModal from "@/components/ui/ComingSoonModal";
 import Button from "@/components/ui/Button";
 import Card from "@/components/ui/Card";
-import { BriefcaseBusiness, Search } from "lucide-react";
-import { useAuth } from "@/hooks/useAuth";
-import { useRouter } from "next/navigation";
+import { BriefcaseBusiness } from "lucide-react";
 
+// Auth is handled by useRouteGuard in ClientLayoutWrapper - this page only
+// renders once the guard has confirmed the user is logged in.
 export default function JobsPage() {
-  const {isAuthenticated, isLoading:authLoading} = useAuth();
   const [isModalOpen, setIsModalOpen] = useState(true); // Open by default
-  // OR use button click to open
-
-  const router = useRouter();
-
-  useEffect(() => {
-    if(!authLoading && !isAuthenticated){
-      router.replace("/login")
-    }
-  }, [authLoading, isAuthenticated,router]);
 
   return (
     <div className="min-h-screen bg-[#C2E8FF] py-8 px-4 sm:px-6">
@@ -37,7 +27,6 @@ export default function JobsPage() {
             Find your dream job based on your skills and preferences.
           </p>
           <Button variant="primary" onClick={() => setIsModalOpen(true)}>
-            {/* <Search size={14} className="mr-2" /> */}
             Browse Jobs
           </Button>
         </Card>

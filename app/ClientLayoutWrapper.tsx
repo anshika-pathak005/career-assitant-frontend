@@ -6,6 +6,7 @@ import { Toaster } from "sonner";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { useRouteGuard } from "@/hooks/useRouteGuard";
+import FullPageSpinner from "@/components/ui/FullPageSpinner";
 
 export default function ClientLayoutWrapper({
   children,
@@ -16,11 +17,7 @@ export default function ClientLayoutWrapper({
 
   // Show loading spinner while checking authentication
   if (isChecking) {
-    return (
-      <div className="min-h-screen bg-[#C2E8FF] flex items-center justify-center">
-        <div className="w-6 h-6 border-2 border-[#557EB2] border-t-transparent rounded-full animate-spin" />
-      </div>
-    );
+    return <FullPageSpinner />;
   }
 
   // Don't render for unauthorized users (they will be redirected)

@@ -32,6 +32,7 @@ import Card from "@/components/ui/Card";
 import { useAuth } from "@/hooks/useAuth";
 import { useResumeAnalysis } from "@/hooks/useResumeAnalysis";
 import { useEffect } from "react";
+import FullPageSpinner from "@/components/ui/FullPageSpinner";
 
 /* ─── Score Ring Component ──────────────────────────────────────── */
 function ScoreRing({
@@ -124,11 +125,7 @@ export default function ResumeAnalysisDetailPage() {
   }, [authLoading, isAuthenticated, router]);
 
   if (authLoading || isLoading) {
-    return (
-      <div className="min-h-screen bg-[#C2E8FF] flex items-center justify-center">
-        <div className="w-6 h-6 border-2 border-[#557EB2] border-t-transparent rounded-full animate-spin" />
-      </div>
-    );
+    return <FullPageSpinner />;
   }
 
   if (!isAuthenticated) return null;

@@ -2,35 +2,16 @@
 
 "use client";
 
-import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
+import { useState } from "react";
 import { TrendingUp, Sparkles } from "lucide-react";
 import Button from "@/components/ui/Button";
 import Card from "@/components/ui/Card";
 import ComingSoonModal from "@/components/ui/ComingSoonModal";
-import { useAuth } from "@/hooks/useAuth";
 
+// Auth is handled by useRouteGuard in ClientLayoutWrapper - this page only
+// renders once the guard has confirmed the user is logged in.
 export default function ProgressPage() {
-  const router = useRouter();
-  const { isAuthenticated, isLoading: authLoading } = useAuth();
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  useEffect(() => {
-    if (!authLoading && !isAuthenticated) {
-      router.replace("/login");
-    }
-    setIsModalOpen(true);
-  }, [authLoading, isAuthenticated, router]);
-
-  if (authLoading) {
-    return (
-      <div className="min-h-screen bg-[#C2E8FF] flex items-center justify-center">
-        <div className="w-6 h-6 border-2 border-[#557EB2] border-t-transparent rounded-full animate-spin" />
-      </div>
-    );
-  }
-
-  if (!isAuthenticated) return null;
+  const [isModalOpen, setIsModalOpen] = useState(true); // Open by default
 
   return (
     <div className="min-h-screen bg-[#C2E8FF] py-8 px-4 sm:px-6">
@@ -43,7 +24,7 @@ export default function ProgressPage() {
             Progress Tracker
           </h1>
           <p className="text-sm text-[#537FAF] mb-6">
-            Track your learning journey and see how far you've come.
+            Track your learning journey and see how far you&apos;ve come.
           </p>
           <Button
             variant="primary"

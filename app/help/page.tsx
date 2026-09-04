@@ -9,6 +9,7 @@ import Button from "@/components/ui/Button";
 import Card from "@/components/ui/Card";
 import ComingSoonModal from "@/components/ui/ComingSoonModal";
 import { useAuth } from "@/hooks/useAuth";
+import FullPageSpinner from "@/components/ui/FullPageSpinner";
 
 export default function HelpPage() {
   const router = useRouter();
@@ -24,11 +25,7 @@ export default function HelpPage() {
   }, [authLoading, isAuthenticated, router]);
 
   if (authLoading) {
-    return (
-      <div className="min-h-screen bg-[#C2E8FF] flex items-center justify-center">
-        <div className="w-6 h-6 border-2 border-[#557EB2] border-t-transparent rounded-full animate-spin" />
-      </div>
-    );
+    return <FullPageSpinner />;
   }
 
   if (!isAuthenticated) return null;

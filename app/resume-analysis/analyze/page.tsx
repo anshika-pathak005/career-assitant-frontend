@@ -20,6 +20,7 @@ import Button from "@/components/ui/Button";
 import Card from "@/components/ui/Card";
 import { useAuth } from "@/hooks/useAuth";
 import { useUploadResume } from "@/hooks/useResumeAnalysis";
+import FullPageSpinner from "@/components/ui/FullPageSpinner";
 
 /* ─── File size limit (5MB) ─────────────────────────────────────── */
 const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5MB
@@ -41,11 +42,7 @@ export default function ResumeUploadPage() {
     }, [authLoading, isAuthenticated, router]);
 
   if (authLoading) {
-    return (
-      <div className="min-h-screen bg-[#C2E8FF] flex items-center justify-center">
-        <div className="w-6 h-6 border-2 border-[#557EB2] border-t-transparent rounded-full animate-spin" />
-      </div>
-    );
+    return <FullPageSpinner />;
   }
 
   if (!isAuthenticated) return null;

@@ -27,6 +27,7 @@ import FeatureShowcase from "@/components/dashboard/FeatureShowcase";
 import { useAuth } from "@/hooks/useAuth";
 import { useDashboard } from "@/hooks/useDashboard";
 import { useUserProfile } from "@/hooks/useUserProfile";
+import FullPageSpinner from "@/components/ui/FullPageSpinner";
 
 /* ─── Loading skeleton ───────────────────────────────────────────── */
 function Skeleton({ className = "" }: { className?: string }) {
@@ -350,11 +351,7 @@ export default function DashboardPage() {
   }, [authLoading, isAuthenticated, router]);
 
   if (authLoading) {
-    return (
-      <div className="min-h-screen bg-[#C2E8FF] flex items-center justify-center">
-        <div className="w-6 h-6 border-2 border-[#557EB2] border-t-transparent rounded-full animate-spin" />
-      </div>
-    );
+    return <FullPageSpinner />;
   }
 
   if (!isAuthenticated) return null;

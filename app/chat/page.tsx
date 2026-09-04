@@ -9,6 +9,7 @@ import { useAuth } from "@/hooks/useAuth";
 import { useChat } from "@/hooks/useChat";
 import { formatTime } from "@/utils/formatDate";
 import ComingSoonModal from "@/components/ui/ComingSoonModal";
+import FullPageSpinner from "@/components/ui/FullPageSpinner";
 
 /* ─── Suggested prompts ──────────────────────────────────────────── */
 const SUGGESTED_PROMPTS = [
@@ -61,11 +62,7 @@ export default function ChatPage() {
   };
 
   if (isLoading || !isAuthenticated) {
-    return (
-      <div className="min-h-screen bg-[#C2E8FF] flex items-center justify-center">
-        <div className="w-6 h-6 border-2 border-[#557EB2] border-t-transparent rounded-full animate-spin" />
-      </div>
-    );
+    return <FullPageSpinner />;
   }
 
   return (

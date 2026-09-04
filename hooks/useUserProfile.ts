@@ -13,10 +13,9 @@ export const useUserProfile = () =>
   useQuery({
     queryKey: USER_PROFILE_KEY,
     queryFn: getUserProfile,
-    staleTime: 0, // Always fetch fresh data
-    refetchOnMount: true,
-    refetchOnWindowFocus: true,
-    refetchOnReconnect: true,
+    // No staleTime / refetch overrides here — inherits the defaults from
+    // lib/queryClient.ts. useUpdateProfile writes the fresh profile straight
+    // into the cache on success, so a forced refetch was never needed.
   });
 
 /** Partially update the user's profile. */
