@@ -39,25 +39,3 @@
     "node_modules"
   ]
 }
-
-/**
- * TypeScript configuration file (tsconfig.json):
- * - Defines how TypeScript should compile and type-check the project
- *
- * Key settings:
- * - target: Specifies JavaScript version output (ES2017)
- * - lib: Adds built-in environment types (DOM, modern JS features)
- * - strict: Enables strict type checking for better error detection
- * - noEmit: Prevents TypeScript from generating output files (Next.js handles build)
- * - module/moduleResolution: Uses modern ES modules and bundler-based resolution
- *
- * Path alias:
- * - "@/*" allows clean imports from project root
- *   Example: import Button from "@/components/Button"
- *
- * Includes:
- * - Specifies which files TypeScript should check (.ts, .tsx, Next.js generated types)
- *
- * Excludes:
- * - node_modules is ignored for performance and correctness
- */

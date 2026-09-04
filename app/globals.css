@@ -1,4 +1,4 @@
-/* Fonts are loaded via <link> in app/layout.tsx — no @import needed here. */
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Instrument+Serif:ital@0;1&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -20,9 +20,12 @@
   --color-success: #16A34A;
   --color-warning: #D97706;
 
-  /* Typography — must match tailwind.config.ts and the <link> in layout.tsx */
-  --font-body:    'Plus Jakarta Sans', system-ui, sans-serif;
-  --font-display: 'Roboto', system-ui, sans-serif;
+  /* Typography */
+  /* --font-display: 'Instrument Serif', Georgia, serif;
+  --font-body:    'Plus Jakarta Sans', sans-serif; */
+
+  --font-body: "Work Sans", sans-serif;
+  --font-display: "Roboto", sans-serif;
 
   /* Consistent font scale */
   --text-xs:   0.75rem;
@@ -82,8 +85,8 @@ body {
   to   { opacity: 1; }
 }
 
-.animate-fade-up { animation: fadeUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) both; }
-.animate-fade-in { animation: fadeIn 0.4s ease both; }
+.animate-fade-up  { animation: fadeUp  0.5s cubic-bezier(0.16, 1, 0.3, 1) both; }
+.animate-fade-in  { animation: fadeIn  0.4s ease both; }
 
 /* Stagger helpers */
 .delay-1 { animation-delay: 0.05s; }
