@@ -57,7 +57,7 @@ function ScoreRing({
           {value}
         </span>
       </div>
-      <span className="text-[10px] font-semibold text-[#537FAF] text-center">
+      <span className="text-[10px] font-semibold text-brand-muted text-center">
         {label}
       </span>
     </div>
@@ -76,20 +76,20 @@ export default function AnalysisOverviewCard({ data }: Props) {
     s >= 70 ? "#16A34A" : s >= 50 ? "#D97706" : "#DC2626";
 
   return (
-    <div className="rounded-xl border border-[#7A9BC4]/20 bg-white shadow-card overflow-hidden">
+    <div className="rounded-xl border border-brand-accent-lt/20 bg-white shadow-card overflow-hidden">
       {/* Header */}
-      <div className="flex items-center justify-between px-5 py-4 border-b border-[#7A9BC4]/15">
+      <div className="flex items-center justify-between px-5 py-4 border-b border-brand-accent-lt/15">
         <div>
-          <p className="text-xs font-bold uppercase tracking-wider text-[#557EB2] mb-0.5">
+          <p className="text-xs font-bold uppercase tracking-wider text-brand-accent mb-0.5">
             Latest Analysis
           </p>
-          <p className="font-bold text-[#000F22] text-sm">
+          <p className="font-bold text-brand-primary text-sm">
             {data.fileName || "Profile Analysis"}
           </p>
         </div>
         <Link
           href={`/analysis?resumeId=${data.resumeId}`}
-          className="flex items-center gap-1.5 text-xs font-bold text-[#557EB2] hover:text-[#042558] transition-colors"
+          className="flex items-center gap-1.5 text-xs font-bold text-brand-accent hover:text-brand-secondary transition-colors"
         >
           View Full Report <ArrowRight size={12} />
         </Link>
@@ -97,53 +97,53 @@ export default function AnalysisOverviewCard({ data }: Props) {
 
       <div className="p-5">
         {/* Scores */}
-        <div className="flex items-center justify-around mb-5 py-3 bg-[#C2E8FF]/30 rounded-lg">
+        <div className="flex items-center justify-around mb-5 py-3 bg-brand-bg/30 rounded-lg">
           <ScoreRing
             value={analysis.overallScore}
             label="Overall"
             color={scoreColor(analysis.overallScore)}
           />
-          <div className="w-px h-12 bg-[#7A9BC4]/20" />
+          <div className="w-px h-12 bg-brand-accent-lt/20" />
           <ScoreRing
             value={analysis.atsScore}
             label="ATS Score"
             color={scoreColor(analysis.atsScore)}
           />
-          <div className="w-px h-12 bg-[#7A9BC4]/20" />
+          <div className="w-px h-12 bg-brand-accent-lt/20" />
           <div className="flex flex-col items-center gap-1">
             <div className="w-16 h-16 flex items-center justify-center">
-              <span className="text-2xl font-bold text-[#000F22]">
+              <span className="text-2xl font-bold text-brand-primary">
                 {analysis.experienceLevel}
               </span>
             </div>
-            <span className="text-[10px] font-semibold text-[#537FAF]">
+            <span className="text-[10px] font-semibold text-brand-muted">
               Level
             </span>
           </div>
         </div>
 
         {/* Summary */}
-        <p className="text-xs text-[#537FAF] leading-relaxed mb-4 line-clamp-2">
+        <p className="text-xs text-brand-muted leading-relaxed mb-4 line-clamp-2">
           {analysis.summary}
         </p>
 
         {/* Quick stats row */}
         <div className="grid grid-cols-3 gap-2">
-          <div className="flex flex-col items-center gap-1 p-2.5 rounded-lg bg-[#C2E8FF]/40">
-            <Star size={14} className="text-[#557EB2]" />
-            <span className="text-[10px] font-bold text-[#000F22] text-center">
+          <div className="flex flex-col items-center gap-1 p-2.5 rounded-lg bg-brand-bg/40">
+            <Star size={14} className="text-brand-accent" />
+            <span className="text-[10px] font-bold text-brand-primary text-center">
               {analysis.strengths.length} Strengths
             </span>
           </div>
-          <div className="flex flex-col items-center gap-1 p-2.5 rounded-lg bg-[#C2E8FF]/40">
-            <AlertCircle size={14} className="text-[#D97706]" />
-            <span className="text-[10px] font-bold text-[#000F22] text-center">
+          <div className="flex flex-col items-center gap-1 p-2.5 rounded-lg bg-brand-bg/40">
+            <AlertCircle size={14} className="text-brand-warning" />
+            <span className="text-[10px] font-bold text-brand-primary text-center">
               {analysis.missingSkills.length} Gaps
             </span>
           </div>
-          <div className="flex flex-col items-center gap-1 p-2.5 rounded-lg bg-[#C2E8FF]/40">
-            <TrendingUp size={14} className="text-[#16A34A]" />
-            <span className="text-[10px] font-bold text-[#000F22] text-center">
+          <div className="flex flex-col items-center gap-1 p-2.5 rounded-lg bg-brand-bg/40">
+            <TrendingUp size={14} className="text-brand-success" />
+            <span className="text-[10px] font-bold text-brand-primary text-center">
               {careerGuidance.recommendedRoles.length} Roles
             </span>
           </div>

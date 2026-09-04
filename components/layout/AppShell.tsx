@@ -18,7 +18,7 @@ export default function AppShell({
   showSidebar = true,
 }: AppShellProps) {
   return (
-    <div className="min-h-screen bg-[#C2E8FF] flex flex-col">
+    <div className="min-h-screen bg-brand-bg flex flex-col">
       <Header />
 
       <div className="flex flex-1 max-w-7xl mx-auto w-full px-4 sm:px-6 gap-6 py-6">

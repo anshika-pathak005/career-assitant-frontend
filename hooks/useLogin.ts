@@ -4,6 +4,7 @@ import { toast } from "sonner";
 import { loginUser, LoginPayload, LoginResponse } from "@/services/authService";
 import { useAuth } from "@/hooks/useAuth";
 import queryClient from "@/lib/queryClient";
+import { getApiErrorMessage } from "@/utils/apiError";
 
 /**
  * 
@@ -38,10 +39,10 @@ export const useLogin = () => {
       toast.success(`Welcome back, ${user.name}!`);
       router.push("/dashboard");
     },
-    onError: (error: any) => {
-      const message =
-        error?.response?.data?.message ?? "Login failed. Please try again.";
-      toast.error(message);
+    onError: (error) => {
+      toast.error(
+        getApiErrorMessage(error, "Login failed. Please try again."),
+      );
     },
   });
 };

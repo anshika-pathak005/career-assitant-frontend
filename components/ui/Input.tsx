@@ -25,7 +25,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
         {label && (
           <label
             htmlFor={inputId}
-            className="text-sm font-semibold text-[#042558] font-body"
+            className="text-sm font-semibold text-brand-secondary font-body"
           >
             {label}
           </label>
@@ -34,7 +34,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
         {/* Input wrapper */}
         <div className="relative flex items-center">
           {leftIcon && (
-            <span className="absolute left-3 text-[#537FAF] pointer-events-none flex items-center">
+            <span className="absolute left-3 text-brand-muted pointer-events-none flex items-center">
               {leftIcon}
             </span>
           )}
@@ -43,14 +43,14 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
             ref={ref}
             id={inputId}
             className={[
-              "w-full h-11 rounded-md font-body text-sm text-[#000F22]",
+              "w-full h-11 rounded-md font-body text-sm text-brand-primary",
               "bg-white border transition-all duration-150 outline-none",
-              "placeholder:text-[#7A9BC4]",
+              "placeholder:text-brand-accent-lt",
               leftIcon ? "pl-10" : "pl-3.5",
               rightIcon ? "pr-10" : "pr-3.5",
               error
                 ? "border-red-400 focus:border-red-400 focus:ring-2 focus:ring-red-200"
-                : "border-[#7A9BC4]/60 focus:border-[#557EB2] focus:ring-2 focus:ring-[#557EB2]/20",
+                : "border-brand-accent-lt/60 focus:border-brand-accent focus:ring-2 focus:ring-brand-accent/20",
               "disabled:opacity-50 disabled:cursor-not-allowed disabled:bg-gray-50",
               className,
             ].join(" ")}
@@ -62,7 +62,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
           />
 
           {rightIcon && (
-            <span className="absolute right-3 text-[#537FAF] flex items-center">
+            <span className="absolute right-3 text-brand-muted flex items-center">
               {rightIcon}
             </span>
           )}
@@ -79,7 +79,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
         {!error && hint && (
           <p
             id={`${inputId}-hint`}
-            className="text-xs text-[#537FAF] font-body"
+            className="text-xs text-brand-muted font-body"
           >
             {hint}
           </p>

@@ -22,7 +22,7 @@ export default function LimitReachedScreen({
   const router = useRouter();
 
   return (
-    <div className="min-h-screen bg-[#C2E8FF] flex items-center justify-center px-4">
+    <div className="min-h-screen bg-brand-bg flex items-center justify-center px-4">
       <Card
         variant="default"
         padding="lg"
@@ -34,33 +34,33 @@ export default function LimitReachedScreen({
         </div>
 
         {/* Title */}
-        <h2 className="font-display text-2xl font-bold text-[#000F22] mb-2">
+        <h2 className="font-display text-2xl font-bold text-brand-primary mb-2">
           Monthly generation limit reached
         </h2>
 
         {/* Subtitle */}
-        <p className="text-sm text-[#537FAF] mb-6 leading-relaxed">
+        <p className="text-sm text-brand-muted mb-6 leading-relaxed">
           You&apos;ve used all{" "}
-          <span className="font-bold text-[#000F22]">{limit.total}</span> free
+          <span className="font-bold text-brand-primary">{limit.total}</span> free
           roadmap generations this month. Upgrade to unlock unlimited roadmaps
           and accelerate your career journey.
         </p>
 
         {/* Stats Card */}
-        <div className="bg-[#C2E8FF]/50 rounded-lg p-4 mb-6">
+        <div className="bg-brand-bg/50 rounded-lg p-4 mb-6">
           <div className="flex justify-between text-sm mb-2">
-            <span className="text-[#537FAF]">Used this month</span>
-            <span className="font-semibold text-[#000F22]">
+            <span className="text-brand-muted">Used this month</span>
+            <span className="font-semibold text-brand-primary">
               {limit.used} / {limit.total}
             </span>
           </div>
-          <div className="h-2 bg-[#C2E8FF] rounded-full overflow-hidden">
+          <div className="h-2 bg-brand-bg rounded-full overflow-hidden">
             <div
-              className="h-full bg-[#557EB2] rounded-full"
+              className="h-full bg-brand-accent rounded-full"
               style={{ width: "100%" }}
             />
           </div>
-          <p className="text-xs text-[#7A9BC4] mt-3">
+          <p className="text-xs text-brand-accent-lt mt-3">
             Resets on{" "}
             {new Date(limit.resetsOn).toLocaleDateString("en-US", {
               year: "numeric",
@@ -92,7 +92,7 @@ export default function LimitReachedScreen({
         </Button>
 
         {/* Small note */}
-        <p className="text-[10px] text-[#7A9BC4] mt-4">
+        <p className="text-[10px] text-brand-accent-lt mt-4">
           Already upgraded? Contact support for assistance.
         </p>
       </Card>

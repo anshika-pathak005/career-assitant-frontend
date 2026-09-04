@@ -11,6 +11,7 @@ import {
 } from "@/services/roadmapService";
 import type { RoadmapGenerationRequest } from "@/types/roadmap.types";
 import { skip } from "node:test";
+import { getApiErrorMessage } from "@/utils/apiError";
 
 /* ─── Query keys ─────────────────────────────────────────────────── */
 export const ROADMAP_KEYS = {
@@ -35,11 +36,13 @@ export const useGenerateRoadmap = () => {
       // Redirect to the new roadmap
       router.push(`/roadmap/${roadmap.roadmapId}`);
     },
-    onError: (error: any) => {
-      const message =
-        error?.response?.data?.message ??
-        "Failed to generate roadmap. Please try again.";
-      toast.error(message);
+    onError: (error) => {
+      toast.error(
+        getApiErrorMessage(
+          error,
+          "Failed to generate roadmap. Please try again.",
+        ),
+      );
     },
   });
 };
@@ -94,11 +97,10 @@ export const useUpdateStepCompletion = (roadmapId: number) => {
       queryClient.invalidateQueries({ queryKey: ROADMAP_KEYS.user() });
       queryClient.invalidateQueries({ queryKey: ROADMAP_KEYS.latest() });
     },
-    onError: (error: any) => {
-      const message =
-        error?.response?.data?.message ??
-        "Failed to update step. Please try again.";
-      toast.error(message);
+    onError: (error) => {
+      toast.error(
+        getApiErrorMessage(error, "Failed to update step. Please try again."),
+      );
     },
   });
 };

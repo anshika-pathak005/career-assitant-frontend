@@ -1,168 +1,65 @@
+// app/register/step2/page.tsx
+
 "use client";
 
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useRouter } from "next/navigation";
-import { useMutation } from "@tanstack/react-query";
-import { toast } from "sonner";
-import { useState, KeyboardEvent, useMemo } from "react";
-import { ArrowLeft, ArrowRight, X, BriefcaseBusiness } from "lucide-react";
 import Link from "next/link";
+import { ArrowRight, BriefcaseBusiness } from "lucide-react";
 
 import Button from "@/components/ui/Button";
 import Input from "@/components/ui/Input";
 import Card from "@/components/ui/Card";
+import SectionTitle from "@/components/register/SectionTitle";
+import RoleSelector from "@/components/register/RoleSelector";
+import IndustrySelector from "@/components/register/IndustrySelector";
+import SkillsInput from "@/components/register/SkillsInput";
+import ExperienceSelector from "@/components/register/ExperienceSelector";
+import { useStep2Form } from "./useStep2Form";
 
-import { registerStep2 } from "@/services/authService";
-import {
-  step2Schema,
-  step2DefaultValues,
-  type Step2FormData,
-} from "./step2.schema";
-import {
-  ROLES,
-  GOAL_TYPES,
-  INDUSTRIES,
-  EXPERIENCE_OPTIONS,
-  PROJECT_LEVELS,
-  WORK_PREFERENCES,
-  INDUSTRY_SKILLS_MAP,
-  DEFAULT_SKILLS,
-} from "./step2.constants";
-
-/* ─── SectionTitle — used only in this file, not worth extracting ── */
-function SectionTitle({
-  children,
-  optional,
-}: {
-  children: React.ReactNode;
-  optional?: boolean;
-}) {
-  return (
-    <div className="flex items-center gap-2 mb-3">
-      <p className="text-sm font-semibold text-[#042558]">{children}</p>
-      {optional && (
-        <span className="text-[10px] font-semibold uppercase tracking-wider text-[#537FAF] bg-[#C2E8FF] px-2 py-0.5 rounded-full">
-          optional
-        </span>
-      )}
-    </div>
-  );
-}
-
-/* ─── Page ───────────────────────────────────────────────────────── */
 export default function RegisterStep2Page() {
-  const router = useRouter();
-  const [skillInput, setSkillInput] = useState("");
+  const {
+    form,
+    onSubmit,
+    router,
+    isSubmitting,
+    selectedRole,
+    selectRole,
+    selectedIndustries,
+    toggleIndustry,
+    selectedSkills,
+    addSkill,
+    removeSkill,
+    skillInput,
+    setSkillInput,
+    suggestedSkills,
+    selectedExp,
+    selectExperience,
+  } = useStep2Form();
 
   const {
     register,
     handleSubmit,
-    watch,
-    setValue,
     formState: { errors },
-  } = useForm<Step2FormData>({
-    resolver: zodResolver(step2Schema),
-    defaultValues: step2DefaultValues,
-  });
-
-  const selectedRole = watch("userCategory");
-  const selectedIndustries = watch("industries") ?? [];
-  const selectedSkills = watch("skills") ?? [];
-  const selectedExp = watch("experienceYears");
-  // const selectedGoal = watch("goalType");
-  // const selectedProject = watch("projectLevel");
-  // const selectedWork = watch("workPreference");
-
-  /* Derive suggested skills from selected industries — deduped & sorted */
-  const suggestedSkills = useMemo(() => {
-    if (selectedIndustries.length === 0) return DEFAULT_SKILLS;
-    const combined = new Set<string>();
-    selectedIndustries.forEach((ind) =>
-      (INDUSTRY_SKILLS_MAP[ind] ?? []).forEach((s) => combined.add(s)),
-    );
-    return Array.from(combined).sort();
-  }, [selectedIndustries]);
-
-  /* ── Toggle / add / remove helpers ──────────────────────────── */
-
-  const toggleIndustry = (ind: string) => {
-    const next = selectedIndustries.includes(ind)
-      ? selectedIndustries.filter((i) => i !== ind)
-      : [...selectedIndustries, ind];
-    setValue("industries", next);
-  };
-
-  const addSkill = (skill: string) => {
-    const trimmed = skill.trim();
-    if (trimmed && !selectedSkills.includes(trimmed)) {
-      setValue("skills", [...selectedSkills, trimmed]);
-    }
-    setSkillInput("");
-  };
-
-  const removeSkill = (skill: string) =>
-    setValue(
-      "skills",
-      selectedSkills.filter((s) => s !== skill),
-    );
-
-  const handleSkillKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === "Enter") {
-      e.preventDefault();
-      addSkill(skillInput);
-    }
-  };
-
-  /* ── Mutation ────────────────────────────────────────────────── */
-
-  const mutation = useMutation({
-    mutationFn: registerStep2,
-    onSuccess: () => {
-      toast.success("Profile complete! Welcome to CareerPilot");
-      router.push("/dashboard");
-    },
-    onError: (error: any) => {
-      const message =
-        error?.response?.data?.message ??
-        "Something went wrong. Please try again.";
-      toast.error(message);
-    },
-  });
-
-  const onSubmit = (data: Step2FormData) => mutation.mutate(data);
-
-  /* ── Shared style builder ────────────────────────────────────── */
-
-  const pillCls = (selected: boolean) =>
-    [
-      "px-3 py-2.5 rounded-md border text-xs font-semibold text-center transition-all duration-150 cursor-pointer",
-      selected
-        ? "bg-[#000F22] border-[#000F22] text-white"
-        : "bg-white border-[#7A9BC4]/30 text-[#537FAF] hover:border-[#557EB2] hover:text-[#042558]",
-    ].join(" ");
-
-  /* ── Render ──────────────────────────────────────────────────── */
+  } = form;
 
   return (
-    <main className="min-h-screen bg-[#C2E8FF] flex items-center justify-center px-4 py-12">
+    <main className="min-h-screen bg-brand-bg flex items-center justify-center px-4 py-12">
       {/* Background decorations */}
       <div
         aria-hidden
         className="pointer-events-none fixed inset-0 overflow-hidden"
       >
         <div className="absolute -top-32 -left-32 w-96 h-96 bg-white/30 rounded-full blur-3xl" />
-        <div className="absolute -bottom-32 -right-32 w-96 h-96 bg-[#557EB2]/10 rounded-full blur-3xl" />
+        <div className="absolute -bottom-32 -right-32 w-96 h-96 bg-brand-accent/10 rounded-full blur-3xl" />
       </div>
 
       <div className="w-full max-w-3xl relative">
         {/* Brand */}
         <div className="flex justify-center mb-8 animate-fade-up">
           <Link href="/" className="flex items-center gap-2.5">
-            <div className="w-9 h-9 bg-[#000F22] rounded-md flex items-center justify-center">
+            <div className="w-9 h-9 bg-brand-primary rounded-md flex items-center justify-center">
               <BriefcaseBusiness size={18} className="text-white" />
             </div>
-            <span className="font-display text-[#000F22] text-2xl">
+            <span className="font-display text-brand-primary text-2xl">
               CareerPilot
             </span>
           </Link>
@@ -172,22 +69,22 @@ export default function RegisterStep2Page() {
           {/* Progress */}
           <div className="mb-6">
             <div className="flex items-center justify-between mb-2">
-              <span className="text-xs font-bold text-[#537FAF] uppercase tracking-wider">
+              <span className="text-xs font-bold text-brand-muted uppercase tracking-wider">
                 Step 2 of 2
               </span>
-              <span className="text-xs font-bold text-[#557EB2]">100%</span>
+              <span className="text-xs font-bold text-brand-accent">100%</span>
             </div>
-            <div className="h-1.5 bg-[#C2E8FF] rounded-full overflow-hidden">
-              <div className="h-full bg-[#000F22] rounded-full w-full transition-all duration-500" />
+            <div className="h-1.5 bg-brand-bg rounded-full overflow-hidden">
+              <div className="h-full bg-brand-primary rounded-full w-full transition-all duration-500" />
             </div>
           </div>
 
           {/* Header */}
           <div className="mb-7">
-            <h1 className="font-display text-[#000F22] text-3xl mb-1">
+            <h1 className="font-display text-brand-primary text-3xl mb-1">
               Complete your profile
             </h1>
-            <p className="text-sm text-[#537FAF]">
+            <p className="text-sm text-brand-muted">
               Help us personalize your AI career roadmap.
             </p>
           </div>
@@ -197,105 +94,12 @@ export default function RegisterStep2Page() {
             noValidate
             className="flex flex-col gap-8"
           >
-            {/* ── 1. Role ─────────────────────────────────────── */}
-            <div className="animate-fade-up delay-2">
-              <SectionTitle>Where are you right now?</SectionTitle>
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                {ROLES.map((r) => {
-                  const isSelected = selectedRole === r.id;
-                  return (
-                    <button
-                      key={r.id}
-                      type="button"
-                      onClick={() => setValue("userCategory", r.id)}
-                      className={[
-                        "text-left p-4 rounded-lg border transition-all duration-150",
-                        isSelected
-                          ? "bg-[#000F22] border-[#000F22]"
-                          : "bg-white border-[#7A9BC4]/30 hover:border-[#557EB2] hover:bg-[#C2E8FF]/40",
-                      ].join(" ")}
-                    >
-                      <div
-                        className={`w-9 h-9 rounded-md flex items-center justify-center mb-3 ${isSelected ? "bg-white/15" : "bg-[#C2E8FF]"}`}
-                      >
-                        <r.icon
-                          size={18}
-                          className={
-                            isSelected ? "text-white" : "text-[#557EB2]"
-                          }
-                        />
-                      </div>
-                      <div
-                        className={`font-bold text-sm mb-0.5 ${isSelected ? "text-white" : "text-[#000F22]"}`}
-                      >
-                        {r.label}
-                      </div>
-                      <div
-                        className={`text-xs mb-1 ${isSelected ? "text-white/70" : "text-[#537FAF]"}`}
-                      >
-                        {r.sub}
-                      </div>
-                      <div
-                        className={`text-xs ${isSelected ? "text-white/60" : "text-[#7A9BC4]"}`}
-                      >
-                        {r.desc}
-                      </div>
-                    </button>
-                  );
-                })}
-              </div>
-              {errors.userCategory && (
-                <p className="mt-1.5 text-xs text-red-500">
-                  {errors.userCategory.message}
-                </p>
-              )}
-            </div>
+            <RoleSelector
+              value={selectedRole}
+              onChange={selectRole}
+              error={errors.userCategory?.message}
+            />
 
-            {/* ── 2. Goal Type ───────────────────────────────────
-            <div className="animate-fade-up delay-2">
-              <SectionTitle>What is your primary goal?</SectionTitle>
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-                {GOAL_TYPES.map((g) => {
-                  const isSelected = selectedGoal === g.id;
-                  return (
-                    <button
-                      key={g.id}
-                      type="button"
-                      onClick={() => setValue("goalType", g.id)}
-                      className={[
-                        "flex flex-col items-center gap-2.5 p-4 rounded-lg border transition-all duration-150",
-                        isSelected
-                          ? "bg-[#000F22] border-[#000F22]"
-                          : "bg-white border-[#7A9BC4]/30 hover:border-[#557EB2] hover:bg-[#C2E8FF]/40",
-                      ].join(" ")}
-                    >
-                      <div
-                        className={`w-9 h-9 rounded-md flex items-center justify-center ${isSelected ? "bg-white/15" : "bg-[#C2E8FF]"}`}
-                      >
-                        <g.icon
-                          size={18}
-                          className={
-                            isSelected ? "text-white" : "text-[#557EB2]"
-                          }
-                        />
-                      </div>
-                      <span
-                        className={`text-xs font-bold ${isSelected ? "text-white" : "text-[#000F22]"}`}
-                      >
-                        {g.label}
-                      </span>
-                    </button>
-                  );
-                })}
-              </div>
-              {errors.goalType && (
-                <p className="mt-1.5 text-xs text-red-500">
-                  {errors.goalType.message}
-                </p>
-              )}
-            </div> */}
-
-            {/* ── 3. Dream Job ─────────────────────────────────── */}
             <div className="animate-fade-up delay-3">
               <SectionTitle>Dream Job</SectionTitle>
               <Input
@@ -305,172 +109,26 @@ export default function RegisterStep2Page() {
               />
             </div>
 
-            {/* ── 4. Industries ────────────────────────────────── */}
-            <div className="animate-fade-up delay-4">
-              <SectionTitle optional>Industries of Interest</SectionTitle>
-              <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
-                {INDUSTRIES.map((ind) => {
-                  const isSelected = selectedIndustries.includes(ind);
-                  return (
-                    <button
-                      key={ind}
-                      type="button"
-                      onClick={() => toggleIndustry(ind)}
-                      className={[
-                        "flex items-center gap-2.5 px-3 py-2.5 rounded-md border text-left text-xs font-medium transition-all duration-150",
-                        isSelected
-                          ? "bg-[#000F22] border-[#000F22] text-white"
-                          : "bg-white border-[#7A9BC4]/30 text-[#537FAF] hover:border-[#557EB2] hover:text-[#042558]",
-                      ].join(" ")}
-                    >
-                      <span
-                        className="w-3.5 h-3.5 rounded-sm flex-shrink-0 border flex items-center justify-center transition-colors"
-                        style={{
-                          background: isSelected ? "#fff" : "transparent",
-                          borderColor: isSelected ? "#fff" : "currentColor",
-                        }}
-                      >
-                        {isSelected && (
-                          <svg
-                            width="8"
-                            height="8"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            stroke="#000F22"
-                            strokeWidth="3.5"
-                          >
-                            <path d="M20 6 9 17l-5-5" />
-                          </svg>
-                        )}
-                      </span>
-                      {ind}
-                    </button>
-                  );
-                })}
-              </div>
-            </div>
+            <IndustrySelector
+              selected={selectedIndustries}
+              onToggle={toggleIndustry}
+            />
 
-            {/* ── 5. Skills (tag input) ─────────────────────────── */}
-            <div className="animate-fade-up delay-5">
-              <SectionTitle optional>Your Skills</SectionTitle>
+            <SkillsInput
+              selected={selectedSkills}
+              suggestions={suggestedSkills}
+              hasIndustries={selectedIndustries.length > 0}
+              skillInput={skillInput}
+              setSkillInput={setSkillInput}
+              onAdd={addSkill}
+              onRemove={removeSkill}
+            />
 
-              {/* Skill tags */}
-              {selectedSkills.length > 0 && (
-                <div className="flex flex-wrap gap-2 mb-3">
-                  {selectedSkills.map((skill) => (
-                    <span
-                      key={skill}
-                      className="inline-flex items-center gap-1.5 bg-[#000F22] text-white text-xs font-semibold px-3 py-1 rounded-full"
-                    >
-                      {skill}
-                      <button
-                        type="button"
-                        onClick={() => removeSkill(skill)}
-                        aria-label={`Remove ${skill}`}
-                        className="opacity-60 hover:opacity-100 transition-opacity flex items-center"
-                      >
-                        <X size={10} strokeWidth={3} />
-                      </button>
-                    </span>
-                  ))}
-                </div>
-              )}
+            <ExperienceSelector
+              value={selectedExp}
+              onSelect={selectExperience}
+            />
 
-              {/* Text input */}
-              <input
-                type="text"
-                value={skillInput}
-                onChange={(e) => setSkillInput(e.target.value)}
-                onKeyDown={handleSkillKeyDown}
-                placeholder="Type a skill and press Enter"
-                className="w-full h-11 rounded-md border border-[#7A9BC4]/60 bg-white px-3.5 text-sm text-[#000F22] placeholder:text-[#7A9BC4] focus:outline-none focus:border-[#557EB2] focus:ring-2 focus:ring-[#557EB2]/20 transition-all"
-              />
-
-              {/* Industry-aware suggestions */}
-              <div className="mt-2.5">
-                <p className="text-xs text-[#537FAF] mb-1.5">
-                  {selectedIndustries.length > 0
-                    ? "Suggested for your selected industries:"
-                    : "Popular skills:"}
-                </p>
-                <div className="flex flex-wrap gap-1.5">
-                  {suggestedSkills.map((s) => (
-                    <button
-                      key={s}
-                      type="button"
-                      onClick={() => addSkill(s)}
-                      disabled={selectedSkills.includes(s)}
-                      className="text-xs bg-[#C2E8FF] text-[#042558] font-medium px-2.5 py-1 rounded-full border border-[#7A9BC4]/30 hover:bg-[#557EB2] hover:text-white hover:border-[#557EB2] disabled:opacity-30 disabled:cursor-not-allowed transition-all"
-                    >
-                      + {s}
-                    </button>
-                  ))}
-                </div>
-              </div>
-            </div>
-
-            {/* ── 6. Experience ─────────────────────────────────── */}
-            <div className="animate-fade-up delay-6">
-              <SectionTitle optional>Years of Experience</SectionTitle>
-              <div className="grid grid-cols-3 sm:grid-cols-5 gap-2">
-                {EXPERIENCE_OPTIONS.map((exp) => (
-                  <button
-                    key={exp}
-                    type="button"
-                    onClick={() =>
-                      setValue(
-                        "experienceYears",
-                        selectedExp === exp ? "" : exp,
-                      )
-                    }
-                    className={pillCls(selectedExp === exp)}
-                  >
-                    {exp}
-                  </button>
-                ))}
-              </div>
-            </div>
-
-            {/* ── 7. Project Experience Level ──────────────────── */}
-            {/* <div className="animate-fade-up delay-6">
-              <SectionTitle>Project Experience Level</SectionTitle>
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-                {PROJECT_LEVELS.map((p) => {
-                  const isSelected = selectedProject === p.id;
-                  return (
-                    <button
-                      key={p.id}
-                      type="button"
-                      onClick={() => setValue("projectLevel", p.id)}
-                      className={[
-                        "flex flex-col gap-1 p-3.5 rounded-lg border text-left transition-all duration-150",
-                        isSelected
-                          ? "bg-[#000F22] border-[#000F22]"
-                          : "bg-white border-[#7A9BC4]/30 hover:border-[#557EB2] hover:bg-[#C2E8FF]/40",
-                      ].join(" ")}
-                    >
-                      <span
-                        className={`text-sm font-bold ${isSelected ? "text-white" : "text-[#000F22]"}`}
-                      >
-                        {p.label}
-                      </span>
-                      <span
-                        className={`text-[11px] leading-snug ${isSelected ? "text-white/65" : "text-[#537FAF]"}`}
-                      >
-                        {p.desc}
-                      </span>
-                    </button>
-                  );
-                })}
-              </div>
-              {errors.projectLevel && (
-                <p className="mt-1.5 text-xs text-red-500">
-                  {errors.projectLevel.message}
-                </p>
-              )}
-            </div> */}
-
-            {/* ── 8. Current / Past Role ────────────────────────── */}
             <div className="animate-fade-up delay-6">
               <SectionTitle optional>Current / Past Role</SectionTitle>
               <Input
@@ -479,35 +137,7 @@ export default function RegisterStep2Page() {
               />
             </div>
 
-            {/* ── 9. Work Preference ───────────────────────────── */}
-            {/* <div className="animate-fade-up delay-6">
-              <SectionTitle optional>Work Preference</SectionTitle>
-              <div className="grid grid-cols-3 gap-3">
-                {WORK_PREFERENCES.map((w) => {
-                  const isSelected = selectedWork === w.id;
-                  return (
-                    <button
-                      key={w.id}
-                      type="button"
-                      onClick={() =>
-                        setValue("workPreference", isSelected ? "" : w.id)
-                      }
-                      className={[
-                        "flex items-center justify-center gap-2 py-3 rounded-lg border text-sm font-semibold transition-all duration-150",
-                        isSelected
-                          ? "bg-[#000F22] border-[#000F22] text-white"
-                          : "bg-white border-[#7A9BC4]/30 text-[#537FAF] hover:border-[#557EB2] hover:text-[#042558] hover:bg-[#C2E8FF]/40",
-                      ].join(" ")}
-                    >
-                      <w.icon size={15} />
-                      {w.label}
-                    </button>
-                  );
-                })}
-              </div>
-            </div> */}
-
-            {/* ── Actions ───────────────────────────────────────── */}
+            {/* Actions */}
             <div className="flex gap-3 mt-2 animate-fade-up delay-6">
               <Button
                 type="button"
@@ -523,7 +153,7 @@ export default function RegisterStep2Page() {
                 variant="primary"
                 size="lg"
                 className="flex-1"
-                isLoading={mutation.isPending}
+                isLoading={isSubmitting}
                 rightIcon={<ArrowRight size={16} />}
               >
                 Complete Profile

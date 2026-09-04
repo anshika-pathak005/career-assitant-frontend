@@ -21,10 +21,10 @@ export default function SkillLevelsSection({
 
   return (
     <Card variant="default" padding="lg">
-      <h2 className="font-semibold text-[#000F22] text-lg mb-4">
+      <h2 className="font-semibold text-brand-primary text-lg mb-4">
         Rate Your Skills
       </h2>
-      <p className="text-xs text-[#537FAF] mb-4">
+      <p className="text-xs text-brand-muted mb-4">
         Select your proficiency level for each skill
       </p>
 
@@ -32,9 +32,9 @@ export default function SkillLevelsSection({
         {skillLevels.map((skill) => (
           <div
             key={skill.name}
-            className="flex flex-col sm:flex-row sm:items-center gap-3 p-3 rounded-lg bg-[#C2E8FF]/20"
+            className="flex flex-col sm:flex-row sm:items-center gap-3 p-3 rounded-lg bg-brand-bg/20"
           >
-            <span className="text-sm font-medium text-[#000F22] w-32">
+            <span className="text-sm font-medium text-brand-primary w-32">
               {skill.name}
             </span>
             <OptionCardGroup

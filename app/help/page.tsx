@@ -31,33 +31,33 @@ export default function HelpPage() {
   if (!isAuthenticated) return null;
 
   return (
-    <div className="min-h-screen bg-[#C2E8FF] py-8 px-4 sm:px-6">
+    <div className="min-h-screen bg-brand-bg py-8 px-4 sm:px-6">
       <div className="max-w-2xl mx-auto text-center">
         <Card variant="default" padding="lg">
-          <div className="w-16 h-16 rounded-full bg-[#C2E8FF] flex items-center justify-center mx-auto mb-4">
-            <HelpCircle size={28} className="text-[#557EB2]" />
+          <div className="w-16 h-16 rounded-full bg-brand-bg flex items-center justify-center mx-auto mb-4">
+            <HelpCircle size={28} className="text-brand-accent" />
           </div>
-          <h1 className="font-display text-[#000F22] text-2xl mb-2">
+          <h1 className="font-display text-brand-primary text-2xl mb-2">
             Help & Support
           </h1>
-          <p className="text-sm text-[#537FAF] mb-6">
+          <p className="text-sm text-brand-muted mb-6">
             Get answers to your questions and reach out to our support team.
           </p>
 
           {/* Contact Options */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
-            <div className="p-4 bg-[#C2E8FF]/30 rounded-lg">
-              <Mail size={20} className="text-[#557EB2] mx-auto mb-2" />
-              <p className="text-xs font-semibold text-[#000F22]">Email Us</p>
-              <p className="text-xs text-[#537FAF]">support@careerpilot.com</p>
+            <div className="p-4 bg-brand-bg/30 rounded-lg">
+              <Mail size={20} className="text-brand-accent mx-auto mb-2" />
+              <p className="text-xs font-semibold text-brand-primary">Email Us</p>
+              <p className="text-xs text-brand-muted">support@careerpilot.com</p>
             </div>
-            <div className="p-4 bg-[#C2E8FF]/30 rounded-lg">
+            <div className="p-4 bg-brand-bg/30 rounded-lg">
               <MessageCircle
                 size={20}
-                className="text-[#557EB2] mx-auto mb-2"
+                className="text-brand-accent mx-auto mb-2"
               />
-              <p className="text-xs font-semibold text-[#000F22]">Live Chat</p>
-              <p className="text-xs text-[#537FAF]">Coming Soon</p>
+              <p className="text-xs font-semibold text-brand-primary">Live Chat</p>
+              <p className="text-xs text-brand-muted">Coming Soon</p>
             </div>
           </div>
 

@@ -20,7 +20,7 @@ export default function ComingSoonModal({
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#000F22]/60 backdrop-blur-sm animate-fade-in px-4">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-brand-primary/60 backdrop-blur-sm animate-fade-in px-4">
       <Card
         variant="default"
         padding="lg"
@@ -29,26 +29,26 @@ export default function ComingSoonModal({
         <div className="flex justify-end">
           <button
             onClick={onClose}
-            className="text-[#537FAF] hover:text-[#000F22] transition-colors"
+            className="text-brand-muted hover:text-brand-primary transition-colors"
           >
             <X size={18} />
           </button>
         </div>
 
-        <div className="w-16 h-16 rounded-full bg-[#C2E8FF] flex items-center justify-center mx-auto mb-4">
-          <Rocket size={28} className="text-[#557EB2]" />
+        <div className="w-16 h-16 rounded-full bg-brand-bg flex items-center justify-center mx-auto mb-4">
+          <Rocket size={28} className="text-brand-accent" />
         </div>
 
-        <h3 className="font-display text-[#000F22] text-xl mb-2">
+        <h3 className="font-display text-brand-primary text-xl mb-2">
           Coming Soon!
         </h3>
 
-        <p className="text-sm text-[#537FAF] mb-4 leading-relaxed">
+        <p className="text-sm text-brand-muted mb-4 leading-relaxed">
           {featureName} is currently under development. We're working hard to
           bring this to you as soon as possible.
         </p>
 
-        <div className="flex items-center justify-center gap-2 text-xs text-[#7A9BC4] mb-4">
+        <div className="flex items-center justify-center gap-2 text-xs text-brand-accent-lt mb-4">
           <Clock size={12} />
           <span>Stay tuned for updates</span>
         </div>

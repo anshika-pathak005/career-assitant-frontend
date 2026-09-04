@@ -69,7 +69,7 @@ export default function OptionCardGroup({
       {(label || labelAccessory) && (
         <div className="flex items-center justify-between mb-2">
           {label && (
-            <label className="text-sm font-semibold text-[#042558]">
+            <label className="text-sm font-semibold text-brand-secondary">
               {label}
             </label>
           )}
@@ -94,10 +94,10 @@ export default function OptionCardGroup({
 
           const state = selected
             ? isCard
-              ? "bg-[#000F22] border-[#000F22]"
-              : "bg-[#000F22] border-[#000F22] text-white"
-            : "bg-white border-[#7A9BC4]/30 hover:border-[#557EB2]" +
-              (isCard ? "" : " text-[#537FAF]");
+              ? "bg-brand-primary border-brand-primary"
+              : "bg-brand-primary border-brand-primary text-white"
+            : "bg-white border-brand-accent-lt/30 hover:border-brand-accent" +
+              (isCard ? "" : " text-brand-muted");
 
           return (
             <button
@@ -110,7 +110,7 @@ export default function OptionCardGroup({
               {showIcon && Icon && (
                 <Icon
                   size={18}
-                  className={selected ? "text-white" : "text-[#557EB2]"}
+                  className={selected ? "text-white" : "text-brand-accent"}
                 />
               )}
 
@@ -118,7 +118,7 @@ export default function OptionCardGroup({
                 <div>
                   <p
                     className={`text-sm font-semibold ${
-                      selected ? "text-white" : "text-[#000F22]"
+                      selected ? "text-white" : "text-brand-primary"
                     }`}
                   >
                     {option.label}
@@ -126,7 +126,7 @@ export default function OptionCardGroup({
                   {secondary && (
                     <p
                       className={`text-xs ${
-                        selected ? "text-white/70" : "text-[#537FAF]"
+                        selected ? "text-white/70" : "text-brand-muted"
                       }`}
                     >
                       {secondary}

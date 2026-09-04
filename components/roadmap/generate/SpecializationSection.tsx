@@ -26,10 +26,10 @@ export default function SpecializationSection({
 
   return (
     <Card variant="default" padding="lg">
-      <h2 className="font-semibold text-[#000F22] text-lg mb-4">
+      <h2 className="font-semibold text-brand-primary text-lg mb-4">
         Choose Specialization
       </h2>
-      <p className="text-xs text-[#537FAF] mb-4 -mt-2">
+      <p className="text-xs text-brand-muted mb-4 -mt-2">
         Select a specialization for a more focused roadmap, or type your own
         below.
       </p>
@@ -46,20 +46,20 @@ export default function SpecializationSection({
               onClick={() => setValue("specialization", spec.title)}
               className={`p-3 rounded-lg border text-left transition-all duration-150 ${
                 isSelected
-                  ? "bg-[#000F22] border-[#000F22]"
-                  : "bg-white border-[#7A9BC4]/30 hover:border-[#557EB2]"
+                  ? "bg-brand-primary border-brand-primary"
+                  : "bg-white border-brand-accent-lt/30 hover:border-brand-accent"
               }`}
             >
               <p
                 className={`font-semibold text-sm ${
-                  isSelected ? "text-white" : "text-[#000F22]"
+                  isSelected ? "text-white" : "text-brand-primary"
                 }`}
               >
                 {spec.title}
               </p>
               <p
                 className={`text-xs mt-0.5 ${
-                  isSelected ? "text-white/70" : "text-[#537FAF]"
+                  isSelected ? "text-white/70" : "text-brand-muted"
                 }`}
               >
                 {spec.description}
@@ -71,7 +71,7 @@ export default function SpecializationSection({
                     className={`text-[10px] px-2 py-0.5 rounded-full ${
                       isSelected
                         ? "bg-white/20 text-white/80"
-                        : "bg-[#C2E8FF] text-[#537FAF]"
+                        : "bg-brand-bg text-brand-muted"
                     }`}
                   >
                     {tech}
@@ -84,8 +84,8 @@ export default function SpecializationSection({
       </div>
 
       {/* Custom Specialization Input */}
-      <div className="mt-4 pt-4 border-t border-[#7A9BC4]/15">
-        <label className="text-xs font-semibold text-[#042558] block mb-2">
+      <div className="mt-4 pt-4 border-t border-brand-accent-lt/15">
+        <label className="text-xs font-semibold text-brand-secondary block mb-2">
           Or specify your own specialization
         </label>
         <Input

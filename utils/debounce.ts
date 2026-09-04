@@ -19,7 +19,7 @@
  * - While typing, function keeps resetting
  * - API call happens only after user stops typing for 500ms
  */
-export function debounce<T extends (...args: any[]) => void>(
+export function debounce<T extends (...args: never[]) => void>(
   fn: T,
   delay: number,
 ): (...args: Parameters<T>) => void {

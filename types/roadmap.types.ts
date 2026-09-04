@@ -61,6 +61,7 @@ export interface RoadmapSkill {
   targetLevel: string;
   startingLevel: string;
   isExistingSkill: boolean;
+  skillType?: string; // shown as a small badge; not always sent by the backend
   resources: string; // JSON string array
   steps: RoadmapStep[];
 }
@@ -82,6 +83,8 @@ export interface Roadmap {
   totalEstimatedWeeks: number;
   generatedAt: string;
   phases: RoadmapPhase[];
+  // Sent by the history endpoint, not by the single-roadmap endpoint
+  overallProgress?: number;
 }
 
 export interface RoadmapUsage {

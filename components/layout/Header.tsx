@@ -44,7 +44,7 @@ function Brand() {
   return (
     <Link href="/" className="flex items-center gap-2.5 flex-shrink-0 group">
       <div className="w-10 h-10 bg-white rounded-md flex items-center justify-center transition-transform group-hover:scale-105">
-        <BriefcaseBusiness size={20} className="text-[#000F22]" />
+        <BriefcaseBusiness size={20} className="text-brand-primary" />
       </div>
       <span className="font-display font-bold text-white text-2xl leading-none">
         CareerPilot
@@ -82,7 +82,7 @@ export default function Header() {
 
   return (
     <>
-      <header className="sticky top-0 z-50 w-full bg-[#000F22]/95 backdrop-blur-md border-b border-white/10 shadow-sm">
+      <header className="sticky top-0 z-50 w-full bg-brand-primary/95 backdrop-blur-md border-b border-white/10 shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center gap-4">
           {/* ── Brand ─────────────────────────────────────────── */}
           <Brand />
@@ -99,7 +99,7 @@ export default function Header() {
                       className={[
                         "flex items-center gap-1.5 px-3.5 py-2 rounded-md text-sm font-semibold transition-all duration-150",
                         active
-                          ? "bg-white text-[#000F22]"
+                          ? "bg-white text-brand-primary"
                           : "text-white/70 hover:text-white hover:bg-white/10",
                       ].join(" ")}
                     >
@@ -168,13 +168,13 @@ export default function Header() {
                         className="fixed inset-0 z-10"
                         onClick={() => setUserMenuOpen(false)}
                       />
-                      <div className="absolute right-0 top-full mt-2 w-52 bg-white rounded-lg border border-[#7A9BC4]/20 shadow-lg z-20 overflow-hidden animate-fade-up">
+                      <div className="absolute right-0 top-full mt-2 w-52 bg-white rounded-lg border border-brand-accent-lt/20 shadow-lg z-20 overflow-hidden animate-fade-up">
                         {/* User info */}
-                        <div className="px-4 py-3 border-b border-[#7A9BC4]/15">
-                          <p className="text-m font-bold text-[#000F22] truncate">
+                        <div className="px-4 py-3 border-b border-brand-accent-lt/15">
+                          <p className="text-m font-bold text-brand-primary truncate">
                             {user?.name}
                           </p>
-                          <p className="text-xs text-[#537FAF] truncate mt-0.5">
+                          <p className="text-xs text-brand-muted truncate mt-0.5">
                             {user?.email}
                           </p>
                         </div>
@@ -183,14 +183,14 @@ export default function Header() {
                           <Link
                             href="/settings"
                             onClick={() => setUserMenuOpen(false)}
-                            className="flex items-center gap-2.5 px-4 py-2.5 text-sm text-[#042558] hover:bg-[#C2E8FF]/50 transition-colors"
+                            className="flex items-center gap-2.5 px-4 py-2.5 text-sm text-brand-secondary hover:bg-brand-bg/50 transition-colors"
                           >
                             Settings
                           </Link>
                           <Link
                             href="/dashboard"
                             onClick={() => setUserMenuOpen(false)}
-                            className="flex items-center gap-2.5 px-4 py-2.5 text-sm text-[#042558] hover:bg-[#C2E8FF]/50 transition-colors"
+                            className="flex items-center gap-2.5 px-4 py-2.5 text-sm text-brand-secondary hover:bg-brand-bg/50 transition-colors"
                           >
                             Dashboard
                           </Link>
@@ -240,7 +240,7 @@ export default function Header() {
 
         {/* ── Mobile menu ──────────────────────────────────────── */}
         {mobileOpen && (
-          <div className="md:hidden border-t border-white/10 bg-[#000F22]/98 backdrop-blur-md">
+          <div className="md:hidden border-t border-white/10 bg-brand-primary/98 backdrop-blur-md">
             <nav className="max-w-7xl mx-auto px-4 py-3 flex flex-col gap-1">
               {(isAuthenticated ? APP_NAV : PUBLIC_NAV).map((item) => {
                 const href = item.href;
@@ -256,7 +256,7 @@ export default function Header() {
                     className={[
                       "flex items-center gap-2.5 px-3 py-2.5 rounded-md text-sm font-semibold transition-colors",
                       active
-                        ? "bg-white text-[#000F22]"
+                        ? "bg-white text-brand-primary"
                         : "text-white/70 hover:text-white hover:bg-white/10",
                     ].join(" ")}
                   >

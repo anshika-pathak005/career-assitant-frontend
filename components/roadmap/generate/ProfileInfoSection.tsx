@@ -41,14 +41,14 @@ export default function ProfileInfoSection({
   const workPreference = watch("workPreference");
 
   const fromProfileBadge = (text: string) => (
-    <span className="text-[10px] text-[#16A34A] bg-[#C2E8FF] px-2 py-0.5 rounded-full">
+    <span className="text-[10px] text-brand-success bg-brand-bg px-2 py-0.5 rounded-full">
       {text}
     </span>
   );
 
   return (
     <Card variant="default" padding="lg">
-      <h2 className="font-semibold text-[#000F22] text-lg mb-4">
+      <h2 className="font-semibold text-brand-primary text-lg mb-4">
         Professional Background
       </h2>
 
@@ -66,7 +66,7 @@ export default function ProfileInfoSection({
         {/* Industries — multi-select, so it doesn't use OptionCardGroup */}
         <div>
           <div className="flex items-center justify-between mb-2">
-            <label className="text-sm font-semibold text-[#042558]">
+            <label className="text-sm font-semibold text-brand-secondary">
               Industries of Interest
             </label>
             {profile?.industries &&
@@ -84,8 +84,8 @@ export default function ProfileInfoSection({
                 onClick={() => toggleIndustry(industry)}
                 className={`px-3 py-1.5 rounded-md border text-xs font-medium transition-all duration-150 ${
                   selectedIndustries.includes(industry)
-                    ? "bg-[#000F22] border-[#000F22] text-white"
-                    : "bg-white border-[#7A9BC4]/30 text-[#537FAF] hover:border-[#557EB2]"
+                    ? "bg-brand-primary border-brand-primary text-white"
+                    : "bg-white border-brand-accent-lt/30 text-brand-muted hover:border-brand-accent"
                 }`}
               >
                 {industry}
@@ -97,7 +97,7 @@ export default function ProfileInfoSection({
         {/* Skills */}
         <div>
           <div className="flex items-center justify-between mb-2">
-            <label className="text-sm font-semibold text-[#042558]">
+            <label className="text-sm font-semibold text-brand-secondary">
               Skills
             </label>
             {profile?.skills &&
@@ -111,7 +111,7 @@ export default function ProfileInfoSection({
             {selectedSkills.map((skill) => (
               <span
                 key={skill}
-                className="inline-flex items-center gap-1.5 bg-[#000F22] text-white text-xs font-medium px-2.5 py-1 rounded-full"
+                className="inline-flex items-center gap-1.5 bg-brand-primary text-white text-xs font-medium px-2.5 py-1 rounded-full"
               >
                 {skill}
                 <button
@@ -138,7 +138,7 @@ export default function ProfileInfoSection({
                 }
               }}
               placeholder="Type a skill and press Enter"
-              className="flex-1 h-11 rounded-md border border-[#7A9BC4]/60 bg-white px-3.5 text-sm text-[#000F22] placeholder:text-[#7A9BC4] focus:outline-none focus:border-[#557EB2] focus:ring-2 focus:ring-[#557EB2]/20 transition-all"
+              className="flex-1 h-11 rounded-md border border-brand-accent-lt/60 bg-white px-3.5 text-sm text-brand-primary placeholder:text-brand-accent-lt focus:outline-none focus:border-brand-accent focus:ring-2 focus:ring-brand-accent/20 transition-all"
             />
             <Button
               type="button"

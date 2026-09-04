@@ -66,30 +66,30 @@ export default function ChatPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#C2E8FF] flex flex-col">
+    <div className="min-h-screen bg-brand-bg flex flex-col">
       {/* <Navbar /> */}
 
       <div className="flex flex-1 max-w-5xl mx-auto w-full px-4 sm:px-6 gap-6 py-6 min-h-0">
         {/* <Sidebar /> */}
 
         {/* Chat panel */}
-        <main className="flex-1 min-w-0 flex flex-col bg-white rounded-lg border border-[#7A9BC4]/20 shadow-card overflow-hidden">
+        <main className="flex-1 min-w-0 flex flex-col bg-white rounded-lg border border-brand-accent-lt/20 shadow-card overflow-hidden">
           {/* Chat header */}
-          <div className="flex items-center gap-3 px-5 py-4 border-b border-[#7A9BC4]/20 flex-shrink-0">
-            <div className="w-9 h-9 bg-[#000F22] rounded-md flex items-center justify-center">
+          <div className="flex items-center gap-3 px-5 py-4 border-b border-brand-accent-lt/20 flex-shrink-0">
+            <div className="w-9 h-9 bg-brand-primary rounded-md flex items-center justify-center">
               <Sparkles size={16} className="text-white" />
             </div>
             <div>
-              <p className="font-bold text-[#000F22] text-sm">
+              <p className="font-bold text-brand-primary text-sm">
                 AI Career Coach
               </p>
-              <p className="text-xs text-[#537FAF]">
+              <p className="text-xs text-brand-muted">
                 Ask anything about your career
               </p>
             </div>
             <div className="ml-auto flex items-center gap-1.5">
               <span className="w-2 h-2 bg-green-500 rounded-full" />
-              <span className="text-xs text-[#537FAF]">Online</span>
+              <span className="text-xs text-brand-muted">Online</span>
             </div>
           </div>
 
@@ -98,14 +98,14 @@ export default function ChatPage() {
             {/* Empty state */}
             {messages.length === 0 && !isSending && (
               <div className="flex flex-col items-center justify-center h-full gap-6 py-12">
-                <div className="w-16 h-16 bg-[#C2E8FF] rounded-full flex items-center justify-center">
-                  <Bot size={28} className="text-[#557EB2]" />
+                <div className="w-16 h-16 bg-brand-bg rounded-full flex items-center justify-center">
+                  <Bot size={28} className="text-brand-accent" />
                 </div>
                 <div className="text-center">
-                  <p className="font-bold text-[#000F22] mb-1">
+                  <p className="font-bold text-brand-primary mb-1">
                     How can I help you today?
                   </p>
-                  <p className="text-sm text-[#537FAF] max-w-xs">
+                  <p className="text-sm text-brand-muted max-w-xs">
                     Ask me about career advice, resume tips, job prep, or skill
                     development.
                   </p>
@@ -119,7 +119,7 @@ export default function ChatPage() {
                       onClick={() => {
                         setInput(prompt);
                       }}
-                      className="text-left px-3.5 py-3 rounded-md border border-[#7A9BC4]/30 bg-white text-xs text-[#537FAF] font-medium hover:border-[#557EB2] hover:text-[#042558] hover:bg-[#C2E8FF]/30 transition-all"
+                      className="text-left px-3.5 py-3 rounded-md border border-brand-accent-lt/30 bg-white text-xs text-brand-muted font-medium hover:border-brand-accent hover:text-brand-secondary hover:bg-brand-bg/30 transition-all"
                     >
                       {prompt}
                     </button>
@@ -139,13 +139,13 @@ export default function ChatPage() {
                   {/* Avatar */}
                   <div
                     className={`w-7 h-7 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5 ${
-                      isUser ? "bg-[#000F22]" : "bg-[#C2E8FF]"
+                      isUser ? "bg-brand-primary" : "bg-brand-bg"
                     }`}
                   >
                     {isUser ? (
                       <User size={13} className="text-white" />
                     ) : (
-                      <Bot size={13} className="text-[#557EB2]" />
+                      <Bot size={13} className="text-brand-accent" />
                     )}
                   </div>
 
@@ -156,13 +156,13 @@ export default function ChatPage() {
                     <div
                       className={`px-4 py-2.5 rounded-xl text-sm leading-relaxed ${
                         isUser
-                          ? "bg-[#000F22] text-white rounded-tr-sm"
-                          : "bg-[#C2E8FF] text-[#042558] rounded-tl-sm border border-[#7A9BC4]/20"
+                          ? "bg-brand-primary text-white rounded-tr-sm"
+                          : "bg-brand-bg text-brand-secondary rounded-tl-sm border border-brand-accent-lt/20"
                       }`}
                     >
                       {msg.content}
                     </div>
-                    <span className="text-[10px] text-[#7A9BC4] px-1">
+                    <span className="text-[10px] text-brand-accent-lt px-1">
                       {formatTime(msg.createdAt)}
                     </span>
                   </div>
@@ -173,15 +173,15 @@ export default function ChatPage() {
             {/* Typing indicator */}
             {isSending && (
               <div className="flex gap-3 animate-fade-in">
-                <div className="w-7 h-7 rounded-full bg-[#C2E8FF] flex items-center justify-center flex-shrink-0">
-                  <Bot size={13} className="text-[#557EB2]" />
+                <div className="w-7 h-7 rounded-full bg-brand-bg flex items-center justify-center flex-shrink-0">
+                  <Bot size={13} className="text-brand-accent" />
                 </div>
-                <div className="bg-[#C2E8FF] border border-[#7A9BC4]/20 px-4 py-3 rounded-xl rounded-tl-sm">
+                <div className="bg-brand-bg border border-brand-accent-lt/20 px-4 py-3 rounded-xl rounded-tl-sm">
                   <div className="flex gap-1 items-center h-4">
                     {[0, 1, 2].map((i) => (
                       <span
                         key={i}
-                        className="w-1.5 h-1.5 bg-[#557EB2] rounded-full animate-bounce"
+                        className="w-1.5 h-1.5 bg-brand-accent rounded-full animate-bounce"
                         style={{ animationDelay: `${i * 0.15}s` }}
                       />
                     ))}
@@ -194,26 +194,26 @@ export default function ChatPage() {
           </div>
 
           {/* Input bar */}
-          <div className="flex-shrink-0 px-4 py-3 border-t border-[#7A9BC4]/20 bg-white">
-            <div className="flex items-end gap-2 bg-[#C2E8FF]/40 rounded-lg border border-[#7A9BC4]/30 px-3 py-2 focus-within:border-[#557EB2] focus-within:ring-2 focus-within:ring-[#557EB2]/15 transition-all">
+          <div className="flex-shrink-0 px-4 py-3 border-t border-brand-accent-lt/20 bg-white">
+            <div className="flex items-end gap-2 bg-brand-bg/40 rounded-lg border border-brand-accent-lt/30 px-3 py-2 focus-within:border-brand-accent focus-within:ring-2 focus-within:ring-brand-accent/15 transition-all">
               <textarea
                 rows={1}
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 onKeyDown={handleKeyDown}
                 placeholder="Ask your AI career coach anything..."
-                className="flex-1 bg-transparent text-sm text-[#000F22] placeholder:text-[#7A9BC4] resize-none outline-none py-1 max-h-32 font-body leading-relaxed"
+                className="flex-1 bg-transparent text-sm text-brand-primary placeholder:text-brand-accent-lt resize-none outline-none py-1 max-h-32 font-body leading-relaxed"
               />
               <button
                 onClick={handleSend}
                 disabled={!input.trim() || isSending}
-                className="w-8 h-8 bg-[#000F22] rounded-md flex items-center justify-center flex-shrink-0 transition-all hover:bg-[#042558] disabled:opacity-40 disabled:cursor-not-allowed"
+                className="w-8 h-8 bg-brand-primary rounded-md flex items-center justify-center flex-shrink-0 transition-all hover:bg-brand-secondary disabled:opacity-40 disabled:cursor-not-allowed"
                 aria-label="Send message"
               >
                 <Send size={14} className="text-white" />
               </button>
             </div>
-            <p className="text-[10px] text-[#7A9BC4] text-center mt-2">
+            <p className="text-[10px] text-brand-accent-lt text-center mt-2">
               Press Enter to send · Shift+Enter for new line
             </p>
           </div>

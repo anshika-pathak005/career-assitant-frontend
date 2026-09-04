@@ -44,20 +44,20 @@ export default function HowItWorks() {
   return (
     <section className="max-w-6xl mx-auto px-6 py-24">
       <div className="text-center mb-16">
-        <span className="inline-block text-xs font-bold uppercase tracking-widest text-[#557EB2] bg-[#557EB2]/10 px-4 py-1.5 rounded-full mb-4">
+        <span className="inline-block text-xs font-bold uppercase tracking-widest text-brand-accent bg-brand-accent/10 px-4 py-1.5 rounded-full mb-4">
           How it works
         </span>
-        <h2 className="font-display font-bold text-4xl sm:text-5xl text-[#000F22] leading-tight">
-          Your journey to <span className="text-[#557EB2]">career success</span>
+        <h2 className="font-display font-bold text-4xl sm:text-5xl text-brand-primary leading-tight">
+          Your journey to <span className="text-brand-accent">career success</span>
         </h2>
-        <p className="mt-4 text-[#537FAF] text-base max-w-xl mx-auto leading-relaxed">
+        <p className="mt-4 text-brand-muted text-base max-w-xl mx-auto leading-relaxed">
           Fill your details, get your roadmap, and start learning — it's that
           simple.
         </p>
       </div>
 
       <div className="relative grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        <div className="hidden lg:block absolute top-10 left-[12.5%] right-[12.5%] h-px bg-gradient-to-r from-transparent via-[#7A9BC4]/40 to-transparent z-0" />
+        <div className="hidden lg:block absolute top-10 left-[12.5%] right-[12.5%] h-px bg-gradient-to-r from-transparent via-brand-accent-lt/40 to-transparent z-0" />
 
         {steps.map(({ icon: Icon, step, title, desc, highlight, badge }, i) => (
           <div
@@ -66,8 +66,8 @@ export default function HowItWorks() {
               relative z-10 group rounded-2xl p-6 border shadow-card hover:shadow-xl hover:-translate-y-1 transition-all duration-300
               ${
                 highlight
-                  ? "bg-gradient-to-br from-[#557EB2] to-[#042558] border-[#557EB2]/50 ring-2 ring-[#557EB2]/30"
-                  : "bg-white border-[#7A9BC4]/15"
+                  ? "bg-gradient-to-br from-brand-accent to-brand-secondary border-brand-accent/50 ring-2 ring-brand-accent/30"
+                  : "bg-white border-brand-accent-lt/15"
               }
             `}
           >
@@ -76,8 +76,8 @@ export default function HowItWorks() {
               absolute -top-3 left-5 text-[10px] font-black tracking-wider rounded-full px-2.5 py-0.5
               ${
                 highlight
-                  ? "bg-amber-400 text-[#000F22]"
-                  : "text-[#557EB2] bg-[#C2E8FF] border border-[#7A9BC4]/30"
+                  ? "bg-amber-400 text-brand-primary"
+                  : "text-brand-accent bg-brand-bg border border-brand-accent-lt/30"
               }
             `}
             >
@@ -90,24 +90,24 @@ export default function HowItWorks() {
               ${
                 highlight
                   ? "bg-white/20 backdrop-blur"
-                  : "bg-gradient-to-br from-[#C2E8FF] to-[#7AC4FF]/40"
+                  : "bg-gradient-to-br from-brand-bg to-[#7AC4FF]/40"
               }
             `}
             >
               <Icon
                 size={20}
-                className={highlight ? "text-white" : "text-[#557EB2]"}
+                className={highlight ? "text-white" : "text-brand-accent"}
               />
             </div>
 
             <h3
-              className={`font-bold text-sm mb-2 ${highlight ? "text-white" : "text-[#000F22]"}`}
+              className={`font-bold text-sm mb-2 ${highlight ? "text-white" : "text-brand-primary"}`}
             >
               {title}
             </h3>
 
             <p
-              className={`text-xs leading-relaxed ${highlight ? "text-blue-100" : "text-[#537FAF]"}`}
+              className={`text-xs leading-relaxed ${highlight ? "text-blue-100" : "text-brand-muted"}`}
             >
               {desc}
             </p>
@@ -126,11 +126,11 @@ export default function HowItWorks() {
 
       {/* Side note about resume analysis */}
       <div className="mt-10 text-center">
-        <div className="inline-flex items-center gap-2 bg-white/70 backdrop-blur-sm rounded-full px-4 py-2 border border-[#7A9BC4]/20">
-          <FileText size={12} className="text-[#557EB2]" />
-          <span className="text-xs text-[#537FAF]">
+        <div className="inline-flex items-center gap-2 bg-white/70 backdrop-blur-sm rounded-full px-4 py-2 border border-brand-accent-lt/20">
+          <FileText size={12} className="text-brand-accent" />
+          <span className="text-xs text-brand-muted">
             Want resume analysis too?{" "}
-            <span className="font-medium text-[#557EB2]">
+            <span className="font-medium text-brand-accent">
               Upload your resume
             </span>{" "}
             separately anytime

@@ -12,7 +12,7 @@ interface PublicShellProps {
  */
 export default function PublicShell({ children }: PublicShellProps) {
   return (
-    <div className="min-h-screen bg-[#C2E8FF] flex flex-col">
+    <div className="min-h-screen bg-brand-bg flex flex-col">
       <Header />
       <main className="flex-1">{children}</main>
       <Footer />

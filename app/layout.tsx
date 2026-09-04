@@ -32,7 +32,7 @@ export default function RootLayout({
           rel="stylesheet"
         />
       </head>
-      <body className="font-body bg-[#C2E8FF] text-[#000F22] antialiased flex flex-col min-h-screen">
+      <body className="font-body bg-brand-bg text-brand-primary antialiased flex flex-col min-h-screen">
         <QueryProvider>
           <AuthProvider>
             <ClientLayoutWrapper>{children}</ClientLayoutWrapper>

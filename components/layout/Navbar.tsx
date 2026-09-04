@@ -37,17 +37,17 @@ export default function Navbar() {
     : "?";
 
   return (
-    <header className="sticky top-0 z-50 w-full bg-white/90 backdrop-blur-md border-b border-[#7A9BC4]/20">
+    <header className="sticky top-0 z-50 w-full bg-white/90 backdrop-blur-md border-b border-brand-accent-lt/20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-4">
         {/* Brand */}
         <Link
           href="/dashboard"
           className="flex items-center gap-2.5 flex-shrink-0"
         >
-          <div className="w-8 h-8 bg-[#000F22] rounded-lg flex items-center justify-center">
+          <div className="w-8 h-8 bg-brand-primary rounded-lg flex items-center justify-center">
             <BriefcaseBusiness size={16} className="text-white" />
           </div>
-          <span className="font-display italic text-[#000F22] text-xl leading-none hidden sm:block">
+          <span className="font-display italic text-brand-primary text-xl leading-none hidden sm:block">
             CareerPilot
           </span>
         </Link>
@@ -62,7 +62,7 @@ export default function Navbar() {
             <Link
               key={href}
               href={href}
-              className="px-3.5 py-1.5 rounded-lg text-sm font-semibold text-[#537FAF] hover:text-[#000F22] hover:bg-[#000F22]/5 transition-all"
+              className="px-3.5 py-1.5 rounded-lg text-sm font-semibold text-brand-muted hover:text-brand-primary hover:bg-brand-primary/5 transition-all"
             >
               {label}
             </Link>
@@ -74,16 +74,16 @@ export default function Navbar() {
           {/* Notifications */}
           <button
             aria-label="Notifications"
-            className="relative w-9 h-9 flex items-center justify-center rounded-lg text-[#537FAF] hover:bg-[#000F22]/5 hover:text-[#000F22] transition-all"
+            className="relative w-9 h-9 flex items-center justify-center rounded-lg text-brand-muted hover:bg-brand-primary/5 hover:text-brand-primary transition-all"
           >
             <Bell size={18} />
             {/* Unread dot */}
-            <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-[#557EB2] rounded-full" />
+            <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-brand-accent rounded-full" />
           </button>
 
           {/* Avatar */}
           {user && (
-            <div className="w-8 h-8 rounded-full bg-[#000F22] border-2 border-[#7A9BC4]/30 flex items-center justify-center flex-shrink-0">
+            <div className="w-8 h-8 rounded-full bg-brand-primary border-2 border-brand-accent-lt/30 flex items-center justify-center flex-shrink-0">
               <span className="text-[11px] font-bold text-white">
                 {initials}
               </span>
@@ -94,7 +94,7 @@ export default function Navbar() {
           <button
             onClick={() => logoutMutation.mutate()}
             disabled={logoutMutation.isPending}
-            className="hidden sm:flex items-center gap-1.5 text-sm font-semibold text-[#537FAF] hover:text-[#000F22] px-3 py-1.5 rounded-lg hover:bg-[#000F22]/5 transition-all disabled:opacity-50"
+            className="hidden sm:flex items-center gap-1.5 text-sm font-semibold text-brand-muted hover:text-brand-primary px-3 py-1.5 rounded-lg hover:bg-brand-primary/5 transition-all disabled:opacity-50"
           >
             <LogOut size={15} />
             <span>Logout</span>
@@ -102,7 +102,7 @@ export default function Navbar() {
 
           {/* Mobile menu toggle */}
           <button
-            className="md:hidden w-9 h-9 flex items-center justify-center rounded-lg text-[#537FAF] hover:bg-[#000F22]/5"
+            className="md:hidden w-9 h-9 flex items-center justify-center rounded-lg text-brand-muted hover:bg-brand-primary/5"
             onClick={() => setMenuOpen((v) => !v)}
           >
             <Menu size={20} />
@@ -112,7 +112,7 @@ export default function Navbar() {
 
       {/* Mobile nav dropdown */}
       {menuOpen && (
-        <div className="md:hidden border-t border-[#7A9BC4]/20 bg-white px-4 py-3 flex flex-col gap-1">
+        <div className="md:hidden border-t border-brand-accent-lt/20 bg-white px-4 py-3 flex flex-col gap-1">
           {[
             { label: "Dashboard", href: "/dashboard" },
             { label: "AI Chat", href: "/chat" },
@@ -124,7 +124,7 @@ export default function Navbar() {
               key={href}
               href={href}
               onClick={() => setMenuOpen(false)}
-              className="px-3 py-2.5 rounded-lg text-sm font-semibold text-[#537FAF] hover:text-[#000F22] hover:bg-[#000F22]/5 transition-all"
+              className="px-3 py-2.5 rounded-lg text-sm font-semibold text-brand-muted hover:text-brand-primary hover:bg-brand-primary/5 transition-all"
             >
               {label}
             </Link>

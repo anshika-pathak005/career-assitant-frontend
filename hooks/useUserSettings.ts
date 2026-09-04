@@ -5,6 +5,7 @@ import { toast } from "sonner";
 import { clearAccessToken } from "@/lib/axiosInstance";
 import { changePassword, deleteAccount } from "@/services/userService";
 import type { ChangePasswordPayload } from "@/services/userService";
+import { getApiErrorMessage } from "@/utils/apiError";
 
 export const useChangePassword = () => {
   const queryClient = useQueryClient();
@@ -19,10 +20,8 @@ export const useChangePassword = () => {
         window.location.href = "/login";
       }, 1500);
     },
-    onError: (error: any) => {
-      const message =
-        error?.response?.data?.message || "Failed to change password";
-      toast.error(message);
+    onError: (error) => {
+      toast.error(getApiErrorMessage(error, "Failed to change password"));
     },
   });
 };
@@ -40,10 +39,8 @@ export const useDeleteAccount = () => {
         window.location.href = "/";
       }, 1500);
     },
-    onError: (error: any) => {
-      const message =
-        error?.response?.data?.message || "Failed to delete account";
-      toast.error(message);
+    onError: (error) => {
+      toast.error(getApiErrorMessage(error, "Failed to delete account"));
     },
   });
 };

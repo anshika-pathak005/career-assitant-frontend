@@ -1,8 +1,8 @@
 import axiosInstance from "@/lib/axiosInstance";
 import type {
-  ResumeAnalysis,
   ResumeAnalysisResponse,
-  CareerGuidance,
+  ResumeSummary,
+  ResumeDetailResponse,
 } from "@/types/resume.types";
 
 /* ─── Service functions ──────────────────────────────────────────── */
@@ -45,8 +45,10 @@ export const getLatestAnalysis =
  * GET /api/resume/my-resumes
  * Fetches the all resume analysis for the authenticated user.
  */
-export const getUserResumes = async (): Promise<any[]> => {
-  const { data } = await axiosInstance.get("/api/resume/my-resumes");
+export const getUserResumes = async (): Promise<ResumeSummary[]> => {
+  const { data } = await axiosInstance.get<ResumeSummary[]>(
+    "/api/resume/my-resumes",
+  );
   return data;
 };
 
@@ -54,7 +56,11 @@ export const getUserResumes = async (): Promise<any[]> => {
  * GET /api/resume/${resumeId}
  * Fetches the specific resume analysis according to userId for the authenticated user.
  */
-export const getResumeAnalysis = async (resumeId: number): Promise<any> => {
-  const { data } = await axiosInstance.get(`/api/resume/${resumeId}`);
+export const getResumeAnalysis = async (
+  resumeId: number,
+): Promise<ResumeDetailResponse> => {
+  const { data } = await axiosInstance.get<ResumeDetailResponse>(
+    `/api/resume/${resumeId}`,
+  );
   return data;
 };

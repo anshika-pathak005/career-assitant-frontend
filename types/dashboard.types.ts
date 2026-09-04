@@ -47,6 +47,15 @@ export interface ResumeData {
   resumeVerdict: string;
   uploadedAt: string;
   totalResumesUploaded: number;
+  // Optional nested blocks - the dashboard card reads these but the backend
+  // does not always send them, so they stay optional.
+  basicInfo?: {
+    experienceLevel?: string;
+    interviewReadiness?: string;
+  };
+  analysis?: {
+    missingSkills?: string[];
+  };
 }
 
 export interface DashboardResponse {

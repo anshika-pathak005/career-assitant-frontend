@@ -78,24 +78,24 @@ export default function RegisterStep1Page() {
     });
 
   return (
-    <main className="min-h-screen bg-[#C2E8FF] flex items-center justify-center px-4 py-12">
+    <main className="min-h-screen bg-brand-bg flex items-center justify-center px-4 py-12">
       {/* Background decorations */}
       <div
         aria-hidden
         className="pointer-events-none fixed inset-0 overflow-hidden"
       >
         <div className="absolute -top-32 -right-32 w-96 h-96 bg-white/30 rounded-full blur-3xl" />
-        <div className="absolute -bottom-32 -left-32 w-96 h-96 bg-[#557EB2]/10 rounded-full blur-3xl" />
+        <div className="absolute -bottom-32 -left-32 w-96 h-96 bg-brand-accent/10 rounded-full blur-3xl" />
       </div>
 
       <div className="w-full max-w-md relative">
         {/* Brand */}
         <div className="flex justify-center mb-8 animate-fade-up">
           <Link href="/" className="flex items-center gap-2.5">
-            <div className="w-9 h-9 bg-[#000F22] rounded-md flex items-center justify-center">
+            <div className="w-9 h-9 bg-brand-primary rounded-md flex items-center justify-center">
               <BriefcaseBusiness size={18} className="text-white" />
             </div>
-            <span className="font-display  text-[#000F22] text-2xl">
+            <span className="font-display  text-brand-primary text-2xl">
               CareerPilot
             </span>
           </Link>
@@ -105,14 +105,14 @@ export default function RegisterStep1Page() {
           {/* Progress */}
           <div className="mb-6">
             <div className="flex items-center justify-between mb-2">
-              <span className="text-xs font-bold text-[#537FAF] uppercase tracking-wider">
+              <span className="text-xs font-bold text-brand-muted uppercase tracking-wider">
                 Step 1 of 2
               </span>
-              <span className="text-xs font-bold text-[#557EB2]">50%</span>
+              <span className="text-xs font-bold text-brand-accent">50%</span>
             </div>
-            <div className="h-1.5 bg-[#C2E8FF] rounded-full overflow-hidden">
+            <div className="h-1.5 bg-brand-bg rounded-full overflow-hidden">
               <div
-                className="h-full bg-[#000F22] rounded-full transition-all duration-500"
+                className="h-full bg-brand-primary rounded-full transition-all duration-500"
                 style={{ width: "50%" }}
               />
             </div>
@@ -120,10 +120,10 @@ export default function RegisterStep1Page() {
 
           {/* Header */}
           <div className="mb-7">
-            <h1 className="font-display  text-[#000F22] text-3xl mb-1">
+            <h1 className="font-display  text-brand-primary text-3xl mb-1">
               Create your account
             </h1>
-            <p className="text-sm text-[#537FAF]">
+            <p className="text-sm text-brand-muted">
               Your AI-powered career journey begins here.
             </p>
           </div>
@@ -169,7 +169,7 @@ export default function RegisterStep1Page() {
                   <button
                     type="button"
                     onClick={() => setShowPassword((v) => !v)}
-                    className="text-[#537FAF] hover:text-[#042558] transition-colors"
+                    className="text-brand-muted hover:text-brand-secondary transition-colors"
                     aria-label="Toggle password"
                   >
                     {showPassword ? <EyeOff size={15} /> : <Eye size={15} />}
@@ -228,7 +228,7 @@ export default function RegisterStep1Page() {
                   <button
                     type="button"
                     onClick={() => setShowConfirmPassword((v) => !v)}
-                    className="text-[#537FAF] hover:text-[#042558] transition-colors"
+                    className="text-brand-muted hover:text-brand-secondary transition-colors"
                     aria-label="Toggle confirm password"
                   >
                     {showConfirmPassword ? (
@@ -258,11 +258,11 @@ export default function RegisterStep1Page() {
 
           {/* Divider */}
           <div className="my-6 flex items-center gap-3">
-            <div className="flex-1 h-px bg-[#7A9BC4]/25" />
-            <span className="text-xs text-[#537FAF] font-medium">
+            <div className="flex-1 h-px bg-brand-accent-lt/25" />
+            <span className="text-xs text-brand-muted font-medium">
               Already have an account?
             </span>
-            <div className="flex-1 h-px bg-[#7A9BC4]/25" />
+            <div className="flex-1 h-px bg-brand-accent-lt/25" />
           </div>
 
           <Link href="/login" className="block">

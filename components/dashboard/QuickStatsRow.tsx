@@ -19,7 +19,7 @@ export default function QuickStatsRow({ stats }: Props) {
       {stats.map(({ label, value, icon: Icon, iconColor, iconBg, trend }) => (
         <div
           key={label}
-          className="group bg-white rounded-xl border border-[#7A9BC4]/20 shadow-card p-4 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200"
+          className="group bg-white rounded-xl border border-brand-accent-lt/20 shadow-card p-4 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200"
         >
           <div className="flex items-start justify-between mb-3">
             <div
@@ -29,13 +29,13 @@ export default function QuickStatsRow({ stats }: Props) {
               <Icon size={17} style={{ color: iconColor }} />
             </div>
             {trend && (
-              <span className="text-[10px] font-bold text-[#16A34A] bg-green-50 px-1.5 py-0.5 rounded-full">
+              <span className="text-[10px] font-bold text-brand-success bg-green-50 px-1.5 py-0.5 rounded-full">
                 {trend}
               </span>
             )}
           </div>
-          <p className="text-2xl font-bold text-[#000F22] mb-0.5">{value}</p>
-          <p className="text-xs font-medium text-[#537FAF]">{label}</p>
+          <p className="text-2xl font-bold text-brand-primary mb-0.5">{value}</p>
+          <p className="text-xs font-medium text-brand-muted">{label}</p>
         </div>
       ))}
     </div>

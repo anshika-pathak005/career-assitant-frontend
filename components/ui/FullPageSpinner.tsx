@@ -8,8 +8,8 @@
  */
 export default function FullPageSpinner() {
   return (
-    <div className="min-h-screen bg-[#C2E8FF] flex items-center justify-center">
-      <div className="w-6 h-6 border-2 border-[#557EB2] border-t-transparent rounded-full animate-spin" />
+    <div className="min-h-screen bg-brand-bg flex items-center justify-center">
+      <div className="w-6 h-6 border-2 border-brand-accent border-t-transparent rounded-full animate-spin" />
     </div>
   );
 }

@@ -9,9 +9,9 @@ interface CardProps extends HTMLAttributes<HTMLDivElement> {
 }
 
 const variantStyles: Record<CardVariant, string> = {
-  default: "bg-white shadow-card border border-[#7A9BC4]/15",
-  flat: "bg-white/70 border border-[#7A9BC4]/20",
-  outlined: "bg-transparent border border-[#7A9BC4]/40",
+  default: "bg-white shadow-card border border-brand-accent-lt/15",
+  flat: "bg-white/70 border border-brand-accent-lt/20",
+  outlined: "bg-transparent border border-brand-accent-lt/40",
 };
 
 const paddingStyles = {

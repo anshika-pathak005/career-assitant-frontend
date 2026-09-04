@@ -44,16 +44,16 @@ export default function FeatureShowcase() {
   return (
     <div className="space-y-4">
       <div className="text-center mb-2">
-        <div className="inline-flex items-center gap-1.5 bg-[#C2E8FF]/50 rounded-full px-3 py-1 mb-2">
-          <Sparkles size={12} className="text-[#557EB2]" />
-          <span className="text-[10px] font-semibold text-[#557EB2] uppercase tracking-wider">
+        <div className="inline-flex items-center gap-1.5 bg-brand-bg/50 rounded-full px-3 py-1 mb-2">
+          <Sparkles size={12} className="text-brand-accent" />
+          <span className="text-[10px] font-semibold text-brand-accent uppercase tracking-wider">
             What you'll get
           </span>
         </div>
-        {/* <h4 className="font-display text-[#000F22] text-lg">
+        {/* <h4 className="font-display text-brand-primary text-lg">
           After completing your profile
         </h4> */}
-        <p className="text-xs text-[#537FAF] mt-0.5">
+        <p className="text-xs text-brand-muted mt-0.5">
           Unlock these features to accelerate your career journey
         </p>
       </div>
@@ -62,17 +62,17 @@ export default function FeatureShowcase() {
         {FEATURES.map((feature, idx) => (
           <div
             key={feature.title}
-            className="bg-white/50 rounded-lg border border-[#7A9BC4]/15 p-3.5 hover:shadow-md hover:-translate-y-0.5 transition-all duration-200"
+            className="bg-white/50 rounded-lg border border-brand-accent-lt/15 p-3.5 hover:shadow-md hover:-translate-y-0.5 transition-all duration-200"
           >
             <div className="flex items-center gap-2.5">
-              <div className="w-8 h-8 rounded-lg bg-[#C2E8FF] flex items-center justify-center flex-shrink-0">
-                <feature.icon size={15} className="text-[#557EB2]" />
+              <div className="w-8 h-8 rounded-lg bg-brand-bg flex items-center justify-center flex-shrink-0">
+                <feature.icon size={15} className="text-brand-accent" />
               </div>
               <div>
-                <p className="text-sm font-semibold text-[#000F22]">
+                <p className="text-sm font-semibold text-brand-primary">
                   {feature.title}
                 </p>
-                <p className="text-xs text-[#537FAF] leading-relaxed">
+                <p className="text-xs text-brand-muted leading-relaxed">
                   {feature.description}
                 </p>
               </div>

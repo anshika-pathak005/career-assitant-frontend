@@ -18,7 +18,7 @@ import Card from "@/components/ui/Card";
 
 export default function AboutPage() {
   return (
-    <main className="min-h-screen bg-[#C2E8FF] relative overflow-x-hidden">
+    <main className="min-h-screen bg-brand-bg relative overflow-x-hidden">
       {/* Background blobs */}
       <div className="pointer-events-none fixed inset-0 overflow-hidden -z-10">
         <div className="absolute -top-40 -right-40 w-[600px] h-[600px] rounded-full bg-white/25 blur-3xl" />
@@ -27,19 +27,19 @@ export default function AboutPage() {
 
       {/* Hero Section */}
       <section className="max-w-4xl mx-auto px-6 pt-32 pb-20 text-center">
-        <div className="animate-fade-up inline-flex items-center gap-2 bg-white/70 border border-[#7A9BC4]/30 rounded-full px-4 py-1.5 mb-6 backdrop-blur-sm">
-          <Sparkles size={13} className="text-[#557EB2]" />
-          <span className="text-xs font-semibold text-[#042558]">
+        <div className="animate-fade-up inline-flex items-center gap-2 bg-white/70 border border-brand-accent-lt/30 rounded-full px-4 py-1.5 mb-6 backdrop-blur-sm">
+          <Sparkles size={13} className="text-brand-accent" />
+          <span className="text-xs font-semibold text-brand-secondary">
             Our Story
           </span>
         </div>
 
-        <h1 className="animate-fade-up delay-1 font-display font-bold text-4xl sm:text-5xl lg:text-6xl leading-[1.1] mb-6 text-[#000F22]">
+        <h1 className="animate-fade-up delay-1 font-display font-bold text-4xl sm:text-5xl lg:text-6xl leading-[1.1] mb-6 text-brand-primary">
           We believe everyone deserves a{" "}
-          <span className="text-[#557EB2]">clear career path</span>
+          <span className="text-brand-accent">clear career path</span>
         </h1>
 
-        <p className="animate-fade-up delay-2 text-[#537FAF] text-lg max-w-2xl mx-auto leading-relaxed">
+        <p className="animate-fade-up delay-2 text-brand-muted text-lg max-w-2xl mx-auto leading-relaxed">
           CareerPilot was born from a simple idea: career growth shouldn't be
           confusing. We use AI to help job seekers navigate their professional
           journey with clarity and confidence.
@@ -50,25 +50,25 @@ export default function AboutPage() {
       <section className="max-w-5xl mx-auto px-6 py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           <div>
-            <span className="inline-block text-xs font-bold uppercase tracking-widest text-[#557EB2] bg-[#557EB2]/10 px-3 py-1 rounded-full mb-4">
+            <span className="inline-block text-xs font-bold uppercase tracking-widest text-brand-accent bg-brand-accent/10 px-3 py-1 rounded-full mb-4">
               Our Mission
             </span>
-            <h2 className="font-display text-3xl sm:text-4xl text-[#000F22] mb-4">
+            <h2 className="font-display text-3xl sm:text-4xl text-brand-primary mb-4">
               Empower every job seeker with{" "}
-              <span className="text-[#557EB2]">AI-driven guidance</span>
+              <span className="text-brand-accent">AI-driven guidance</span>
             </h2>
-            <p className="text-[#537FAF] leading-relaxed mb-4">
+            <p className="text-brand-muted leading-relaxed mb-4">
               We're on a mission to democratize career guidance. No more
               guessing what to learn next, no more wasting time on irrelevant
               skills, no more uncertainty about job readiness.
             </p>
-            <p className="text-[#537FAF] leading-relaxed">
+            <p className="text-brand-muted leading-relaxed">
               Whether you're a student, fresher, or experienced professional
               looking to switch careers, CareerPilot gives you a clear,
               actionable roadmap to your dream job.
             </p>
           </div>
-          <div className="bg-gradient-to-br from-[#000F22] to-[#042558] rounded-2xl p-8 text-center shadow-xl">
+          <div className="bg-gradient-to-br from-brand-primary to-brand-secondary rounded-2xl p-8 text-center shadow-xl">
             <div className="w-16 h-16 rounded-full bg-white/10 flex items-center justify-center mx-auto mb-4">
               <Target size={28} className="text-white" />
             </div>
@@ -83,41 +83,41 @@ export default function AboutPage() {
       {/* Values Section */}
       <section className="max-w-6xl mx-auto px-6 py-16">
         <div className="text-center mb-12">
-          <span className="inline-block text-xs font-bold uppercase tracking-widest text-[#557EB2] bg-[#557EB2]/10 px-3 py-1 rounded-full mb-4">
+          <span className="inline-block text-xs font-bold uppercase tracking-widest text-brand-accent bg-brand-accent/10 px-3 py-1 rounded-full mb-4">
             Our Values
           </span>
-          <h2 className="font-display text-3xl text-[#000F22]">
+          <h2 className="font-display text-3xl text-brand-primary">
             What drives us
           </h2>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          <div className="bg-white rounded-xl p-6 border border-[#7A9BC4]/15 shadow-card hover:shadow-lg transition-all">
-            <div className="w-10 h-10 rounded-lg bg-[#C2E8FF] flex items-center justify-center mb-3">
-              <Users size={18} className="text-[#557EB2]" />
+          <div className="bg-white rounded-xl p-6 border border-brand-accent-lt/15 shadow-card hover:shadow-lg transition-all">
+            <div className="w-10 h-10 rounded-lg bg-brand-bg flex items-center justify-center mb-3">
+              <Users size={18} className="text-brand-accent" />
             </div>
-            <h3 className="font-semibold text-[#000F22] mb-2">User First</h3>
-            <p className="text-xs text-[#537FAF] leading-relaxed">
+            <h3 className="font-semibold text-brand-primary mb-2">User First</h3>
+            <p className="text-xs text-brand-muted leading-relaxed">
               Everything we build starts with the question: "Does this help our
               users grow?"
             </p>
           </div>
-          <div className="bg-white rounded-xl p-6 border border-[#7A9BC4]/15 shadow-card hover:shadow-lg transition-all">
-            <div className="w-10 h-10 rounded-lg bg-[#C2E8FF] flex items-center justify-center mb-3">
-              <Rocket size={18} className="text-[#557EB2]" />
+          <div className="bg-white rounded-xl p-6 border border-brand-accent-lt/15 shadow-card hover:shadow-lg transition-all">
+            <div className="w-10 h-10 rounded-lg bg-brand-bg flex items-center justify-center mb-3">
+              <Rocket size={18} className="text-brand-accent" />
             </div>
-            <h3 className="font-semibold text-[#000F22] mb-2">Innovation</h3>
-            <p className="text-xs text-[#537FAF] leading-relaxed">
+            <h3 className="font-semibold text-brand-primary mb-2">Innovation</h3>
+            <p className="text-xs text-brand-muted leading-relaxed">
               We leverage cutting-edge AI to provide insights that were never
               possible before.
             </p>
           </div>
-          <div className="bg-white rounded-xl p-6 border border-[#7A9BC4]/15 shadow-card hover:shadow-lg transition-all">
-            <div className="w-10 h-10 rounded-lg bg-[#C2E8FF] flex items-center justify-center mb-3">
-              <Heart size={18} className="text-[#557EB2]" />
+          <div className="bg-white rounded-xl p-6 border border-brand-accent-lt/15 shadow-card hover:shadow-lg transition-all">
+            <div className="w-10 h-10 rounded-lg bg-brand-bg flex items-center justify-center mb-3">
+              <Heart size={18} className="text-brand-accent" />
             </div>
-            <h3 className="font-semibold text-[#000F22] mb-2">Empathy</h3>
-            <p className="text-xs text-[#537FAF] leading-relaxed">
+            <h3 className="font-semibold text-brand-primary mb-2">Empathy</h3>
+            <p className="text-xs text-brand-muted leading-relaxed">
               We understand the challenges of job hunting and design solutions
               that truly help.
             </p>
@@ -127,14 +127,14 @@ export default function AboutPage() {
 
       {/* Team Section (Coming Soon) */}
       {/* <section className="max-w-4xl mx-auto px-6 py-16 text-center">
-        <div className="bg-gradient-to-br from-[#C2E8FF]/50 to-white rounded-2xl p-10 border border-[#7A9BC4]/20">
-          <div className="w-14 h-14 rounded-full bg-[#000F22] flex items-center justify-center mx-auto mb-4">
+        <div className="bg-gradient-to-br from-brand-bg/50 to-white rounded-2xl p-10 border border-brand-accent-lt/20">
+          <div className="w-14 h-14 rounded-full bg-brand-primary flex items-center justify-center mx-auto mb-4">
             <Users size={24} className="text-white" />
           </div>
-          <h3 className="font-display text-xl text-[#000F22] mb-2">
+          <h3 className="font-display text-xl text-brand-primary mb-2">
             Join our team
           </h3>
-          <p className="text-sm text-[#537FAF] max-w-md mx-auto mb-4">
+          <p className="text-sm text-brand-muted max-w-md mx-auto mb-4">
             We're always looking for passionate people to help us build the
             future of career guidance.
           </p>
@@ -155,12 +155,12 @@ export default function AboutPage() {
         <Card
           variant="default"
           padding="lg"
-          className="bg-gradient-to-br from-[#000F22] to-[#042558] border-none"
+          className="bg-gradient-to-br from-brand-primary to-brand-secondary border-none"
         >
           <h2 className="font-display text-white text-2xl sm:text-3xl mb-3">
             Ready to start your journey?
           </h2>
-          <p className="text-[#7A9BC4] text-sm mb-6 max-w-md mx-auto">
+          <p className="text-brand-accent-lt text-sm mb-6 max-w-md mx-auto">
             Join thousands of job seekers who are building their dream careers
             with AI-powered guidance.
           </p>
@@ -168,7 +168,7 @@ export default function AboutPage() {
             <Button
               variant="primary"
               size="lg"
-            //   className="bg-white text-[#000F22] hover:bg-[#C2E8FF]"
+            //   className="bg-white text-brand-primary hover:bg-brand-bg"
             >
               Start for free
             </Button>

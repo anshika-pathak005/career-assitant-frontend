@@ -25,8 +25,8 @@ import ComingSoonModal from "@/components/ui/ComingSoonModal";
 function FeatureItem({ text }: { text: string }) {
   return (
     <div className="flex items-center gap-2">
-      <Check size={14} className="text-[#16A34A] flex-shrink-0" />
-      <span className="text-sm text-[#537FAF]">{text}</span>
+      <Check size={14} className="text-brand-success flex-shrink-0" />
+      <span className="text-sm text-brand-muted">{text}</span>
     </div>
   );
 }
@@ -59,7 +59,7 @@ function PricingCard({
     >
       {isPopular && (
         <div className="absolute -top-3 left-1/2 -translate-x-1/2">
-          <span className="bg-[#557EB2] text-white text-xs font-semibold px-3 py-1 rounded-full">
+          <span className="bg-brand-accent text-white text-xs font-semibold px-3 py-1 rounded-full">
             Most Popular
           </span>
         </div>
@@ -68,18 +68,18 @@ function PricingCard({
       <Card
         variant="default"
         padding="lg"
-        className={`h-full ${isPopular ? "border-[#557EB2] border-2" : "border-[#7A9BC4]/20"}`}
+        className={`h-full ${isPopular ? "border-brand-accent border-2" : "border-brand-accent-lt/20"}`}
       >
         <div className="text-center mb-6">
-          <h3 className="font-display text-[#000F22] text-xl mb-1">{title}</h3>
-          <p className="text-xs text-[#537FAF]">{description}</p>
+          <h3 className="font-display text-brand-primary text-xl mb-1">{title}</h3>
+          <p className="text-xs text-brand-muted">{description}</p>
         </div>
 
         <div className="text-center mb-6">
-          <span className="font-display text-[#000F22] text-4xl font-bold">
+          <span className="font-display text-brand-primary text-4xl font-bold">
             {price}
           </span>
-          <span className="text-[#537FAF] text-sm">/{period}</span>
+          <span className="text-brand-muted text-sm">/{period}</span>
         </div>
 
         <div className="space-y-2 mb-6">
@@ -119,23 +119,23 @@ export default function PricingPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#C2E8FF] py-12 px-4 sm:px-6">
+    <div className="min-h-screen bg-brand-bg py-12 px-4 sm:px-6">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <div className="text-center mb-10">
           <div className="inline-flex items-center gap-2 bg-white/50 backdrop-blur-sm rounded-full px-3 py-1 mb-4">
-            <Sparkles size={12} className="text-[#557EB2]" />
-            <span className="text-[10px] font-medium text-[#557EB2] uppercase tracking-wider">
+            <Sparkles size={12} className="text-brand-accent" />
+            <span className="text-[10px] font-medium text-brand-accent uppercase tracking-wider">
               Simple Pricing
             </span>
           </div>
 
-          <h1 className="animate-fade-up delay-1 font-display font-bold text-2xl sm:text-5xl lg:text-6xl leading-[1.1] mb-6 text-[#000F22]">
+          <h1 className="animate-fade-up delay-1 font-display font-bold text-2xl sm:text-5xl lg:text-6xl leading-[1.1] mb-6 text-brand-primary">
             Choose the plan that{" "}
-            <span className="text-[#557EB2]">fits your journey</span>
+            <span className="text-brand-accent">fits your journey</span>
           </h1>
 
-          <p className="text-sm text-[#537FAF] max-w-md mx-auto">
+          <p className="text-sm text-brand-muted max-w-md mx-auto">
             Start for free, upgrade when you need more. No hidden fees.
           </p>
         </div>
@@ -184,7 +184,7 @@ export default function PricingPage() {
 
         {/* FAQ Section */}
         <div className="mt-16 text-center">
-          <p className="text-xs text-[#7A9BC4]">
+          <p className="text-xs text-brand-accent-lt">
             Questions? Contact us at support@careerpilot.com
           </p>
         </div>

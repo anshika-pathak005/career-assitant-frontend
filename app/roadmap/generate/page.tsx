@@ -52,23 +52,23 @@ export default function RoadmapGeneratePage() {
 
   /* ─── Form ─────────────────────────────────────────────────────── */
   return (
-    <div className="min-h-screen bg-[#C2E8FF] py-8 px-4 sm:px-6">
+    <div className="min-h-screen bg-brand-bg py-8 px-4 sm:px-6">
       <div className="max-w-4xl mx-auto">
         {/* Header */}
         <div className="mb-6">
           <button
             onClick={() => router.back()}
-            className="flex items-center gap-2 text-sm text-[#537FAF] hover:text-[#042558] transition-colors mb-4"
+            className="flex items-center gap-2 text-sm text-brand-muted hover:text-brand-secondary transition-colors mb-4"
           >
             <ArrowLeft size={16} />
             Back
           </button>
 
           <div className="text-center mb-6">
-            <h1 className="font-display text-[#000F22] text-3xl sm:text-4xl mb-2">
+            <h1 className="font-display text-brand-primary text-3xl sm:text-4xl mb-2">
               Configure Your Roadmap
             </h1>
-            <p className="text-sm text-[#537FAF] max-w-md mx-auto">
+            <p className="text-sm text-brand-muted max-w-md mx-auto">
               Provide your preferences to generate a personalized career
               roadmap.
             </p>
@@ -87,15 +87,15 @@ export default function RoadmapGeneratePage() {
             {/* Target role (read-only, comes from onboarding) */}
             <Card variant="default" padding="lg">
               <div className="flex items-start gap-4">
-                <div className="w-10 h-10 rounded-lg bg-[#C2E8FF] flex items-center justify-center flex-shrink-0">
-                  <BriefcaseBusiness size={18} className="text-[#557EB2]" />
+                <div className="w-10 h-10 rounded-lg bg-brand-bg flex items-center justify-center flex-shrink-0">
+                  <BriefcaseBusiness size={18} className="text-brand-accent" />
                 </div>
                 <div className="flex-1">
-                  <p className="text-xs text-[#537FAF] mb-1">Target Role</p>
-                  <p className="font-display text-[#000F22] text-xl">
+                  <p className="text-xs text-brand-muted mb-1">Target Role</p>
+                  <p className="font-display text-brand-primary text-xl">
                     {profile?.dreamJob || "Not specified"}
                   </p>
-                  <p className="text-xs text-[#537FAF] mt-1">
+                  <p className="text-xs text-brand-muted mt-1">
                     Category: {profile?.userCategory || "Not specified"}
                   </p>
                 </div>
@@ -103,22 +103,22 @@ export default function RoadmapGeneratePage() {
             </Card>
 
             {/* Pre-filled information notice */}
-            <div className="bg-gradient-to-r from-[#C2E8FF] to-white border-l-4 border-[#557EB2] rounded-lg p-4 flex items-start gap-3 shadow-sm">
-              <div className="w-8 h-8 rounded-full bg-[#557EB2]/20 flex items-center justify-center flex-shrink-0">
-                <Info size={14} className="text-[#557EB2]" />
+            <div className="bg-gradient-to-r from-brand-bg to-white border-l-4 border-brand-accent rounded-lg p-4 flex items-start gap-3 shadow-sm">
+              <div className="w-8 h-8 rounded-full bg-brand-accent/20 flex items-center justify-center flex-shrink-0">
+                <Info size={14} className="text-brand-accent" />
               </div>
               <div className="flex-1">
-                <p className="text-sm font-semibold text-[#042558] mb-0.5">
+                <p className="text-sm font-semibold text-brand-secondary mb-0.5">
                   Profile information pre-loaded
                 </p>
-                <p className="text-xs text-[#537FAF] leading-relaxed">
+                <p className="text-xs text-brand-muted leading-relaxed">
                   Your current role, industries, skills, and work preference
                   have been loaded from your profile. You can review and update
                   them below.
                 </p>
               </div>
-              <div className="w-8 h-8 rounded-full bg-[#16A34A]/10 flex items-center justify-center flex-shrink-0">
-                <CheckCircle2 size={14} className="text-[#16A34A]" />
+              <div className="w-8 h-8 rounded-full bg-brand-success/10 flex items-center justify-center flex-shrink-0">
+                <CheckCircle2 size={14} className="text-brand-success" />
               </div>
             </div>
 

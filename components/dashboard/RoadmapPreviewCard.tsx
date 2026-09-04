@@ -10,12 +10,12 @@ export default function RoadmapPreviewCard({ steps, resumeId }: Props) {
   const preview = steps.slice(0, 3);
 
   return (
-    <div className="bg-white rounded-xl border border-[#7A9BC4]/20 shadow-card p-5">
+    <div className="bg-white rounded-xl border border-brand-accent-lt/20 shadow-card p-5">
       <div className="flex items-center justify-between mb-4">
-        <p className="font-bold text-[#000F22] text-sm">Learning Roadmap</p>
+        <p className="font-bold text-brand-primary text-sm">Learning Roadmap</p>
         <Link
           href={`/analysis?resumeId=${resumeId}`}
-          className="text-xs font-bold text-[#557EB2] hover:text-[#042558] flex items-center gap-1 transition-colors"
+          className="text-xs font-bold text-brand-accent hover:text-brand-secondary flex items-center gap-1 transition-colors"
         >
           Full plan <ArrowRight size={12} />
         </Link>
@@ -26,16 +26,16 @@ export default function RoadmapPreviewCard({ steps, resumeId }: Props) {
           <div key={i} className="flex items-start gap-3">
             <div className="flex-shrink-0 mt-0.5">
               {i === 0 ? (
-                <CheckCircle2 size={16} className="text-[#16A34A]" />
+                <CheckCircle2 size={16} className="text-brand-success" />
               ) : (
-                <Circle size={16} className="text-[#7A9BC4]" />
+                <Circle size={16} className="text-brand-accent-lt" />
               )}
             </div>
             {/* Connector line */}
             <div className="flex-1 min-w-0">
               <p
                 className={`text-xs leading-relaxed ${
-                  i === 0 ? "font-semibold text-[#000F22]" : "text-[#537FAF]"
+                  i === 0 ? "font-semibold text-brand-primary" : "text-brand-muted"
                 }`}
               >
                 {step}
@@ -45,7 +45,7 @@ export default function RoadmapPreviewCard({ steps, resumeId }: Props) {
         ))}
 
         {steps.length > 3 && (
-          <p className="text-xs text-[#537FAF] pl-7">
+          <p className="text-xs text-brand-muted pl-7">
             +{steps.length - 3} more steps in the full roadmap
           </p>
         )}

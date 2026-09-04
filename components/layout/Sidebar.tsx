@@ -140,7 +140,7 @@ export default function Sidebar() {
           key={section.label}
           className={`mb-6 ${sectionIdx === 0 ? "" : "mt-2"}`}
         >
-          <p className="px-3 mb-2 text-[10px] font-bold uppercase tracking-wider text-[#7A9BC4]">
+          <p className="px-3 mb-2 text-[10px] font-bold uppercase tracking-wider text-brand-accent-lt">
             {section.label}
           </p>
           <div className="flex flex-col gap-1">
@@ -157,8 +157,8 @@ export default function Sidebar() {
                     transition-all duration-200 ease-out
                     ${
                       isActive
-                        ? "bg-[#000F22] text-white shadow-md"
-                        : "text-[#537FAF] hover:text-[#000F22] hover:bg-[#C2E8FF]/50"
+                        ? "bg-brand-primary text-white shadow-md"
+                        : "text-brand-muted hover:text-brand-primary hover:bg-brand-bg/50"
                     }
                   `}
                 >
@@ -170,7 +170,7 @@ export default function Sidebar() {
                         ${
                           isActive
                             ? "text-white"
-                            : "text-[#7A9BC4] group-hover:text-[#557EB2]"
+                            : "text-brand-accent-lt group-hover:text-brand-accent"
                         }
                       `}
                     />
@@ -180,7 +180,7 @@ export default function Sidebar() {
                         className={`text-[10px] transition-colors duration-200 ${
                           isActive
                             ? "text-white/60"
-                            : "text-[#7A9BC4] group-hover:text-[#537FAF]"
+                            : "text-brand-accent-lt group-hover:text-brand-muted"
                         }`}
                       >
                         {description}
@@ -198,23 +198,23 @@ export default function Sidebar() {
       ))}
 
       {/* Upgrade nudge */}
-      <div className="mt-auto relative mx-1 rounded-xl bg-gradient-to-br from-[#C2E8FF] to-[#C2E8FF]/40 border border-[#7A9BC4]/30 p-4 overflow-hidden group hover:shadow-lg transition-all duration-300">
+      <div className="mt-auto relative mx-1 rounded-xl bg-gradient-to-br from-brand-bg to-brand-bg/40 border border-brand-accent-lt/30 p-4 overflow-hidden group hover:shadow-lg transition-all duration-300">
         <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000" />
 
         <div className="relative z-10">
           <div className="flex items-center gap-2 mb-2">
-            <div className="w-6 h-6 rounded-full bg-[#000F22] flex items-center justify-center">
+            <div className="w-6 h-6 rounded-full bg-brand-primary flex items-center justify-center">
               <Sparkles size={12} className="text-white" />
             </div>
-            <span className="text-xs font-bold text-[#000F22]">
+            <span className="text-xs font-bold text-brand-primary">
               Unlock Full Potential
             </span>
           </div>
-          <p className="text-[11px] text-[#537FAF] mb-3 leading-relaxed">
+          <p className="text-[11px] text-brand-muted mb-3 leading-relaxed">
             Get unlimited roadmaps, detailed analysis, and priority support.
           </p>
           <Link href="/pricing">
-            <button className="w-full bg-[#000F22] text-white text-xs font-semibold py-2 rounded-lg hover:bg-[#042558] hover:scale-[1.02] transition-all duration-200">
+            <button className="w-full bg-brand-primary text-white text-xs font-semibold py-2 rounded-lg hover:bg-brand-secondary hover:scale-[1.02] transition-all duration-200">
               Upgrade to Pro
             </button>
           </Link>
@@ -228,7 +228,7 @@ export default function Sidebar() {
       {/* Mobile Hamburger Button */}
       <button
         onClick={() => setIsMobileMenuOpen(true)}
-        className="fixed top-20 right-4 z-50 md:hidden w-10 h-10 rounded-lg bg-[#000F22] text-white flex items-center justify-center shadow-lg"
+        className="fixed top-20 right-4 z-50 md:hidden w-10 h-10 rounded-lg bg-brand-primary text-white flex items-center justify-center shadow-lg"
         aria-label="Open menu"
       >
         <Menu size={20} />
@@ -237,7 +237,7 @@ export default function Sidebar() {
       {/* Mobile Sidebar Overlay */}
       {isMobileMenuOpen && (
         <div
-          className="fixed inset-0 z-40 bg-[#000F22]/60 backdrop-blur-sm md:hidden"
+          className="fixed inset-0 z-40 bg-brand-primary/60 backdrop-blur-sm md:hidden"
           onClick={() => setIsMobileMenuOpen(false)}
         />
       )}
@@ -250,10 +250,10 @@ export default function Sidebar() {
           ${isMobileMenuOpen ? "translate-x-0" : "-translate-x-full"}
         `}
       >
-        <div className="flex justify-end p-4 border-b border-[#7A9BC4]/20">
+        <div className="flex justify-end p-4 border-b border-brand-accent-lt/20">
           <button
             onClick={() => setIsMobileMenuOpen(false)}
-            className="w-8 h-8 rounded-lg bg-[#C2E8FF] flex items-center justify-center text-[#557EB2] hover:bg-[#557EB2] hover:text-white transition-colors"
+            className="w-8 h-8 rounded-lg bg-brand-bg flex items-center justify-center text-brand-accent hover:bg-brand-accent hover:text-white transition-colors"
             aria-label="Close menu"
           >
             <X size={18} />
@@ -266,7 +266,7 @@ export default function Sidebar() {
 
       {/* Desktop Sidebar */}
       <aside className="hidden md:flex flex-col w-64 shrink-0">
-        <div className="bg-white/80 backdrop-blur-sm rounded-xl border border-[#7A9BC4]/20 shadow-card sticky top-6">
+        <div className="bg-white/80 backdrop-blur-sm rounded-xl border border-brand-accent-lt/20 shadow-card sticky top-6">
           <div className="p-3">{sidebarContent}</div>
         </div>
       </aside>

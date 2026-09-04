@@ -1,5 +1,6 @@
 // services/roadmapService.ts
 import axiosInstance from "@/lib/axiosInstance";
+import { isNotFound } from "@/utils/apiError";
 import type {
   Roadmap,
   RoadmapGenerationRequest,
@@ -51,8 +52,9 @@ export const getLatestRoadmap = async (): Promise<Roadmap | null> => {
       "/api/roadmap/my-roadmap",
     );
     return data;
-  } catch (error: any) {
-    if (error?.response?.status === 404) {
+  } catch (error) {
+    // A 404 just means the user has no roadmap yet - not a real failure
+    if (isNotFound(error)) {
       return null; // No roadmap found
     }
     throw error;

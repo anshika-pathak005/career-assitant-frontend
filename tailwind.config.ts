@@ -22,6 +22,10 @@ const config: Config = {
           accent: "#557EB2",
           "accent-lt": "#7A9BC4",
           muted: "#537FAF",
+          // Semantic - mirrors the --color-error/success/warning vars in globals.css
+          success: "#16A34A",
+          warning: "#D97706",
+          error: "#DC2626",
         },
       },
       borderRadius: {

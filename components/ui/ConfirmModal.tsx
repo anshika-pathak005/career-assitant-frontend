@@ -30,7 +30,7 @@ export default function ConfirmModal({
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#000F22]/60 backdrop-blur-sm animate-fade-in">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-brand-primary/60 backdrop-blur-sm animate-fade-in">
       <Card
         variant="default"
         padding="lg"
@@ -43,17 +43,17 @@ export default function ConfirmModal({
                 <AlertCircle size={20} className="text-amber-600" />
               </div>
             )}
-            <h3 className="font-display text-[#000F22] text-xl">{title}</h3>
+            <h3 className="font-display text-brand-primary text-xl">{title}</h3>
           </div>
           <button
             onClick={onClose}
-            className="text-[#537FAF] hover:text-[#000F22] transition-colors"
+            className="text-brand-muted hover:text-brand-primary transition-colors"
           >
             <X size={18} />
           </button>
         </div>
 
-        <p className="text-sm text-[#537FAF] mb-6 leading-relaxed">{message}</p>
+        <p className="text-sm text-brand-muted mb-6 leading-relaxed">{message}</p>
 
         <div className="flex gap-3">
           <Button

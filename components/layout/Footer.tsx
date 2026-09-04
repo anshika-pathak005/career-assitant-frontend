@@ -45,7 +45,7 @@ export default function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="bg-[#000F22] text-white mt-auto">
+    <footer className="bg-brand-primary text-white mt-auto">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-12">
         {/* Top row — brand + links grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
@@ -59,7 +59,7 @@ export default function Footer() {
                 CareerPilot
               </span>
             </Link>
-            <p className="text-sm text-[#537FAF] leading-relaxed max-w-[220px]">
+            <p className="text-sm text-brand-muted leading-relaxed max-w-[220px]">
               AI-powered career guidance to help you land your dream job faster.
             </p>
 
@@ -72,7 +72,7 @@ export default function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={label}
-                  className="w-8 h-8 flex items-center justify-center rounded-md bg-white/6 text-[#537FAF] hover:bg-white/12 hover:text-white transition-all"
+                  className="w-8 h-8 flex items-center justify-center rounded-md bg-white/6 text-brand-muted hover:bg-white/12 hover:text-white transition-all"
                 >
                   <Icon size={14} />
                 </a>
@@ -83,7 +83,7 @@ export default function Footer() {
           {/* Link columns */}
           {FOOTER_LINKS.map(({ heading, links }) => (
             <div key={heading} className="flex flex-col gap-3">
-              <p className="text-xs font-bold uppercase tracking-widest text-[#7A9BC4]">
+              <p className="text-xs font-bold uppercase tracking-widest text-brand-accent-lt">
                 {heading}
               </p>
               <ul className="flex flex-col gap-2">
@@ -91,7 +91,7 @@ export default function Footer() {
                   <li key={label}>
                     <Link
                       href={href}
-                      className="text-sm text-[#537FAF] hover:text-white transition-colors"
+                      className="text-sm text-brand-muted hover:text-white transition-colors"
                     >
                       {label}
                     </Link>
@@ -104,12 +104,12 @@ export default function Footer() {
 
         {/* Bottom row — copyright + badge */}
         <div className="border-t border-white/8 pt-6 flex flex-col sm:flex-row items-center justify-between gap-3">
-          <p className="text-xs text-[#537FAF]">
+          <p className="text-xs text-brand-muted">
             © {year} CareerPilot. All rights reserved.
           </p>
           <div className="flex items-center gap-1.5 bg-white/6 border border-white/10 px-3 py-1.5 rounded-full">
             <span className="w-1.5 h-1.5 bg-green-400 rounded-full animate-pulse" />
-            <span className="text-xs text-[#7A9BC4] font-medium">
+            <span className="text-xs text-brand-accent-lt font-medium">
               All systems operational
             </span>
           </div>

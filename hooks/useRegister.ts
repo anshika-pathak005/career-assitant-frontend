@@ -9,6 +9,7 @@ import {
   RegisterStep1Response,
 } from "@/services/authService";
 import { useAuth } from "@/hooks/useAuth";
+import { getApiErrorMessage } from "@/utils/apiError";
 
 export const useRegister = () => {
   const router = useRouter();
@@ -41,11 +42,10 @@ export const useRegister = () => {
         }
       }, 100);
     },
-    onError: (error: any) => {
-      const message =
-        error?.response?.data?.message ??
-        "Registration failed. Please try again.";
-      toast.error(message);
+    onError: (error) => {
+      toast.error(
+        getApiErrorMessage(error, "Registration failed. Please try again."),
+      );
     },
   });
 };

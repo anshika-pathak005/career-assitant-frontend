@@ -68,13 +68,13 @@ export default function BeforeAfter() {
   return (
     <section className="max-w-6xl mx-auto px-6 py-24">
       <div className="text-center mb-16">
-        <span className="inline-block text-xs font-bold uppercase tracking-widest text-[#557EB2] bg-[#557EB2]/10 px-4 py-1.5 rounded-full mb-4">
+        <span className="inline-block text-xs font-bold uppercase tracking-widest text-brand-accent bg-brand-accent/10 px-4 py-1.5 rounded-full mb-4">
           The difference
         </span>
-        <h2 className="font-display font-bold text-4xl sm:text-5xl text-[#000F22] leading-tight">
-          Before vs <span className="text-[#557EB2]">After CareerPilot</span>
+        <h2 className="font-display font-bold text-4xl sm:text-5xl text-brand-primary leading-tight">
+          Before vs <span className="text-brand-accent">After CareerPilot</span>
         </h2>
-        <p className="mt-4 text-[#537FAF] text-base max-w-xl mx-auto leading-relaxed">
+        <p className="mt-4 text-brand-muted text-base max-w-xl mx-auto leading-relaxed">
           Stop guessing. Start growing with a clear, AI-powered roadmap.
         </p>
       </div>
@@ -104,35 +104,35 @@ export default function BeforeAfter() {
         </div>
 
         {/* After Card */}
-        <div className="rounded-2xl border border-[#7A9BC4]/30 bg-gradient-to-br from-[#C2E8FF]/50 to-white p-8 shadow-card ring-2 ring-[#557EB2]/20 hover:shadow-xl hover:ring-[#557EB2]/30 transition-all duration-300 relative overflow-hidden">
+        <div className="rounded-2xl border border-brand-accent-lt/30 bg-gradient-to-br from-brand-bg/50 to-white p-8 shadow-card ring-2 ring-brand-accent/20 hover:shadow-xl hover:ring-brand-accent/30 transition-all duration-300 relative overflow-hidden">
           {/* Subtle glow effect */}
-          <div className="absolute -top-20 -right-20 w-40 h-40 rounded-full bg-[#557EB2]/10 blur-2xl" />
+          <div className="absolute -top-20 -right-20 w-40 h-40 rounded-full bg-brand-accent/10 blur-2xl" />
 
           <div className="relative z-10">
             <div className="flex items-center gap-2 mb-6">
-              <div className="w-2 h-2 rounded-full bg-[#557EB2] animate-pulse" />
-              <h3 className="font-bold text-[#557EB2] text-sm uppercase tracking-widest">
+              <div className="w-2 h-2 rounded-full bg-brand-accent animate-pulse" />
+              <h3 className="font-bold text-brand-accent text-sm uppercase tracking-widest">
                 With CareerPilot
               </h3>
-              <Sparkles size={12} className="text-[#557EB2] ml-1" />
+              <Sparkles size={12} className="text-brand-accent ml-1" />
             </div>
             <ul className="space-y-4">
               {after.map((item) => (
                 <li
                   key={item.text}
-                  className={`flex items-start gap-3 group ${item.highlight ? "bg-[#557EB2]/5 -mx-2 px-2 py-1.5 rounded-lg" : ""}`}
+                  className={`flex items-start gap-3 group ${item.highlight ? "bg-brand-accent/5 -mx-2 px-2 py-1.5 rounded-lg" : ""}`}
                 >
                   <CheckCircle2
                     size={18}
-                    className={`shrink-0 mt-0.5 transition-transform group-hover:scale-110 ${item.highlight ? "text-[#16A34A]" : "text-[#557EB2]"}`}
+                    className={`shrink-0 mt-0.5 transition-transform group-hover:scale-110 ${item.highlight ? "text-brand-success" : "text-brand-accent"}`}
                   />
                   <span
-                    className={`text-sm leading-relaxed ${item.highlight ? "text-[#000F22] font-semibold" : "text-[#000F22]"}`}
+                    className={`text-sm leading-relaxed ${item.highlight ? "text-brand-primary font-semibold" : "text-brand-primary"}`}
                   >
                     {item.text}
                   </span>
                   {item.highlight && (
-                    <span className="text-[9px] font-bold text-[#16A34A] bg-[#16A34A]/10 px-1.5 py-0.5 rounded-full ml-auto">
+                    <span className="text-[9px] font-bold text-brand-success bg-brand-success/10 px-1.5 py-0.5 rounded-full ml-auto">
                       KEY BENEFIT
                     </span>
                   )}
@@ -145,10 +145,10 @@ export default function BeforeAfter() {
 
       {/* Bottom note */}
       <div className="mt-8 text-center">
-        <div className="inline-flex items-center gap-2 bg-white/60 backdrop-blur-sm rounded-full px-4 py-1.5 border border-[#7A9BC4]/20">
-          <Sparkles size={10} className="text-[#557EB2]" />
-          <span className="text-[10px] text-[#537FAF]">
-            Join <span className="font-bold text-[#557EB2]">10,000+</span>{" "}
+        <div className="inline-flex items-center gap-2 bg-white/60 backdrop-blur-sm rounded-full px-4 py-1.5 border border-brand-accent-lt/20">
+          <Sparkles size={10} className="text-brand-accent" />
+          <span className="text-[10px] text-brand-muted">
+            Join <span className="font-bold text-brand-accent">10,000+</span>{" "}
             learners who transformed their careers
           </span>
         </div>

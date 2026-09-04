@@ -7,8 +7,8 @@ import Button from "@/components/ui/Button";
 export default function FinalCTA() {
   return (
     <section className="max-w-6xl mx-auto px-6 py-24">
-      <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#000F22] to-[#042558] px-8 py-20 text-center shadow-2xl">
-        <div className="pointer-events-none absolute -top-16 -left-16 w-64 h-64 rounded-full bg-[#557EB2]/20 blur-3xl" />
+      <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-brand-primary to-brand-secondary px-8 py-20 text-center shadow-2xl">
+        <div className="pointer-events-none absolute -top-16 -left-16 w-64 h-64 rounded-full bg-brand-accent/20 blur-3xl" />
         <div className="pointer-events-none absolute -bottom-16 -right-16 w-64 h-64 rounded-full bg-[#7AC4FF]/15 blur-3xl" />
 
         <div className="relative z-10">

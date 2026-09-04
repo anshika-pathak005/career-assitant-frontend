@@ -107,13 +107,13 @@ export default function ResumeUploadPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#C2E8FF] py-8 px-4 sm:px-6">
+    <div className="min-h-screen bg-brand-bg py-8 px-4 sm:px-6">
       <div className="max-w-3xl mx-auto">
         {/* Header */}
         <div className="mb-6">
           <button
             onClick={() => router.back()}
-            className="flex items-center gap-2 text-sm text-[#537FAF] hover:text-[#042558] transition-colors mb-4"
+            className="flex items-center gap-2 text-sm text-brand-muted hover:text-brand-secondary transition-colors mb-4"
           >
             ← Back
           </button>
@@ -124,10 +124,10 @@ export default function ResumeUploadPage() {
           <Card
             variant="flat"
             padding="lg"
-            className="relative overflow-hidden bg-gradient-to-br from-[#000F22] to-[#042558] border-none text-center mb-6"
+            className="relative overflow-hidden bg-gradient-to-br from-brand-primary to-brand-secondary border-none text-center mb-6"
           >
-            <div className="pointer-events-none absolute -top-20 -right-20 w-80 h-80 rounded-full bg-[#557EB2]/20 blur-3xl" />
-            <div className="pointer-events-none absolute -bottom-20 -left-20 w-80 h-80 rounded-full bg-[#7A9BC4]/10 blur-2xl" />
+            <div className="pointer-events-none absolute -top-20 -right-20 w-80 h-80 rounded-full bg-brand-accent/20 blur-3xl" />
+            <div className="pointer-events-none absolute -bottom-20 -left-20 w-80 h-80 rounded-full bg-brand-accent-lt/10 blur-2xl" />
 
             <div className="relative z-10">
               <div className="w-16 h-16 rounded-full bg-white/10 flex items-center justify-center mx-auto mb-4">
@@ -138,7 +138,7 @@ export default function ResumeUploadPage() {
                 Upload Your Resume
               </h1>
 
-              <p className="text-[#7A9BC4] text-sm sm:text-base max-w-md mx-auto mb-6 leading-relaxed">
+              <p className="text-brand-accent-lt text-sm sm:text-base max-w-md mx-auto mb-6 leading-relaxed">
                 Get AI-powered analysis, ATS score, and personalized
                 recommendations to improve your resume.
               </p>
@@ -156,22 +156,22 @@ export default function ResumeUploadPage() {
                 border-2 border-dashed rounded-xl p-10 cursor-pointer transition-all duration-200
                 ${
                   dragOver
-                    ? "border-[#557EB2] bg-[#C2E8FF]/50"
-                    : "border-[#7A9BC4]/40 hover:border-[#557EB2] hover:bg-[#C2E8FF]/20"
+                    ? "border-brand-accent bg-brand-bg/50"
+                    : "border-brand-accent-lt/40 hover:border-brand-accent hover:bg-brand-bg/20"
                 }
               `}
             >
               <div className="flex flex-col items-center gap-3">
-                <div className="w-14 h-14 rounded-full bg-[#C2E8FF] flex items-center justify-center">
-                  <Upload size={22} className="text-[#557EB2]" />
+                <div className="w-14 h-14 rounded-full bg-brand-bg flex items-center justify-center">
+                  <Upload size={22} className="text-brand-accent" />
                 </div>
                 <div>
-                  <p className="font-semibold text-[#000F22] text-sm mb-1">
+                  <p className="font-semibold text-brand-primary text-sm mb-1">
                     Drag & drop your resume here
                   </p>
-                  <p className="text-xs text-[#537FAF]">or click to browse</p>
+                  <p className="text-xs text-brand-muted">or click to browse</p>
                 </div>
-                <div className="flex items-center gap-3 text-[10px] text-[#7A9BC4] mt-2">
+                <div className="flex items-center gap-3 text-[10px] text-brand-accent-lt mt-2">
                   <span className="flex items-center gap-1">
                     <FileText size={10} />
                     PDF only
@@ -185,16 +185,16 @@ export default function ResumeUploadPage() {
             </div>
           ) : uploadMutation.isPending ? (
             /* Uploading State */
-            <div className="border-2 border-[#557EB2] rounded-xl p-10 bg-[#C2E8FF]/30">
+            <div className="border-2 border-brand-accent rounded-xl p-10 bg-brand-bg/30">
               <div className="flex flex-col items-center gap-3">
-                <div className="w-14 h-14 rounded-full bg-[#557EB2]/20 flex items-center justify-center">
-                  <div className="w-6 h-6 border-2 border-[#557EB2] border-t-transparent rounded-full animate-spin" />
+                <div className="w-14 h-14 rounded-full bg-brand-accent/20 flex items-center justify-center">
+                  <div className="w-6 h-6 border-2 border-brand-accent border-t-transparent rounded-full animate-spin" />
                 </div>
                 <div>
-                  <p className="font-semibold text-[#000F22] text-sm mb-1">
+                  <p className="font-semibold text-brand-primary text-sm mb-1">
                     Analyzing your resume...
                   </p>
-                  <p className="text-xs text-[#537FAF]">
+                  <p className="text-xs text-brand-muted">
                     This usually takes 10-20 seconds
                   </p>
                 </div>
@@ -202,17 +202,17 @@ export default function ResumeUploadPage() {
             </div>
           ) : (
             /* File Selected State */
-            <div className="border-2 border-[#16A34A] rounded-xl p-6 bg-[#16A34A]/5">
+            <div className="border-2 border-brand-success rounded-xl p-6 bg-brand-success/5">
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-full bg-[#16A34A]/20 flex items-center justify-center">
-                    <CheckCircle2 size={18} className="text-[#16A34A]" />
+                  <div className="w-10 h-10 rounded-full bg-brand-success/20 flex items-center justify-center">
+                    <CheckCircle2 size={18} className="text-brand-success" />
                   </div>
                   <div className="text-left">
-                    <p className="font-semibold text-[#000F22] text-sm">
+                    <p className="font-semibold text-brand-primary text-sm">
                       {selectedFile?.name}
                     </p>
-                    <p className="text-xs text-[#537FAF]">
+                    <p className="text-xs text-brand-muted">
                       {selectedFile &&
                         (selectedFile.size / (1024 * 1024)).toFixed(2)}{" "}
                       MB
@@ -221,12 +221,12 @@ export default function ResumeUploadPage() {
                 </div>
                 <button
                   onClick={clearFile}
-                  className="text-[#537FAF] hover:text-red-500 transition-colors"
+                  className="text-brand-muted hover:text-red-500 transition-colors"
                 >
                   <X size={18} />
                 </button>
               </div>
-              <p className="text-xs text-[#16A34A] mt-3 flex items-center gap-1">
+              <p className="text-xs text-brand-success mt-3 flex items-center gap-1">
                 <CheckCircle2 size={12} />
                 File validated. Uploading...
               </p>
@@ -250,43 +250,43 @@ export default function ResumeUploadPage() {
           />
 
           {/* Features List */}
-          <div className="mt-8 pt-6 border-t border-[#7A9BC4]/15">
+          <div className="mt-8 pt-6 border-t border-brand-accent-lt/15">
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-left">
               <div className="flex items-start gap-2">
-                <div className="w-6 h-6 rounded-full bg-[#C2E8FF] flex items-center justify-center flex-shrink-0 mt-0.5">
-                  <Shield size={12} className="text-[#557EB2]" />
+                <div className="w-6 h-6 rounded-full bg-brand-bg flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <Shield size={12} className="text-brand-accent" />
                 </div>
                 <div>
-                  <p className="text-xs font-semibold text-[#000F22]">
+                  <p className="text-xs font-semibold text-brand-primary">
                     ATS Score
                   </p>
-                  <p className="text-[10px] text-[#537FAF]">
+                  <p className="text-[10px] text-brand-muted">
                     Check recruiter compatibility
                   </p>
                 </div>
               </div>
               <div className="flex items-start gap-2">
-                <div className="w-6 h-6 rounded-full bg-[#C2E8FF] flex items-center justify-center flex-shrink-0 mt-0.5">
-                  <Sparkles size={12} className="text-[#557EB2]" />
+                <div className="w-6 h-6 rounded-full bg-brand-bg flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <Sparkles size={12} className="text-brand-accent" />
                 </div>
                 <div>
-                  <p className="text-xs font-semibold text-[#000F22]">
+                  <p className="text-xs font-semibold text-brand-primary">
                     Skill Gap Analysis
                   </p>
-                  <p className="text-[10px] text-[#537FAF]">
+                  <p className="text-[10px] text-brand-muted">
                     Identify missing keywords
                   </p>
                 </div>
               </div>
               <div className="flex items-start gap-2">
-                <div className="w-6 h-6 rounded-full bg-[#C2E8FF] flex items-center justify-center flex-shrink-0 mt-0.5">
-                  <Clock size={12} className="text-[#557EB2]" />
+                <div className="w-6 h-6 rounded-full bg-brand-bg flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <Clock size={12} className="text-brand-accent" />
                 </div>
                 <div>
-                  <p className="text-xs font-semibold text-[#000F22]">
+                  <p className="text-xs font-semibold text-brand-primary">
                     Quick Analysis
                   </p>
-                  <p className="text-[10px] text-[#537FAF]">
+                  <p className="text-[10px] text-brand-muted">
                     Results in seconds
                   </p>
                 </div>
@@ -296,7 +296,7 @@ export default function ResumeUploadPage() {
         </Card>
 
         {/* Security Note */}
-        <p className="text-center text-[10px] text-[#7A9BC4] mt-6">
+        <p className="text-center text-[10px] text-brand-accent-lt mt-6">
           Your resume is secure and encrypted. We never share your data with
           third parties.
         </p>
