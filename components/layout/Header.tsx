@@ -181,6 +181,13 @@ export default function Header() {
                         {/* Menu items */}
                         <div className="py-1">
                           <Link
+                            href="/profile"
+                            onClick={() => setUserMenuOpen(false)}
+                            className="flex items-center gap-2.5 px-4 py-2.5 text-sm text-brand-secondary hover:bg-brand-bg/50 transition-colors"
+                          >
+                            Profile
+                          </Link>
+                          <Link
                             href="/settings"
                             onClick={() => setUserMenuOpen(false)}
                             className="flex items-center gap-2.5 px-4 py-2.5 text-sm text-brand-secondary hover:bg-brand-bg/50 transition-colors"
