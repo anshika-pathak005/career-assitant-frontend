@@ -4,6 +4,8 @@ const nextConfig: NextConfig = {
   /* Enable strict mode for React */
   reactStrictMode: true,
 
+  allowedDevOrigins: ["10.168.186.97"],
+
   /* Allow images from common external domains */
   images: {
     remotePatterns: [

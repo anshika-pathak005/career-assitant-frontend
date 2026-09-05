@@ -26,7 +26,7 @@ export default function SectionAnalysis({
             <p className="text-sm font-semibold text-brand-primary capitalize">
               {section}
             </p>
-            <p className="text-xs text-brand-muted mt-0.5">{feedback}</p>
+            <p className="page-subtitle">{feedback}</p>
           </div>
         ))}
       </div>

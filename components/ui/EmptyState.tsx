@@ -22,7 +22,7 @@ export default function EmptyState({
       <div className="w-16 h-16 rounded-full bg-brand-bg flex items-center justify-center mx-auto mb-4">
         <Icon size={24} className="text-brand-accent" />
       </div>
-      <h3 className="font-display text-brand-primary text-xl mb-2">{title}</h3>
+      <h3 className="subsection-title mb-2">{title}</h3>
       <p className="text-sm text-brand-muted max-w-md mx-auto mb-6">
         {description}
       </p>

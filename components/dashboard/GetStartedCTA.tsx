@@ -59,11 +59,11 @@ export default function GetStartedCTA({ userName }: Props) {
           <div className="flex-1 min-w-0">
             <div className="inline-flex items-center gap-1.5 bg-white/10 border border-white/10 rounded-full px-3 py-1 mb-4">
               <Sparkles size={11} className="text-brand-accent-lt" />
-              <span className="text-[11px] font-semibold text-brand-accent-lt uppercase tracking-wider">
+              <span className="text-2xs font-semibold text-brand-accent-lt uppercase tracking-wider">
                 AI-Powered
               </span>
             </div>
-            <h2 className="font-display text-white text-2xl sm:text-3xl mb-2 leading-snug">
+            <h2 className="hero-title mb-2">
               Ready to accelerate
               <br className="hidden sm:block" /> your career,{" "}
               {userName.split(" ")[0]}?
@@ -111,7 +111,7 @@ export default function GetStartedCTA({ userName }: Props) {
             )}
 
             <div className="mb-6">
-              <h3 className="font-display text-brand-primary text-2xl mb-1">
+              <h3 className="section-title mb-1">
                 How would you like to start?
               </h3>
               <p className="text-sm text-brand-muted">
@@ -143,7 +143,7 @@ export default function GetStartedCTA({ userName }: Props) {
                       Upload your PDF resume for the most accurate analysis, ATS
                       score, and tailored roadmap.
                     </p>
-                    <span className="mt-1.5 inline-block text-[10px] font-bold text-brand-accent bg-brand-bg px-2 py-0.5 rounded-full">
+                    <span className="mt-1.5 inline-block text-2xs font-bold text-brand-accent bg-brand-bg px-2 py-0.5 rounded-full">
                       Recommended
                     </span>
                   </div>
@@ -204,10 +204,10 @@ export default function GetStartedCTA({ userName }: Props) {
                   {uploadMutation.isPending ? (
                     <>
                       <div className="w-10 h-10 border-2 border-brand-accent border-t-transparent rounded-full animate-spin" />
-                      <p className="text-sm font-semibold text-brand-secondary">
+                      <p className="field-label">
                         Analyzing your resume…
                       </p>
-                      <p className="text-xs text-brand-muted">
+                      <p className="meta-text">
                         This usually takes 10–20 seconds
                       </p>
                     </>
@@ -220,7 +220,7 @@ export default function GetStartedCTA({ userName }: Props) {
                         <p className="font-bold text-brand-primary text-sm mb-0.5">
                           Drop your resume here
                         </p>
-                        <p className="text-xs text-brand-muted">
+                        <p className="meta-text">
                           or click to browse — PDF only
                         </p>
                       </div>

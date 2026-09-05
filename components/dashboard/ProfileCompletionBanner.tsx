@@ -25,12 +25,12 @@ export default function ProfileCompletionBanner({ profile }: Props) {
               <div className="w-5 h-5 rounded-full bg-brand-bg flex items-center justify-center">
                 <Sparkles size={11} className="text-brand-accent" />
               </div>
-              <span className="text-[10px] font-semibold text-brand-accent uppercase tracking-wider">
+              <span className="text-2xs font-semibold text-brand-accent uppercase tracking-wider">
                 Get Started
               </span>
             </div>
 
-            <h3 className="font-display text-brand-primary text-xl sm:text-2xl mb-1">
+            <h3 className="section-title mb-1">
               Complete your profile to unlock your career roadmap
             </h3>
 
@@ -52,7 +52,7 @@ export default function ProfileCompletionBanner({ profile }: Props) {
                 />
               </button>
             </Link>
-            <p className="text-[10px] text-brand-accent-lt mt-1.5">
+            <p className="text-2xs text-brand-accent-lt mt-1.5">
               Takes less than 2 minutes
             </p>
           </div>

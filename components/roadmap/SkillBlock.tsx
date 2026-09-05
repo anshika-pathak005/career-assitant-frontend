@@ -23,21 +23,21 @@ export default function SkillBlock({ skill, onStepToggle, isUpdating }: Props) {
       <div className="flex items-center justify-between mb-3 flex-wrap gap-2">
         <div className="flex-1">
           <div className="flex items-center gap-2">
-            <h4 className="font-semibold text-brand-primary">
+            <h4 className="card-heading">
               {skill.skillName}
             </h4>
             {skill.skillType && (
-              <span className="text-[9px] px-1.5 py-0.5 rounded-full bg-brand-accent-lt/20 text-brand-muted">
+              <span className="text-3xs px-1.5 py-0.5 rounded-full bg-brand-accent-lt/20 text-brand-muted">
                 {skill.skillType}
               </span>
             )}
           </div>
-          <p className="text-xs text-brand-muted mt-0.5">
+          <p className="page-subtitle">
             {skill.estimatedDays} days
           </p>
         </div>
         <div className="text-right">
-          <span className="text-xs text-brand-muted">Target level</span>
+          <span className="meta-text">Target level</span>
           <p className="text-sm font-semibold text-brand-accent">
             {getSkillLevelLabel(skill.targetLevel)}
           </p>

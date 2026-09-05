@@ -18,9 +18,9 @@ export default function SectionHeader({
         <Icon size={16} className="text-brand-accent" />
       </div>
       <div>
-        <h2 className="font-semibold text-brand-primary text-lg">{title}</h2>
+        <h2 className="card-title">{title}</h2>
         {description && (
-          <p className="text-xs text-brand-muted mt-0.5">{description}</p>
+          <p className="card-subtitle">{description}</p>
         )}
       </div>
     </div>

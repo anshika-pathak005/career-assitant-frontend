@@ -33,7 +33,7 @@ export default function Testimonials() {
         <span className="inline-block text-xs font-bold uppercase tracking-widest text-brand-accent bg-brand-accent/10 px-4 py-1.5 rounded-full mb-4">
           Testimonials
         </span>
-        <h2 className="font-display font-bold text-4xl sm:text-5xl text-brand-primary leading-tight">
+        <h2 className="font-display font-bold text-5xl text-brand-primary leading-tight">
           Loved by <span className="text-brand-accent">job seekers</span>
         </h2>
         <p className="mt-4 text-brand-muted text-base max-w-xl mx-auto leading-relaxed">
@@ -51,7 +51,7 @@ export default function Testimonials() {
             <p className="text-[#3a4a5c] text-sm leading-relaxed flex-1">
               "{text}"
             </p>
-            <span className="inline-block self-start text-[10px] font-bold text-brand-accent bg-brand-bg/70 border border-brand-accent-lt/20 rounded-full px-3 py-1">
+            <span className="inline-block self-start text-2xs font-bold text-brand-accent bg-brand-bg/70 border border-brand-accent-lt/20 rounded-full px-3 py-1">
               {score}
             </span>
             <div className="flex items-center gap-3 pt-1 border-t border-brand-accent-lt/10">
@@ -60,7 +60,7 @@ export default function Testimonials() {
               </div>
               <div>
                 <p className="font-bold text-brand-primary text-xs">{name}</p>
-                <p className="text-brand-muted text-[11px]">{role}</p>
+                <p className="text-brand-muted text-2xs">{role}</p>
               </div>
             </div>
           </div>

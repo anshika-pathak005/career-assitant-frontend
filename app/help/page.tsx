@@ -31,16 +31,16 @@ export default function HelpPage() {
   if (!isAuthenticated) return null;
 
   return (
-    <div className="min-h-screen bg-brand-bg py-8 px-4 sm:px-6">
-      <div className="max-w-2xl mx-auto text-center">
+    <div className="page-shell">
+      <div className="page-container-narrow text-center">
         <Card variant="default" padding="lg">
           <div className="w-16 h-16 rounded-full bg-brand-bg flex items-center justify-center mx-auto mb-4">
             <HelpCircle size={28} className="text-brand-accent" />
           </div>
-          <h1 className="font-display text-brand-primary text-2xl mb-2">
+          <h1 className="page-title mb-2">
             Help & Support
           </h1>
-          <p className="text-sm text-brand-muted mb-6">
+          <p className="page-subtitle mx-auto mb-6">
             Get answers to your questions and reach out to our support team.
           </p>
 
@@ -49,7 +49,7 @@ export default function HelpPage() {
             <div className="p-4 bg-brand-bg/30 rounded-lg">
               <Mail size={20} className="text-brand-accent mx-auto mb-2" />
               <p className="text-xs font-semibold text-brand-primary">Email Us</p>
-              <p className="text-xs text-brand-muted">support@careerpilot.com</p>
+              <p className="meta-text">support@careerpilot.com</p>
             </div>
             <div className="p-4 bg-brand-bg/30 rounded-lg">
               <MessageCircle
@@ -57,7 +57,7 @@ export default function HelpPage() {
                 className="text-brand-accent mx-auto mb-2"
               />
               <p className="text-xs font-semibold text-brand-primary">Live Chat</p>
-              <p className="text-xs text-brand-muted">Coming Soon</p>
+              <p className="meta-text">Coming Soon</p>
             </div>
           </div>
 

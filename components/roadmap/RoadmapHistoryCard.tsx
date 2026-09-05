@@ -55,11 +55,11 @@ export default function RoadmapHistoryCard({ roadmap }: { roadmap: Roadmap }) {
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div className="flex-1">
             <div className="flex items-center gap-2 flex-wrap mb-1">
-              <h3 className="font-semibold text-brand-primary text-lg">
+              <h3 className="card-title">
                 {roadmap.dreamJob}
               </h3>
               <span
-                className={`text-[10px] font-semibold px-2 py-0.5 rounded-full ${
+                className={`text-2xs font-semibold px-2 py-0.5 rounded-full ${
                   statusStyles[roadmap.status] ??
                   "text-brand-accent-lt bg-brand-bg"
                 }`}
@@ -80,7 +80,7 @@ export default function RoadmapHistoryCard({ roadmap }: { roadmap: Roadmap }) {
             </div>
 
             <div className="w-full max-w-xs">
-              <div className="flex justify-between text-[10px] text-brand-muted mb-1">
+              <div className="flex justify-between text-2xs text-brand-muted mb-1">
                 <span>Completion</span>
                 <span>{progress}%</span>
               </div>

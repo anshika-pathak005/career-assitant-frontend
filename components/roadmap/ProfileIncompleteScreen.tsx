@@ -16,10 +16,10 @@ export default function ProfileIncompleteScreen() {
         <div className="w-16 h-16 rounded-full bg-brand-bg flex items-center justify-center mx-auto mb-4">
           <BriefcaseBusiness size={28} className="text-brand-accent" />
         </div>
-        <h2 className="font-display text-brand-primary text-2xl mb-2">
+        <h2 className="section-title mb-2">
           Complete Your Profile First
         </h2>
-        <p className="text-sm text-brand-muted mb-6 leading-relaxed">
+        <p className="body-text mb-6">
           To generate a personalized career roadmap, we need some basic
           information about your background and career goals.
         </p>

@@ -52,7 +52,7 @@ export default function DeleteAccountSection() {
         >
           Delete My Account
         </Button>
-        <p className="text-[10px] text-brand-accent-lt mt-2">
+        <p className="text-2xs text-brand-accent-lt mt-2">
           This action is permanent and cannot be undone
         </p>
       </div>

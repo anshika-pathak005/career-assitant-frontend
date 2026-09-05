@@ -39,11 +39,11 @@ export default function SettingCard({
         </div>
         <div>
           <h2
-            className={`font-semibold ${danger ? "text-red-600" : "text-brand-primary"}`}
+            className={`card-heading ${danger ? "text-red-600" : ""}`}
           >
             {title}
           </h2>
-          <p className="text-xs text-brand-muted">{description}</p>
+          <p className="card-subtitle">{description}</p>
         </div>
       </div>
       {children}

@@ -80,7 +80,7 @@ export default function LoginPage() {
   const onSubmit = (data: LoginFormData) => loginMutation.mutate(data);
 
   return (
-    <main className="min-h-screen bg-brand-bg flex items-center justify-center px-4 py-12">
+    <main className="page-shell-centered">
       {/* Background decoration */}
       <div
         aria-hidden
@@ -90,7 +90,7 @@ export default function LoginPage() {
         <div className="absolute -bottom-32 -right-32 w-96 h-96 bg-brand-accent/10 rounded-full blur-3xl" />
       </div>
 
-      <div className="w-full max-w-md relative">
+      <div className="page-container-form relative">
         {/* Brand */}
         <div className="flex justify-center mb-8 animate-fade-up">
           <Link href="/" className="flex items-center gap-2.5">
@@ -106,7 +106,7 @@ export default function LoginPage() {
         <Card className="animate-fade-up delay-1 shadow-lg">
           {/* Header */}
           <div className="mb-7">
-            <h1 className="font-display  text-brand-primary text-3xl mb-1">
+            <h1 className="page-title mb-1">
               Welcome back
             </h1>
             <p className="text-sm text-brand-muted">
@@ -143,7 +143,7 @@ export default function LoginPage() {
                   <button
                     type="button"
                     onClick={() => setShowPassword((v) => !v)}
-                    className="text-brand-muted hover:text-brand-secondary transition-colors"
+                    className="tap-target text-brand-muted hover:text-brand-secondary transition-colors"
                     aria-label={
                       showPassword ? "Hide password" : "Show password"
                     }

@@ -38,7 +38,7 @@ export default function ResumeUsageCard({
             <p className="text-xs font-semibold text-brand-secondary">
               Monthly Analysis Limit
             </p>
-            <p className="text-xs text-brand-muted">
+            <p className="meta-text">
               {used} / {total} analyses used this month
             </p>
           </div>
@@ -63,7 +63,7 @@ export default function ResumeUsageCard({
         />
       </div>
 
-      <p className="text-[10px] text-brand-accent-lt mt-1.5">
+      <p className="text-2xs text-brand-accent-lt mt-1.5">
         {limitReached && usage
           ? `Resets on ${new Date(usage.resetsOn).toLocaleDateString()}`
           : `${remaining} analysis${remaining !== 1 ? "es" : ""} remaining this month`}

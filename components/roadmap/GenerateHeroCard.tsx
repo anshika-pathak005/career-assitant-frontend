@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { Sparkles, ArrowRight } from "lucide-react";
 import Button from "@/components/ui/Button";
 import Card from "@/components/ui/Card";
+import HeroBadge from "@/components/ui/HeroBadge";
 import UsageCard from "./UsageCard";
 import type { GenerationLimit } from "@/types/profile.types";
 
@@ -30,18 +31,15 @@ export default function GenerateHeroCard({ userName, generationLimit }: Props) {
         <div className="pointer-events-none absolute -bottom-20 -left-20 w-80 h-80 rounded-full bg-brand-accent-lt/10 blur-2xl" />
 
         <div className="relative z-10">
-          <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-3 py-1 mb-5">
-            <Sparkles size={14} className="text-brand-accent-lt" />
-            <span className="text-[11px] font-medium text-brand-accent-lt uppercase tracking-wider">
-              Ai Powered Career Roadmap
-            </span>
-          </div>
+          <HeroBadge icon={Sparkles} className="mb-4">
+            AI powered career roadmap
+          </HeroBadge>
 
-          <h2 className="font-display text-white text-2xl sm:text-3xl lg:text-4xl mb-3">
+          <h2 className="hero-title mb-3">
             Create your personalized roadmap, {userName?.split(" ")[0]}
           </h2>
 
-          <p className="text-brand-accent-lt text-sm sm:text-base max-w-md mb-6 leading-relaxed">
+          <p className="hero-subtitle mb-6">
             Get a step-by-step learning plan tailored to your dream job, skills,
             and experience level. Track your progress and stay on course.
           </p>

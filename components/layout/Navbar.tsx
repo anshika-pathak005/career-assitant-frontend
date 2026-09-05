@@ -84,7 +84,7 @@ export default function Navbar() {
           {/* Avatar */}
           {user && (
             <div className="w-8 h-8 rounded-full bg-brand-primary border-2 border-brand-accent-lt/30 flex items-center justify-center flex-shrink-0">
-              <span className="text-[11px] font-bold text-white">
+              <span className="text-2xs font-bold text-white">
                 {initials}
               </span>
             </div>

@@ -107,10 +107,10 @@ export default function ResumeUploadPage() {
   };
 
   return (
-    <div className="min-h-screen bg-brand-bg py-8 px-4 sm:px-6">
-      <div className="max-w-3xl mx-auto">
+    <div className="page-shell">
+      <div className="page-container-narrow">
         {/* Header */}
-        <div className="mb-6">
+        <div className="page-header">
           <button
             onClick={() => router.back()}
             className="flex items-center gap-2 text-sm text-brand-muted hover:text-brand-secondary transition-colors mb-4"
@@ -134,11 +134,11 @@ export default function ResumeUploadPage() {
                 <FileText size={28} className="text-white" />
               </div>
 
-              <h1 className="font-display text-white text-2xl sm:text-3xl mb-2">
+              <h1 className="hero-title mb-2">
                 Upload Your Resume
               </h1>
 
-              <p className="text-brand-accent-lt text-sm sm:text-base max-w-md mx-auto mb-6 leading-relaxed">
+              <p className="text-brand-accent-lt text-base max-w-md mx-auto mb-6 leading-relaxed">
                 Get AI-powered analysis, ATS score, and personalized
                 recommendations to improve your resume.
               </p>
@@ -169,9 +169,9 @@ export default function ResumeUploadPage() {
                   <p className="font-semibold text-brand-primary text-sm mb-1">
                     Drag & drop your resume here
                   </p>
-                  <p className="text-xs text-brand-muted">or click to browse</p>
+                  <p className="meta-text">or click to browse</p>
                 </div>
-                <div className="flex items-center gap-3 text-[10px] text-brand-accent-lt mt-2">
+                <div className="flex items-center gap-3 text-2xs text-brand-accent-lt mt-2">
                   <span className="flex items-center gap-1">
                     <FileText size={10} />
                     PDF only
@@ -194,7 +194,7 @@ export default function ResumeUploadPage() {
                   <p className="font-semibold text-brand-primary text-sm mb-1">
                     Analyzing your resume...
                   </p>
-                  <p className="text-xs text-brand-muted">
+                  <p className="meta-text">
                     This usually takes 10-20 seconds
                   </p>
                 </div>
@@ -212,7 +212,7 @@ export default function ResumeUploadPage() {
                     <p className="font-semibold text-brand-primary text-sm">
                       {selectedFile?.name}
                     </p>
-                    <p className="text-xs text-brand-muted">
+                    <p className="meta-text">
                       {selectedFile &&
                         (selectedFile.size / (1024 * 1024)).toFixed(2)}{" "}
                       MB
@@ -260,7 +260,7 @@ export default function ResumeUploadPage() {
                   <p className="text-xs font-semibold text-brand-primary">
                     ATS Score
                   </p>
-                  <p className="text-[10px] text-brand-muted">
+                  <p className="text-2xs text-brand-muted">
                     Check recruiter compatibility
                   </p>
                 </div>
@@ -273,7 +273,7 @@ export default function ResumeUploadPage() {
                   <p className="text-xs font-semibold text-brand-primary">
                     Skill Gap Analysis
                   </p>
-                  <p className="text-[10px] text-brand-muted">
+                  <p className="text-2xs text-brand-muted">
                     Identify missing keywords
                   </p>
                 </div>
@@ -286,7 +286,7 @@ export default function ResumeUploadPage() {
                   <p className="text-xs font-semibold text-brand-primary">
                     Quick Analysis
                   </p>
-                  <p className="text-[10px] text-brand-muted">
+                  <p className="text-2xs text-brand-muted">
                     Results in seconds
                   </p>
                 </div>
@@ -296,7 +296,7 @@ export default function ResumeUploadPage() {
         </Card>
 
         {/* Security Note */}
-        <p className="text-center text-[10px] text-brand-accent-lt mt-6">
+        <p className="text-center text-2xs text-brand-accent-lt mt-6">
           Your resume is secure and encrypted. We never share your data with
           third parties.
         </p>

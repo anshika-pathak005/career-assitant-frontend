@@ -13,16 +13,16 @@ import Card from "@/components/ui/Card";
 
 export default function RoadmapPreview() {
   return (
-    <section className="max-w-6xl mx-auto px-6 py-24">
-      <div className="text-center mb-12">
-        <span className="inline-block text-xs font-bold uppercase tracking-widest text-brand-accent bg-brand-accent/10 px-4 py-1.5 rounded-full mb-4">
+    <section className="max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-24">
+      <div className="text-center mb-8 sm:mb-12">
+        <span className="inline-block text-xs font-bold uppercase tracking-widest text-brand-accent bg-brand-accent/10 px-4 py-1.5 rounded-full mb-3 sm:mb-4">
           Our Core Feature
         </span>
-        <h2 className="font-display font-bold text-4xl sm:text-5xl text-brand-primary leading-tight">
+        <h2 className="font-display font-bold text-5xl text-brand-primary leading-tight">
           Your <span className="text-brand-accent">Personalized Roadmap</span> to
           Success
         </h2>
-        <p className="mt-4 text-brand-muted text-base max-w-xl mx-auto leading-relaxed">
+        <p className="mt-3 sm:mt-4 text-brand-muted text-base max-w-xl mx-auto leading-relaxed">
           Get a step-by-step learning plan tailored to your dream job.
         </p>
       </div>
@@ -69,7 +69,7 @@ export default function RoadmapPreview() {
                     <p className="text-sm font-medium text-brand-primary">
                       Phase 1: Foundation
                     </p>
-                    <p className="text-[10px] text-brand-muted">
+                    <p className="text-2xs text-brand-muted">
                       8 weeks • 4 skills
                     </p>
                   </div>
@@ -87,7 +87,7 @@ export default function RoadmapPreview() {
                     <p className="text-sm font-medium text-brand-primary">
                       Phase 2: Core Skills
                     </p>
-                    <p className="text-[10px] text-brand-muted">
+                    <p className="text-2xs text-brand-muted">
                       10 weeks • 5 skills
                     </p>
                   </div>
@@ -105,7 +105,7 @@ export default function RoadmapPreview() {
                     <p className="text-sm font-medium text-brand-primary">
                       Phase 3: Advanced
                     </p>
-                    <p className="text-[10px] text-brand-muted">
+                    <p className="text-2xs text-brand-muted">
                       6 weeks • 3 skills
                     </p>
                   </div>
@@ -127,7 +127,7 @@ export default function RoadmapPreview() {
 
         {/* Right - Content */}
         <div>
-          <h3 className="font-display text-2xl sm:text-3xl text-brand-primary mb-4">
+          <h3 className="font-display text-3xl text-brand-primary mb-4">
             Why you need a{" "}
             <span className="text-brand-accent">career roadmap</span>
           </h3>

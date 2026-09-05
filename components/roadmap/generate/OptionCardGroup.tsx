@@ -69,7 +69,7 @@ export default function OptionCardGroup({
       {(label || labelAccessory) && (
         <div className="flex items-center justify-between mb-2">
           {label && (
-            <label className="text-sm font-semibold text-brand-secondary">
+            <label className="field-label">
               {label}
             </label>
           )}

@@ -8,11 +8,11 @@
 export type PillTone = "accent" | "warning" | "success" | "secondary" | "muted";
 
 const toneStyles: Record<PillTone, string> = {
-  accent: "text-brand-accent bg-brand-bg",
-  warning: "text-brand-warning bg-brand-warning/10",
-  success: "text-brand-success bg-brand-success/10",
-  secondary: "text-brand-secondary bg-brand-bg",
-  muted: "text-brand-accent-lt bg-brand-bg",
+  accent: "text-brand-secondary bg-brand-bg/70 border-brand-accent-lt/35 hover:border-brand-accent",
+  warning: "text-amber-800 bg-amber-50/90 border-amber-200 hover:border-amber-400",
+  success: "text-emerald-800 bg-emerald-50/90 border-emerald-200 hover:border-emerald-400",
+  secondary: "text-brand-primary bg-white border-brand-accent-lt/40 hover:border-brand-accent",
+  muted: "text-brand-muted bg-brand-bg/40 border-brand-accent-lt/25 hover:border-brand-accent-lt",
 };
 
 export default function PillList({
@@ -27,7 +27,7 @@ export default function PillList({
       {items.map((item, idx) => (
         <span
           key={idx}
-          className={`text-xs font-medium px-2.5 py-1 rounded-full ${toneStyles[tone]}`}
+          className={`text-xs font-semibold px-3 py-1 rounded-full border shadow-sm transition-all duration-150 ${toneStyles[tone]}`}
         >
           {item}
         </span>

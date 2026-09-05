@@ -51,7 +51,7 @@ export default function LearningPreferencesCard({ profile, onUpdate }: Props) {
 
   return (
     <Card variant="default" padding="lg" className="mb-6">
-      <h3 className="font-semibold text-brand-primary text-md mb-4 flex items-center gap-2">
+      <h3 className="card-heading mb-4 flex items-center gap-2">
         <Sparkles size={16} className="text-brand-accent" />
         Learning Preferences
       </h3>

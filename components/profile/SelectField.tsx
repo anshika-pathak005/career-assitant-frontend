@@ -62,7 +62,7 @@ export default function SelectField({
                   </p>
                   {option.desc && (
                     <p
-                      className={`text-[10px] ${isSelected ? "text-white/70" : "text-brand-muted"}`}
+                      className={`text-2xs ${isSelected ? "text-white/70" : "text-brand-muted"}`}
                     >
                       {option.desc}
                     </p>

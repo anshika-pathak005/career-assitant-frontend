@@ -46,10 +46,10 @@ export default function StatsSummary({ stats }: { stats: DashboardStats }) {
           <div className="w-8 h-8 rounded-full bg-brand-bg flex items-center justify-center mx-auto mb-2">
             <item.icon size={14} className="text-brand-accent" />
           </div>
-          <p className="text-xl font-bold text-brand-primary">{item.value}</p>
-          <p className="text-xs text-brand-muted">{item.label}</p>
+          <p className="stat-value">{item.value}</p>
+          <p className="stat-label">{item.label}</p>
           {item.total && (
-            <p className="text-[10px] text-brand-accent-lt mt-0.5">
+            <p className="text-2xs text-brand-accent-lt mt-0.5">
               out of {item.total}
             </p>
           )}

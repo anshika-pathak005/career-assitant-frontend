@@ -43,17 +43,17 @@ export default function ConfirmModal({
                 <AlertCircle size={20} className="text-amber-600" />
               </div>
             )}
-            <h3 className="font-display text-brand-primary text-xl">{title}</h3>
+            <h3 className="subsection-title">{title}</h3>
           </div>
           <button
             onClick={onClose}
-            className="text-brand-muted hover:text-brand-primary transition-colors"
+            className="tap-target text-brand-muted hover:text-brand-primary transition-colors"
           >
             <X size={18} />
           </button>
         </div>
 
-        <p className="text-sm text-brand-muted mb-6 leading-relaxed">{message}</p>
+        <p className="body-text mb-6">{message}</p>
 
         <div className="flex gap-3">
           <Button

@@ -29,7 +29,7 @@ export default function ComingSoonModal({
         <div className="flex justify-end">
           <button
             onClick={onClose}
-            className="text-brand-muted hover:text-brand-primary transition-colors"
+            className="tap-target text-brand-muted hover:text-brand-primary transition-colors"
           >
             <X size={18} />
           </button>
@@ -39,11 +39,11 @@ export default function ComingSoonModal({
           <Rocket size={28} className="text-brand-accent" />
         </div>
 
-        <h3 className="font-display text-brand-primary text-xl mb-2">
+        <h3 className="subsection-title mb-2">
           Coming Soon!
         </h3>
 
-        <p className="text-sm text-brand-muted mb-4 leading-relaxed">
+        <p className="body-text mb-4">
           {featureName} is currently under development. We're working hard to
           bring this to you as soon as possible.
         </p>

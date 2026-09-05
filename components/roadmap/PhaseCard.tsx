@@ -28,41 +28,41 @@ export default function PhaseCard({ phase, onStepToggle, isUpdating }: Props) {
       <button
         onClick={() => setIsExpanded(!isExpanded)}
         aria-expanded={isExpanded}
-        className="w-full px-5 py-4 flex items-center justify-between hover:bg-brand-bg/20 transition-colors text-left"
+        className="w-full px-4 sm:px-5 py-3.5 sm:py-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 hover:bg-brand-bg/20 transition-colors text-left"
       >
-        <div className="flex items-center gap-3">
-          <div className="w-8 h-8 rounded-full bg-brand-primary flex items-center justify-center">
+        <div className="flex items-center gap-3 flex-1 min-w-0 w-full sm:w-auto">
+          <div className="w-8 h-8 rounded-full bg-brand-primary flex items-center justify-center shrink-0">
             <span className="text-white text-sm font-bold">
               {phase.phaseOrder}
             </span>
           </div>
-          <div className="flex-1">
-            <h3 className="font-semibold text-brand-primary">{phase.title}</h3>
-            <p className="text-xs text-brand-muted mt-0.5">
+          <div className="flex-1 min-w-0">
+            <h3 className="card-heading truncate">{phase.title}</h3>
+            <p className="page-subtitle">
               {phase.estimatedWeeks} weeks • {phase.skills?.length || 0} skills
             </p>
           </div>
         </div>
-        <div className="flex items-center gap-4">
-          <div className="flex items-center gap-2">
-            <div className="w-24">
+        <div className="flex items-center justify-between sm:justify-end gap-3 w-full sm:w-auto border-t sm:border-t-0 border-brand-accent-lt/15 pt-2 sm:pt-0">
+          <div className="flex items-center gap-2 flex-1 sm:flex-initial">
+            <div className="w-20 sm:w-24">
               <ProgressBar progress={phaseProgress} />
             </div>
-            <span className="text-xs font-semibold text-brand-accent min-w-[35px]">
+            <span className="text-xs font-semibold text-brand-accent min-w-[32px]">
               {phaseProgress}%
             </span>
           </div>
           {isExpanded ? (
-            <ChevronUp size={18} className="text-brand-muted" />
+            <ChevronUp size={18} className="text-brand-muted shrink-0" />
           ) : (
-            <ChevronDown size={18} className="text-brand-muted" />
+            <ChevronDown size={18} className="text-brand-muted shrink-0" />
           )}
         </div>
       </button>
 
       {isExpanded && (
         <div className="px-5 pb-5 pt-2 border-t border-brand-accent-lt/15">
-          <p className="text-sm text-brand-muted mb-4">{phase.description}</p>
+          <p className="page-subtitle mx-auto mb-4">{phase.description}</p>
 
           <div className="space-y-4">
             {phase.skills?.map((skill) => (

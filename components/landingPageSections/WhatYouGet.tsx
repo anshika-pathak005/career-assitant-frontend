@@ -64,7 +64,7 @@ export default function WhatYouGet() {
         <span className="inline-block text-xs font-bold uppercase tracking-widest text-brand-accent bg-brand-accent/10 px-4 py-1.5 rounded-full mb-4">
           Everything you need
         </span>
-        <h2 className="font-display font-bold text-4xl sm:text-5xl text-brand-primary leading-tight">
+        <h2 className="font-display font-bold text-5xl text-brand-primary leading-tight">
           All-in-one <span className="text-brand-accent">career growth</span>{" "}
           platform
         </h2>
@@ -87,7 +87,7 @@ export default function WhatYouGet() {
           >
             {badge && (
               <div className="absolute -top-2 -right-2">
-                <span className="inline-flex items-center gap-1 bg-gradient-to-r from-amber-400 to-amber-500 text-white text-[9px] font-bold px-2 py-0.5 rounded-full shadow-md">
+                <span className="inline-flex items-center gap-1 bg-gradient-to-r from-amber-400 to-amber-500 text-white text-3xs font-bold px-2 py-0.5 rounded-full shadow-md">
                   <Sparkles size={8} />
                   {badge}
                 </span>

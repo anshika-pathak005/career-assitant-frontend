@@ -16,7 +16,7 @@ export default function FinalCTA() {
             Get started free
           </span>
 
-          <h2 className="font-display font-bold text-4xl sm:text-5xl lg:text-6xl text-white leading-tight mb-5">
+          <h2 className="font-display font-bold text-6xl text-white leading-tight mb-5">
             Ready to accelerate your{" "}
             <span className="text-[#7AC4FF]">career journey?</span>
           </h2>

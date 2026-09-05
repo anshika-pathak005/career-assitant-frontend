@@ -48,14 +48,14 @@ export default function RoadmapHero({
         <div>
           <div className="inline-flex items-center gap-1.5 bg-brand-bg rounded-full px-2.5 py-0.5 mb-3">
             <Sparkles size={10} className="text-brand-accent" />
-            <span className="text-[10px] font-semibold text-brand-accent uppercase tracking-wider">
+            <span className="text-2xs font-semibold text-brand-accent uppercase tracking-wider">
               Active Roadmap
             </span>
           </div>
-          <h1 className="font-display text-brand-primary text-2xl sm:text-3xl mb-2">
+          <h1 className="page-title mb-2">
             {roadmap.dreamJob}
           </h1>
-          <p className="text-sm text-brand-muted leading-relaxed">
+          <p className="body-text">
             {roadmap.summary}
           </p>
         </div>
@@ -72,8 +72,8 @@ export default function RoadmapHero({
               size={16}
               className={`${stat.accent ? "text-brand-success" : "text-brand-accent"} mx-auto mb-1`}
             />
-            <p className="text-xl font-bold text-brand-primary">{stat.value}</p>
-            <p className="text-[10px] text-brand-muted">{stat.label}</p>
+            <p className="stat-value">{stat.value}</p>
+            <p className="stat-label">{stat.label}</p>
           </div>
         ))}
       </div>

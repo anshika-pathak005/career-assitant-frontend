@@ -14,10 +14,10 @@ export default function SettingsPage() {
   const router = useRouter();
 
   return (
-    <div className="min-h-screen bg-brand-bg py-8 px-4 sm:px-6">
-      <div className="max-w-2xl mx-auto">
+    <div className="page-shell">
+      <div className="page-container-narrow">
         {/* Header */}
-        <div className="mb-6">
+        <div className="page-header">
           <button
             onClick={() => router.back()}
             className="flex items-center gap-2 text-sm text-brand-muted hover:text-brand-secondary transition-colors mb-4"
@@ -25,8 +25,8 @@ export default function SettingsPage() {
             <ArrowLeft size={16} />
             Back
           </button>
-          <h1 className="font-display text-brand-primary text-3xl">Settings</h1>
-          <p className="text-sm text-brand-muted mt-0.5">
+          <h1 className="page-title">Settings</h1>
+          <p className="page-subtitle">
             Manage your account security and preferences
           </p>
         </div>

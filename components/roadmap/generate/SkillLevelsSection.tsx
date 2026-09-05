@@ -21,7 +21,7 @@ export default function SkillLevelsSection({
 
   return (
     <Card variant="default" padding="lg">
-      <h2 className="font-semibold text-brand-primary text-lg mb-4">
+      <h2 className="card-title mb-4">
         Rate Your Skills
       </h2>
       <p className="text-xs text-brand-muted mb-4">

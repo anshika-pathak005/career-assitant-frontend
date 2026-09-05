@@ -22,7 +22,7 @@ export default function ProjectSuggestions({ projects }: { projects: string[] })
           return (
             <div key={idx} className="p-3 bg-brand-bg/30 rounded-lg">
               <p className="text-sm font-semibold text-brand-primary">{title}</p>
-              <p className="text-xs text-brand-muted mt-0.5">{description}</p>
+              <p className="page-subtitle">{description}</p>
             </div>
           );
         })}

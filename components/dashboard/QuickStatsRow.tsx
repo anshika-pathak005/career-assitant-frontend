@@ -29,13 +29,13 @@ export default function QuickStatsRow({ stats }: Props) {
               <Icon size={17} style={{ color: iconColor }} />
             </div>
             {trend && (
-              <span className="text-[10px] font-bold text-brand-success bg-green-50 px-1.5 py-0.5 rounded-full">
+              <span className="text-2xs font-bold text-brand-success bg-green-50 px-1.5 py-0.5 rounded-full">
                 {trend}
               </span>
             )}
           </div>
-          <p className="text-2xl font-bold text-brand-primary mb-0.5">{value}</p>
-          <p className="text-xs font-medium text-brand-muted">{label}</p>
+          <p className="stat-value mb-0.5">{value}</p>
+          <p className="stat-label">{label}</p>
         </div>
       ))}
     </div>

@@ -24,7 +24,7 @@ export default function ScoresGrid({ scores }: { scores: Scores }) {
 
   return (
     <Card variant="default" padding="md" className="mb-6">
-      <div className="grid grid-cols-2 sm:grid-cols-5 gap-4 mb-6">
+      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4">
         {rings.map((ring) => (
           <ScoreRing
             key={ring.label}

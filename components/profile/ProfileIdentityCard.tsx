@@ -34,7 +34,7 @@ export default function ProfileIdentityCard({ profile, onUpdate }: Props) {
           <User size={28} className="text-white" />
         </div>
         <div>
-          <h2 className="font-semibold text-brand-primary text-xl">
+          <h2 className="subsection-title">
             {profile.name}
           </h2>
           <p className="text-sm text-brand-muted">{profile.email}</p>

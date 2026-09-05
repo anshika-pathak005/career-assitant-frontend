@@ -29,13 +29,13 @@ export default function DashboardPage() {
     return (
       <div className="min-h-screen bg-brand-bg flex">
         <Sidebar />
-        <main className="flex-1 min-w-0 max-w-7xl mx-auto px-4 sm:px-6 py-6">
+        <main className="flex-1 min-w-0 page-container-wide px-gutter py-6">
           <div className="flex flex-col gap-5">
             <div className="animate-fade-up">
-              <h1 className="font-display text-brand-primary text-2xl sm:text-3xl">
+              <h1 className="page-title">
                 Good day, {profile?.name?.split(" ")[0] ?? "there"}
               </h1>
-              <p className="text-sm text-brand-muted mt-0.5">
+              <p className="page-subtitle">
                 Complete your profile to unlock personalized career guidance.
               </p>
             </div>
@@ -57,14 +57,14 @@ export default function DashboardPage() {
     <div className="min-h-screen bg-brand-bg flex">
       <Sidebar />
 
-      <main className="flex-1 min-w-0 max-w-7xl mx-auto px-4 sm:px-6 py-6">
+      <main className="flex-1 min-w-0 page-container-wide px-gutter py-6">
         <div className="flex flex-col gap-5">
           {/* Welcome Section */}
           <div className="animate-fade-up">
-            <h1 className="font-display text-brand-primary text-2xl sm:text-3xl">
+            <h1 className="page-title">
               {isLoading ? "Welcome back" : `Good day, ${firstName}`}
             </h1>
-            <p className="text-sm text-brand-muted mt-0.5">
+            <p className="page-subtitle">
               {dashboard?.roadmap
                 ? "Continue your career journey with your personalized roadmap."
                 : "Generate your career roadmap to get started."}

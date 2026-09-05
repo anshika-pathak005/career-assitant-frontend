@@ -42,7 +42,7 @@ export default function RegisterStep2Page() {
   } = form;
 
   return (
-    <main className="min-h-screen bg-brand-bg flex items-center justify-center px-4 py-12">
+    <main className="page-shell-centered">
       {/* Background decorations */}
       <div
         aria-hidden
@@ -81,7 +81,7 @@ export default function RegisterStep2Page() {
 
           {/* Header */}
           <div className="mb-7">
-            <h1 className="font-display text-brand-primary text-3xl mb-1">
+            <h1 className="page-title mb-1">
               Complete your profile
             </h1>
             <p className="text-sm text-brand-muted">
@@ -138,13 +138,13 @@ export default function RegisterStep2Page() {
             </div>
 
             {/* Actions */}
-            <div className="flex gap-3 mt-2 animate-fade-up delay-6">
+            <div className="flex flex-col sm:flex-row gap-3 mt-2 animate-fade-up delay-6">
               <Button
                 type="button"
                 variant="ghost"
                 size="lg"
                 onClick={() => router.push("/dashboard")}
-                className="flex-1"
+                className="w-full sm:flex-1"
               >
                 Skip for now
               </Button>
@@ -152,7 +152,7 @@ export default function RegisterStep2Page() {
                 type="submit"
                 variant="primary"
                 size="lg"
-                className="flex-1"
+                className="w-full sm:flex-1"
                 isLoading={isSubmitting}
                 rightIcon={<ArrowRight size={16} />}
               >

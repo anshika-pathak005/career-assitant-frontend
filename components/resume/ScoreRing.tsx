@@ -9,7 +9,7 @@ interface Props {
 }
 
 const sizes = {
-  sm: { box: "w-12 h-12", radius: 20, stroke: 4, viewBox: 50, value: "text-sm", label: "text-[10px]" },
+  sm: { box: "w-12 h-12", radius: 20, stroke: 4, viewBox: 50, value: "text-sm", label: "text-2xs" },
   lg: { box: "w-20 h-20", radius: 35, stroke: 6, viewBox: 85, value: "text-xl", label: "text-xs" },
 } as const;
 

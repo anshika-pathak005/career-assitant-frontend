@@ -30,7 +30,7 @@ export default function LatestResumeCard({ resume }: { resume: ResumeData }) {
             Latest Analysis
           </p>
         </div>
-        <span className="text-[10px] font-medium text-brand-muted">
+        <span className="text-2xs font-medium text-brand-muted">
           {new Date(resume.uploadedAt).toLocaleDateString()}
         </span>
       </div>
@@ -42,7 +42,7 @@ export default function LatestResumeCard({ resume }: { resume: ResumeData }) {
       {/* Experience Level Badge */}
       {resume.basicInfo?.experienceLevel && (
         <div className="mb-2">
-          <span className="text-[9px] font-medium text-brand-accent bg-brand-bg px-2 py-0.5 rounded-full">
+          <span className="text-3xs font-medium text-brand-accent bg-brand-bg px-2 py-0.5 rounded-full">
             {resume.basicInfo.experienceLevel} Level
           </span>
         </div>
@@ -64,7 +64,7 @@ export default function LatestResumeCard({ resume }: { resume: ResumeData }) {
           >
             {resume.overallScore}
           </p>
-          <p className="text-[9px] text-brand-muted">Overall</p>
+          <p className="text-3xs text-brand-muted">Overall</p>
         </div>
         <div className="text-center">
           <p
@@ -73,33 +73,33 @@ export default function LatestResumeCard({ resume }: { resume: ResumeData }) {
           >
             {resume.atsScore}
           </p>
-          <p className="text-[9px] text-brand-muted">ATS Score</p>
+          <p className="text-3xs text-brand-muted">ATS Score</p>
         </div>
         <div className="text-center">
           <p className="text-sm font-semibold text-brand-primary">
             {resume.interviewReadiness || resume.basicInfo?.interviewReadiness || "Beginner"}
           </p>
-          <p className="text-[9px] text-brand-muted">Readiness</p>
+          <p className="text-3xs text-brand-muted">Readiness</p>
         </div>
       </div>
 
       {/* Missing Skills */}
       {topMissingSkills.length > 0 && (
         <div className="mt-2 pt-2 border-t border-brand-accent-lt/15">
-          <p className="text-[9px] font-semibold text-brand-warning mb-1.5">
+          <p className="text-3xs font-semibold text-brand-warning mb-1.5">
             Missing Skills
           </p>
           <div className="flex flex-wrap gap-1.5">
             {topMissingSkills.map((skill) => (
               <span
                 key={skill}
-                className="text-[9px] text-brand-warning bg-brand-warning/10 px-1.5 py-0.5 rounded"
+                className="text-3xs text-brand-warning bg-brand-warning/10 px-1.5 py-0.5 rounded"
               >
                 {skill}
               </span>
             ))}
             {missingSkills.length > 3 && (
-              <span className="text-[9px] text-brand-muted">
+              <span className="text-3xs text-brand-muted">
                 +{missingSkills.length - 3} more
               </span>
             )}

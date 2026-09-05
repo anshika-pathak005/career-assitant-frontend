@@ -19,12 +19,12 @@ export default function ResumePreview() {
         <div>
           <div className="inline-flex items-center gap-2 bg-brand-bg/50 rounded-full px-3 py-1 mb-4">
             <FileText size={12} className="text-brand-accent" />
-            <span className="text-[10px] font-semibold text-brand-accent uppercase tracking-wider">
+            <span className="text-2xs font-semibold text-brand-accent uppercase tracking-wider">
               Bonus Feature
             </span>
           </div>
 
-          <h3 className="font-display text-2xl sm:text-3xl text-brand-primary mb-3">
+          <h3 className="font-display text-3xl text-brand-primary mb-3">
             Get your <span className="text-brand-accent">resume analyzed</span> too
           </h3>
 
@@ -89,7 +89,7 @@ export default function ResumePreview() {
                 <p className="text-xs font-semibold text-brand-accent">
                   Latest Analysis
                 </p>
-                <p className="text-[10px] text-brand-muted">Test resume.pdf</p>
+                <p className="text-2xs text-brand-muted">Test resume.pdf</p>
               </div>
             </div>
             <Sparkles size={12} className="text-brand-accent-lt" />
@@ -98,41 +98,41 @@ export default function ResumePreview() {
           <div className="flex items-center justify-around mb-4 py-2 bg-brand-bg/20 rounded-lg">
             <div className="text-center">
               <p className="text-xl font-bold text-brand-warning">58</p>
-              <p className="text-[9px] text-brand-muted">Overall</p>
+              <p className="text-3xs text-brand-muted">Overall</p>
             </div>
             <div className="w-px h-8 bg-brand-accent-lt/30" />
             <div className="text-center">
               <p className="text-xl font-bold text-brand-warning">50</p>
-              <p className="text-[9px] text-brand-muted">ATS Score</p>
+              <p className="text-3xs text-brand-muted">ATS Score</p>
             </div>
             <div className="w-px h-8 bg-brand-accent-lt/30" />
             <div className="text-center">
               <p className="text-sm font-semibold text-brand-primary">Beginner</p>
-              <p className="text-[9px] text-brand-muted">Readiness</p>
+              <p className="text-3xs text-brand-muted">Readiness</p>
             </div>
           </div>
 
           <div className="bg-amber-50 border border-amber-200 rounded-lg p-2.5 mb-3">
             <div className="flex items-center gap-1.5 mb-1">
               <Sparkles size={10} className="text-amber-600" />
-              <p className="text-[9px] font-semibold text-amber-700">
+              <p className="text-3xs font-semibold text-amber-700">
                 Missing Skills Detected
               </p>
             </div>
             <div className="flex flex-wrap gap-1.5">
-              <span className="text-[9px] bg-amber-100 text-amber-700 px-1.5 py-0.5 rounded">
+              <span className="text-3xs bg-amber-100 text-amber-700 px-1.5 py-0.5 rounded">
                 Node.js
               </span>
-              <span className="text-[9px] bg-amber-100 text-amber-700 px-1.5 py-0.5 rounded">
+              <span className="text-3xs bg-amber-100 text-amber-700 px-1.5 py-0.5 rounded">
                 Express.js
               </span>
-              <span className="text-[9px] bg-amber-100 text-amber-700 px-1.5 py-0.5 rounded">
+              <span className="text-3xs bg-amber-100 text-amber-700 px-1.5 py-0.5 rounded">
                 MongoDB
               </span>
             </div>
           </div>   
 
-          <p className="text-[9px] text-brand-accent-lt text-center mt-2">
+          <p className="text-3xs text-brand-accent-lt text-center mt-2">
             Free analysis • No credit card required
           </p>
         </Card>

@@ -1,4 +1,15 @@
-/* Fonts are loaded in app/layout.tsx via <link> - keeping them in one place only */
+/* app/globals.css
+ * ─────────────────────────────────────────────────────────────────────────
+ * Single source of truth for the design system.
+ *
+ * Fonts are loaded in app/layout.tsx via <link> - kept in one place only.
+ *
+ * The type scale below is FLUID: every step is a clamp() that interpolates
+ * between a mobile size (at 320px viewport) and a desktop size (at 1280px).
+ * Because tailwind.config.ts maps its fontSize scale onto these variables,
+ * every `text-sm` / `text-2xl` / etc. in the app is automatically responsive
+ * and no longer needs `text-xl sm:text-2xl lg:text-3xl` style stacking.
+ * ───────────────────────────────────────────────────────────────────────── */
 
 @tailwind base;
 @tailwind components;
@@ -24,16 +35,41 @@
   --font-body: "Plus Jakarta Sans", sans-serif;
   --font-display: "Roboto", sans-serif;
 
-  /* Consistent font scale */
-  --text-xs:   0.75rem;
-  --text-sm:   0.875rem;
-  --text-base: 1rem;
-  --text-lg:   1.125rem;
-  --text-xl:   1.25rem;
-  --text-2xl:  1.5rem;
-  --text-3xl:  1.875rem;
-  --text-4xl:  2.25rem;
-  --text-5xl:  3rem;
+  /* ── Fluid type scale (320px → 1280px viewport) ──
+   * Consumed by tailwind.config.ts, so `text-lg` === var(--fs-lg).
+   * Never hard-code px font sizes in components; use these steps. */
+  --fs-3xs:  clamp(0.5625rem, 0.5417rem + 0.1042vw, 0.625rem);   /*  9 → 10px */
+  --fs-2xs:  clamp(0.625rem,  0.6042rem + 0.1042vw, 0.6875rem);  /* 10 → 11px */
+  --fs-xs:   clamp(0.75rem,   0.7292rem + 0.1042vw, 0.8125rem);  /* 12 → 13px */
+  --fs-sm:   clamp(0.8125rem, 0.7917rem + 0.1042vw, 0.875rem);   /* 13 → 14px */
+  --fs-base: clamp(0.9375rem, 0.9167rem + 0.1042vw, 1rem);       /* 15 → 16px */
+  --fs-md:   clamp(1rem,      0.9792rem + 0.1042vw, 1.0625rem);  /* 16 → 17px */
+  --fs-lg:   clamp(1.0625rem, 1.0208rem + 0.2083vw, 1.1875rem);  /* 17 → 19px */
+  --fs-xl:   clamp(1.1875rem, 1.1458rem + 0.2083vw, 1.3125rem);  /* 19 → 21px */
+  --fs-2xl:  clamp(1.375rem,  1.3125rem + 0.3125vw, 1.5625rem);  /* 22 → 25px */
+  --fs-3xl:  clamp(1.5625rem, 1.4583rem + 0.5208vw, 1.875rem);   /* 25 → 30px */
+  --fs-4xl:  clamp(1.8125rem, 1.6458rem + 0.8333vw, 2.3125rem);  /* 29 → 37px */
+  --fs-5xl:  clamp(2.125rem,  1.8333rem + 1.4583vw, 3rem);       /* 34 → 48px */
+  --fs-6xl:  clamp(2.5rem,    2.0833rem + 2.0833vw, 3.75rem);    /* 40 → 60px */
+  --fs-7xl:  clamp(2.75rem,   2.1667rem + 2.9167vw, 4.5rem);     /* 44 → 72px */
+
+  /* Weight ramp - one name per role so headings can't drift apart */
+  --fw-normal:   400;
+  --fw-medium:   500;
+  --fw-semibold: 600;
+  --fw-bold:     700;
+
+  /* ── Fluid spacing scale ── */
+  --space-2xs: clamp(0.25rem,  0.2083rem + 0.2083vw, 0.375rem);
+  --space-xs:  clamp(0.5rem,   0.4583rem + 0.2083vw, 0.625rem);
+  --space-sm:  clamp(0.75rem,  0.6667rem + 0.4167vw, 1rem);
+  --space-md:  clamp(1rem,     0.8333rem + 0.8333vw, 1.5rem);
+  --space-lg:  clamp(1.5rem,   1.25rem   + 1.25vw,   2.25rem);
+  --space-xl:  clamp(2rem,     1.6667rem + 1.6667vw, 3rem);
+  --space-2xl: clamp(2.5rem,   1.9167rem + 2.9167vw, 4.25rem);
+
+  /* Page gutter - the horizontal padding every page shares */
+  --page-gutter: clamp(1rem, 0.6667rem + 1.6667vw, 2rem);
 
   /* Radius */
   --radius-sm:   6px;
@@ -45,25 +81,316 @@
   --shadow-card:  0 1px 3px rgba(0,15,34,0.06), 0 4px 16px rgba(0,15,34,0.08);
   --shadow-lg:    0 4px 6px rgba(0,15,34,0.04), 0 12px 32px rgba(0,15,34,0.12);
   --shadow-focus: 0 0 0 3px rgba(85,126,178,0.25);
+
+  /* Minimum comfortable tap target (WCAG 2.5.5 / iOS HIG) */
+  --tap-target: 44px;
 }
 
 /* ─── Base ───────────────────────────────────────────────────────── */
-*, *::before, *::after { box-sizing: border-box; }
+@layer base {
+  *, *::before, *::after { box-sizing: border-box; }
 
-html {
-  font-size: 16px;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  scroll-behavior: smooth;
+  /* Root stays at 16px. The old 15px/14px shrink-at-breakpoint hack is gone:
+   * it compounded with rem-based clamps and made small text illegible. All
+   * downscaling now happens inside the clamp() steps above. */
+  html {
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    scroll-behavior: smooth;
+    text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    font-family: var(--font-body);
+    font-size: var(--fs-base);
+    background-color: var(--color-bg);
+    color: var(--color-primary);
+    min-height: 100vh;
+    min-height: 100dvh;
+    line-height: 1.55;
+    overflow-x: hidden;
+    width: 100%;
+  }
+
+  /* Every heading is display-face + bold by default, so a page that forgets
+   * `font-display font-bold` still matches the rest of the app. This is what
+   * fixes "resume page is bold, roadmap page is less bold". */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+    font-weight: var(--fw-bold);
+    color: var(--color-primary);
+    line-height: 1.2;
+    letter-spacing: -0.015em;
+    text-wrap: balance;
+  }
+
+  h1 { font-size: var(--fs-3xl); }
+  h2 { font-size: var(--fs-2xl); }
+  h3 { font-size: var(--fs-lg); }
+  h4 { font-size: var(--fs-md); }
+  h5 { font-size: var(--fs-sm); }
+  h6 { font-size: var(--fs-xs); }
+
+  p, li, dd, dt { text-wrap: pretty; }
+
+  /* Long unbroken strings (URLs, emails, skill names) must not blow out the
+   * layout on narrow screens. */
+  p, h1, h2, h3, h4, h5, h6, span, li, a, label, td, th {
+    overflow-wrap: break-word;
+  }
+
+  /* Form controls inherit the type ramp instead of the UA's 13.33px default */
+  input, textarea, select, button {
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+    color: inherit;
+  }
+
+  /* iOS zooms the viewport when a focused field is under 16px. Force the
+   * computed size up on small screens only - visual size is unchanged on
+   * desktop, where the smaller step is intentional. */
+  @media (max-width: 640px) {
+    input, textarea, select {
+      font-size: 16px !important;
+    }
+  }
+
+  img, svg, video, canvas { max-width: 100%; height: auto; }
+  svg { flex-shrink: 0; }
+
+  table { width: 100%; }
 }
 
-body {
-  font-family: var(--font-body);
-  background-color: var(--color-bg);
-  color: var(--color-primary);
-  min-height: 100vh;
-  line-height: 1.6;
-  overflow-x: hidden;
+/* ─── Semantic component classes ─────────────────────────────────── */
+/* Pages compose these instead of re-inventing a heading stack each time.
+ * Change a value here and every page moves together. */
+@layer components {
+
+  /* Page skeleton -------------------------------------------------- */
+  .page-shell {
+    min-height: 100vh;
+    min-height: 100dvh;
+    background-color: var(--color-bg);
+    padding-block: var(--space-xl);
+    padding-inline: var(--page-gutter);
+  }
+
+  /* Centred, no vertical padding - for auth/full-bleed screens */
+  .page-shell-centered {
+    min-height: 100vh;
+    min-height: 100dvh;
+    background-color: var(--color-bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-block: var(--space-xl);
+    padding-inline: var(--page-gutter);
+  }
+
+  .page-container        { width: 100%; max-width: 56rem; margin-inline: auto; }  /* 896px - default */
+  .page-container-narrow { width: 100%; max-width: 42rem; margin-inline: auto; }  /* 672px - forms  */
+  .page-container-form   { width: 100%; max-width: 28rem; margin-inline: auto; }  /* 448px - auth   */
+  .page-container-wide   { width: 100%; max-width: 72rem; margin-inline: auto; }  /* 1152px - marketing */
+
+  /* Page header ---------------------------------------------------- */
+  .page-header {
+    margin-bottom: var(--space-lg);
+  }
+
+  /* Header with an action button on the right - stacks on mobile.
+   * No bottom margin: these usually sit inside a `space-y-*` parent, so the
+   * caller owns the spacing. Add `mb-fluid-lg` when it stands alone. */
+  .page-header-row {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: var(--space-sm);
+  }
+
+  @media (min-width: 640px) {
+    .page-header-row {
+      flex-direction: row;
+      align-items: center;
+    }
+  }
+
+  .page-title {
+    font-family: var(--font-display);
+    font-weight: var(--fw-bold);
+    font-size: var(--fs-3xl);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    color: var(--color-primary);
+  }
+
+  .page-subtitle {
+    font-family: var(--font-body);
+    font-size: var(--fs-sm);
+    font-weight: var(--fw-normal);
+    line-height: 1.5;
+    color: var(--color-muted);
+    margin-top: 0.25rem;
+    max-width: 60ch;
+  }
+
+  /* Hero (dark gradient banner) ------------------------------------ */
+  .hero-title {
+    font-family: var(--font-display);
+    font-weight: var(--fw-bold);
+    font-size: var(--fs-4xl);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    color: #fff;
+  }
+
+  .hero-subtitle {
+    font-family: var(--font-body);
+    font-size: var(--fs-base);
+    line-height: 1.6;
+    color: var(--color-accent-lt);
+    max-width: 52ch;
+  }
+
+  /* In-page section + card headings -------------------------------- */
+  /* The ladder, largest to smallest. Pick by role, not by eye:
+   *   page-title       h1 of a page                       3xl bold
+   *   section-title    major section within a page        2xl bold
+   *   subsection-title group heading / card header name   xl  semibold
+   *   card-title       heading at the top of a card       lg  semibold
+   *   card-heading     small icon + label inside a card   md  semibold  */
+  .section-title {
+    font-family: var(--font-display);
+    font-weight: var(--fw-bold);
+    font-size: var(--fs-2xl);
+    line-height: 1.2;
+    letter-spacing: -0.015em;
+    color: var(--color-primary);
+  }
+
+  .subsection-title {
+    font-family: var(--font-display);
+    font-weight: var(--fw-semibold);
+    font-size: var(--fs-xl);
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+    color: var(--color-primary);
+  }
+
+  .card-title {
+    font-family: var(--font-display);
+    font-weight: var(--fw-semibold);
+    font-size: var(--fs-lg);
+    line-height: 1.3;
+    letter-spacing: -0.01em;
+    color: var(--color-primary);
+  }
+
+  /* Small heading inside a card, usually next to an icon */
+  .card-heading {
+    font-family: var(--font-body);
+    font-weight: var(--fw-semibold);
+    font-size: var(--fs-md);
+    line-height: 1.35;
+    color: var(--color-primary);
+  }
+
+  .card-subtitle {
+    font-family: var(--font-body);
+    font-size: var(--fs-xs);
+    line-height: 1.5;
+    color: var(--color-muted);
+    margin-top: 0.125rem;
+  }
+
+  /* Body + meta ---------------------------------------------------- */
+  .body-text {
+    font-size: var(--fs-sm);
+    line-height: 1.65;
+    color: var(--color-muted);
+    max-width: 72ch;
+  }
+
+  .meta-text {
+    font-size: var(--fs-xs);
+    line-height: 1.45;
+    color: var(--color-muted);
+  }
+
+  /* Uppercase micro-label used in badges and pills */
+  .eyebrow {
+    font-family: var(--font-body);
+    font-size: var(--fs-2xs);
+    font-weight: var(--fw-semibold);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    line-height: 1.3;
+  }
+
+  /* Stats ---------------------------------------------------------- */
+  .stat-value {
+    font-family: var(--font-display);
+    font-weight: var(--fw-bold);
+    font-size: var(--fs-xl);
+    line-height: 1.1;
+    color: var(--color-primary);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .stat-label {
+    font-size: var(--fs-2xs);
+    line-height: 1.3;
+    color: var(--color-muted);
+  }
+
+  /* Forms ---------------------------------------------------------- */
+  .field-label {
+    display: block;
+    font-size: var(--fs-sm);
+    font-weight: var(--fw-semibold);
+    line-height: 1.4;
+    color: var(--color-secondary);
+    margin-bottom: 0.375rem;
+  }
+
+  .field-hint {
+    font-size: var(--fs-xs);
+    line-height: 1.45;
+    color: var(--color-muted);
+  }
+
+  /* Interactive ---------------------------------------------------- */
+  /* Guarantees a comfortable hit area without changing visual size:
+   * the ::after box extends the touchable region, not the layout box. */
+  .tap-target {
+    position: relative;
+  }
+
+  .tap-target::after {
+    content: "";
+    position: absolute;
+    inset: 50% 0 0 50%;
+    width: 100%;
+    height: 100%;
+    min-width: var(--tap-target);
+    min-height: var(--tap-target);
+    transform: translate(-50%, -50%);
+  }
+
+  /* Stack that reflows to a column under 480px - used by button rows */
+  .action-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-xs);
+  }
+
+  @media (max-width: 479px) {
+    .action-row > * { flex: 1 1 100%; }
+  }
 }
 
 /* ─── Scrollbar ──────────────────────────────────────────────────── */
@@ -97,4 +424,16 @@ body {
 :focus-visible {
   outline: none;
   box-shadow: var(--shadow-focus);
+}
+
+/* ─── Reduced motion ─────────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

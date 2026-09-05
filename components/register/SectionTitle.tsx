@@ -12,9 +12,9 @@ export default function SectionTitle({
 }) {
   return (
     <div className="flex items-center gap-2 mb-3">
-      <p className="text-sm font-semibold text-brand-secondary">{children}</p>
+      <p className="field-label">{children}</p>
       {optional && (
-        <span className="text-[10px] font-semibold uppercase tracking-wider text-brand-muted bg-brand-bg px-2 py-0.5 rounded-full">
+        <span className="text-2xs font-semibold uppercase tracking-wider text-brand-muted bg-brand-bg px-2 py-0.5 rounded-full">
           optional
         </span>
       )}

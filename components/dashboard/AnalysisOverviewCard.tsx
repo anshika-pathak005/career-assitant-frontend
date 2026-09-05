@@ -57,7 +57,7 @@ function ScoreRing({
           {value}
         </span>
       </div>
-      <span className="text-[10px] font-semibold text-brand-muted text-center">
+      <span className="text-2xs font-semibold text-brand-muted text-center">
         {label}
       </span>
     </div>
@@ -112,11 +112,11 @@ export default function AnalysisOverviewCard({ data }: Props) {
           <div className="w-px h-12 bg-brand-accent-lt/20" />
           <div className="flex flex-col items-center gap-1">
             <div className="w-16 h-16 flex items-center justify-center">
-              <span className="text-2xl font-bold text-brand-primary">
+              <span className="stat-value">
                 {analysis.experienceLevel}
               </span>
             </div>
-            <span className="text-[10px] font-semibold text-brand-muted">
+            <span className="text-2xs font-semibold text-brand-muted">
               Level
             </span>
           </div>
@@ -131,19 +131,19 @@ export default function AnalysisOverviewCard({ data }: Props) {
         <div className="grid grid-cols-3 gap-2">
           <div className="flex flex-col items-center gap-1 p-2.5 rounded-lg bg-brand-bg/40">
             <Star size={14} className="text-brand-accent" />
-            <span className="text-[10px] font-bold text-brand-primary text-center">
+            <span className="text-2xs font-bold text-brand-primary text-center">
               {analysis.strengths.length} Strengths
             </span>
           </div>
           <div className="flex flex-col items-center gap-1 p-2.5 rounded-lg bg-brand-bg/40">
             <AlertCircle size={14} className="text-brand-warning" />
-            <span className="text-[10px] font-bold text-brand-primary text-center">
+            <span className="text-2xs font-bold text-brand-primary text-center">
               {analysis.missingSkills.length} Gaps
             </span>
           </div>
           <div className="flex flex-col items-center gap-1 p-2.5 rounded-lg bg-brand-bg/40">
             <TrendingUp size={14} className="text-brand-success" />
-            <span className="text-[10px] font-bold text-brand-primary text-center">
+            <span className="text-2xs font-bold text-brand-primary text-center">
               {careerGuidance.recommendedRoles.length} Roles
             </span>
           </div>

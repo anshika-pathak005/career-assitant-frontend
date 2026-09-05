@@ -34,7 +34,7 @@ export default function AboutPage() {
           </span>
         </div>
 
-        <h1 className="animate-fade-up delay-1 font-display font-bold text-4xl sm:text-5xl lg:text-6xl leading-[1.1] mb-6 text-brand-primary">
+        <h1 className="animate-fade-up delay-1 text-6xl mb-fluid-md">
           We believe everyone deserves a{" "}
           <span className="text-brand-accent">clear career path</span>
         </h1>
@@ -53,7 +53,7 @@ export default function AboutPage() {
             <span className="inline-block text-xs font-bold uppercase tracking-widest text-brand-accent bg-brand-accent/10 px-3 py-1 rounded-full mb-4">
               Our Mission
             </span>
-            <h2 className="font-display text-3xl sm:text-4xl text-brand-primary mb-4">
+            <h2 className="text-4xl mb-4">
               Empower every job seeker with{" "}
               <span className="text-brand-accent">AI-driven guidance</span>
             </h2>
@@ -86,7 +86,7 @@ export default function AboutPage() {
           <span className="inline-block text-xs font-bold uppercase tracking-widest text-brand-accent bg-brand-accent/10 px-3 py-1 rounded-full mb-4">
             Our Values
           </span>
-          <h2 className="font-display text-3xl text-brand-primary">
+          <h2 className="text-3xl">
             What drives us
           </h2>
         </div>
@@ -96,7 +96,7 @@ export default function AboutPage() {
             <div className="w-10 h-10 rounded-lg bg-brand-bg flex items-center justify-center mb-3">
               <Users size={18} className="text-brand-accent" />
             </div>
-            <h3 className="font-semibold text-brand-primary mb-2">User First</h3>
+            <h3 className="card-heading mb-2">User First</h3>
             <p className="text-xs text-brand-muted leading-relaxed">
               Everything we build starts with the question: "Does this help our
               users grow?"
@@ -106,7 +106,7 @@ export default function AboutPage() {
             <div className="w-10 h-10 rounded-lg bg-brand-bg flex items-center justify-center mb-3">
               <Rocket size={18} className="text-brand-accent" />
             </div>
-            <h3 className="font-semibold text-brand-primary mb-2">Innovation</h3>
+            <h3 className="card-heading mb-2">Innovation</h3>
             <p className="text-xs text-brand-muted leading-relaxed">
               We leverage cutting-edge AI to provide insights that were never
               possible before.
@@ -116,7 +116,7 @@ export default function AboutPage() {
             <div className="w-10 h-10 rounded-lg bg-brand-bg flex items-center justify-center mb-3">
               <Heart size={18} className="text-brand-accent" />
             </div>
-            <h3 className="font-semibold text-brand-primary mb-2">Empathy</h3>
+            <h3 className="card-heading mb-2">Empathy</h3>
             <p className="text-xs text-brand-muted leading-relaxed">
               We understand the challenges of job hunting and design solutions
               that truly help.
@@ -131,7 +131,7 @@ export default function AboutPage() {
           <div className="w-14 h-14 rounded-full bg-brand-primary flex items-center justify-center mx-auto mb-4">
             <Users size={24} className="text-white" />
           </div>
-          <h3 className="font-display text-xl text-brand-primary mb-2">
+          <h3 className="subsection-title mb-2">
             Join our team
           </h3>
           <p className="text-sm text-brand-muted max-w-md mx-auto mb-4">
@@ -157,7 +157,7 @@ export default function AboutPage() {
           padding="lg"
           className="bg-gradient-to-br from-brand-primary to-brand-secondary border-none"
         >
-          <h2 className="font-display text-white text-2xl sm:text-3xl mb-3">
+          <h2 className="hero-title mb-3">
             Ready to start your journey?
           </h2>
           <p className="text-brand-accent-lt text-sm mb-6 max-w-md mx-auto">

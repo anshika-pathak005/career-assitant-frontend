@@ -46,14 +46,14 @@ export default function FeatureShowcase() {
       <div className="text-center mb-2">
         <div className="inline-flex items-center gap-1.5 bg-brand-bg/50 rounded-full px-3 py-1 mb-2">
           <Sparkles size={12} className="text-brand-accent" />
-          <span className="text-[10px] font-semibold text-brand-accent uppercase tracking-wider">
+          <span className="text-2xs font-semibold text-brand-accent uppercase tracking-wider">
             What you'll get
           </span>
         </div>
         {/* <h4 className="font-display text-brand-primary text-lg">
           After completing your profile
         </h4> */}
-        <p className="text-xs text-brand-muted mt-0.5">
+        <p className="page-subtitle">
           Unlock these features to accelerate your career journey
         </p>
       </div>

@@ -23,16 +23,16 @@ export default function GenerateRoadmapCTA({ userName }: { userName: string }) {
       <div className="relative z-10">
         <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-3 py-1 mb-5">
           <Sparkles size={14} className="text-brand-accent-lt" />
-          <span className="text-[11px] font-medium text-brand-accent-lt uppercase tracking-wider">
+          <span className="text-2xs font-medium text-brand-accent-lt uppercase tracking-wider">
             Ai Powered
           </span>
         </div>
 
-        <h2 className="font-display text-white text-2xl sm:text-3xl lg:text-4xl mb-3">
+        <h2 className="hero-title mb-3">
           Transform your career journey, {userName?.split(" ")[0]}
         </h2>
 
-        <p className="text-brand-accent-lt text-sm sm:text-base max-w-md mb-6 leading-relaxed">
+        <p className="text-brand-accent-lt text-base max-w-md mb-6 leading-relaxed">
           Generate a comprehensive, step-by-step roadmap tailored to your
           skills, experience, and career aspirations.
         </p>

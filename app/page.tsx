@@ -53,38 +53,38 @@ export default function LandingPage() {
       </div>
 
       {/* Hero Section */}
-      <section className="max-w-4xl mx-auto px-6 pt-24 pb-24 text-center">
-        <div className="animate-fade-up inline-flex items-center gap-2 bg-white/70 border border-brand-accent-lt/30 rounded-full px-4 py-1.5 mb-8 backdrop-blur-sm">
-          <Sparkles size={13} className="text-brand-accent" />
+      <section className="max-w-4xl mx-auto px-4 sm:px-6 pt-12 sm:pt-24 pb-12 sm:pb-24 text-center">
+        <div className="animate-fade-up inline-flex items-center gap-2 bg-white/70 border border-brand-accent-lt/30 rounded-full px-3.5 py-1.5 mb-6 sm:mb-8 backdrop-blur-sm">
+          <Sparkles size={13} className="text-brand-accent shrink-0" />
           <span className="text-xs font-semibold text-brand-secondary">
             AI-Powered Career Growth Platform
           </span>
         </div>
 
-        <h1 className="animate-fade-up delay-1 font-display font-bold text-5xl sm:text-6xl lg:text-7xl leading-[1.1] mb-6 text-brand-primary">
+        <h1 className="animate-fade-up delay-1 text-7xl mb-fluid-md">
           Your career, <br />
           <span className="text-brand-accent">accelerated by AI</span>
         </h1>
 
-        <p className="animate-fade-up delay-2 text-brand-muted text-lg max-w-xl mx-auto mb-10 leading-relaxed">
+        <p className="animate-fade-up delay-2 text-brand-muted text-lg max-w-xl mx-auto mb-8 sm:mb-10 leading-relaxed">
           Resume analysis, personalized career roadmap, AI career coach, and job
           matching — all in one place.
         </p>
 
-        <div className="animate-fade-up delay-3 flex flex-col sm:flex-row gap-3 justify-center">
+        <div className="animate-fade-up delay-3 flex flex-col sm:flex-row gap-3 justify-center max-w-xs sm:max-w-none mx-auto">
           <Link href="/register">
-            <Button size="lg" rightIcon={<ArrowRight size={16} />}>
+            <Button size="lg" className="w-full sm:w-auto" rightIcon={<ArrowRight size={16} />}>
               Start for free
             </Button>
           </Link>
           <Link href="/roadmap">
-            <Button size="lg" variant="ghost">
+            <Button size="lg" variant="ghost" className="w-full sm:w-auto">
               Generate Your Roadmap
             </Button>
           </Link>
         </div>
 
-        <p className="animate-fade-up delay-3 mt-10 text-brand-muted/70 text-xs">
+        <p className="animate-fade-up delay-3 mt-8 sm:mt-10 text-brand-muted/70 text-xs">
           Trusted by <span className="font-bold text-brand-accent">10,000+</span>{" "}
           students and job seekers worldwide
         </p>

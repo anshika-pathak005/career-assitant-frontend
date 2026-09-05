@@ -42,15 +42,15 @@ const steps = [
 
 export default function HowItWorks() {
   return (
-    <section className="max-w-6xl mx-auto px-6 py-24">
-      <div className="text-center mb-16">
-        <span className="inline-block text-xs font-bold uppercase tracking-widest text-brand-accent bg-brand-accent/10 px-4 py-1.5 rounded-full mb-4">
+    <section className="max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-24">
+      <div className="text-center mb-10 sm:mb-16">
+        <span className="inline-block text-xs font-bold uppercase tracking-widest text-brand-accent bg-brand-accent/10 px-4 py-1.5 rounded-full mb-3 sm:mb-4">
           How it works
         </span>
-        <h2 className="font-display font-bold text-4xl sm:text-5xl text-brand-primary leading-tight">
+        <h2 className="font-display font-bold text-5xl text-brand-primary leading-tight">
           Your journey to <span className="text-brand-accent">career success</span>
         </h2>
-        <p className="mt-4 text-brand-muted text-base max-w-xl mx-auto leading-relaxed">
+        <p className="mt-3 sm:mt-4 text-brand-muted text-base max-w-xl mx-auto leading-relaxed">
           Fill your details, get your roadmap, and start learning — it's that
           simple.
         </p>
@@ -73,7 +73,7 @@ export default function HowItWorks() {
           >
             <span
               className={`
-              absolute -top-3 left-5 text-[10px] font-black tracking-wider rounded-full px-2.5 py-0.5
+              absolute -top-3 left-5 text-2xs font-black tracking-wider rounded-full px-2.5 py-0.5
               ${
                 highlight
                   ? "bg-amber-400 text-brand-primary"
@@ -115,7 +115,7 @@ export default function HowItWorks() {
             {badge && (
               <div className="mt-3 flex items-center gap-1">
                 <Sparkles size={10} className="text-amber-400" />
-                <span className="text-[10px] text-amber-400 font-medium">
+                <span className="text-2xs text-amber-400 font-medium">
                   {badge}
                 </span>
               </div>
@@ -128,7 +128,7 @@ export default function HowItWorks() {
       <div className="mt-10 text-center">
         <div className="inline-flex items-center gap-2 bg-white/70 backdrop-blur-sm rounded-full px-4 py-2 border border-brand-accent-lt/20">
           <FileText size={12} className="text-brand-accent" />
-          <span className="text-xs text-brand-muted">
+          <span className="meta-text">
             Want resume analysis too?{" "}
             <span className="font-medium text-brand-accent">
               Upload your resume

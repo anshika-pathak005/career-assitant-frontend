@@ -34,12 +34,12 @@ export default function LimitReachedScreen({
         </div>
 
         {/* Title */}
-        <h2 className="font-display text-2xl font-bold text-brand-primary mb-2">
+        <h2 className="section-title mb-2">
           Monthly generation limit reached
         </h2>
 
         {/* Subtitle */}
-        <p className="text-sm text-brand-muted mb-6 leading-relaxed">
+        <p className="body-text mb-6">
           You&apos;ve used all{" "}
           <span className="font-bold text-brand-primary">{limit.total}</span> free
           roadmap generations this month. Upgrade to unlock unlimited roadmaps
@@ -92,7 +92,7 @@ export default function LimitReachedScreen({
         </Button>
 
         {/* Small note */}
-        <p className="text-[10px] text-brand-accent-lt mt-4">
+        <p className="text-2xs text-brand-accent-lt mt-4">
           Already upgraded? Contact support for assistance.
         </p>
       </Card>

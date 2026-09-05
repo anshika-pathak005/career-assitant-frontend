@@ -44,8 +44,8 @@ export default function RoadmapDetailPage() {
 
   if (roadmapLoading) {
     return (
-      <div className="min-h-screen bg-brand-bg py-8 px-4 sm:px-6">
-        <div className="max-w-4xl mx-auto">
+      <div className="page-shell">
+        <div className="page-container">
           <Skeleton className="h-64 mb-6" />
           <Skeleton className="h-96" />
         </div>
@@ -55,12 +55,12 @@ export default function RoadmapDetailPage() {
 
   if (!roadmap) {
     return (
-      <div className="min-h-screen bg-brand-bg flex items-center justify-center">
+      <div className="page-shell-centered">
         <Card variant="default" padding="lg" className="text-center max-w-md">
           <p className="text-brand-primary font-semibold mb-2">
             Roadmap not found
           </p>
-          <p className="text-sm text-brand-muted mb-4">
+          <p className="page-subtitle mx-auto mb-4">
             The roadmap you&apos;re looking for doesn&apos;t exist or has been
             removed.
           </p>
@@ -80,10 +80,10 @@ export default function RoadmapDetailPage() {
   const overallProgress = toPercent(completedSteps, totalSteps);
 
   return (
-    <div className="min-h-screen bg-brand-bg py-8 px-4 sm:px-6">
-      <div className="max-w-4xl mx-auto">
+    <div className="page-shell">
+      <div className="page-container">
         {/* Header */}
-        <div className="mb-6">
+        <div className="page-header">
           <button
             onClick={() => router.back()}
             className="flex items-center gap-2 text-sm text-brand-muted hover:text-brand-secondary transition-colors mb-4"
@@ -102,7 +102,7 @@ export default function RoadmapDetailPage() {
 
         {/* Phases Section */}
         <div className="space-y-3">
-          <h2 className="font-display text-brand-primary text-xl mb-3">
+          <h2 className="subsection-title mb-3">
             Your Learning Path
           </h2>
 

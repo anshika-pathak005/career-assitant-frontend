@@ -69,11 +69,11 @@ export default function ChatPage() {
     <div className="min-h-screen bg-brand-bg flex flex-col">
       {/* <Navbar /> */}
 
-      <div className="flex flex-1 max-w-5xl mx-auto w-full px-4 sm:px-6 gap-6 py-6 min-h-0">
+      <div className="flex flex-1 max-w-5xl mx-auto w-full px-3 sm:px-6 gap-6 py-3 sm:py-6 h-[calc(100vh-4.5rem)] sm:h-auto min-h-[calc(100vh-5rem)]">
         {/* <Sidebar /> */}
 
         {/* Chat panel */}
-        <main className="flex-1 min-w-0 flex flex-col bg-white rounded-lg border border-brand-accent-lt/20 shadow-card overflow-hidden">
+        <main className="flex-1 min-w-0 flex flex-col bg-white rounded-lg border border-brand-accent-lt/20 shadow-card overflow-hidden h-full">
           {/* Chat header */}
           <div className="flex items-center gap-3 px-5 py-4 border-b border-brand-accent-lt/20 flex-shrink-0">
             <div className="w-9 h-9 bg-brand-primary rounded-md flex items-center justify-center">
@@ -83,13 +83,13 @@ export default function ChatPage() {
               <p className="font-bold text-brand-primary text-sm">
                 AI Career Coach
               </p>
-              <p className="text-xs text-brand-muted">
+              <p className="meta-text">
                 Ask anything about your career
               </p>
             </div>
             <div className="ml-auto flex items-center gap-1.5">
               <span className="w-2 h-2 bg-green-500 rounded-full" />
-              <span className="text-xs text-brand-muted">Online</span>
+              <span className="meta-text">Online</span>
             </div>
           </div>
 
@@ -162,7 +162,7 @@ export default function ChatPage() {
                     >
                       {msg.content}
                     </div>
-                    <span className="text-[10px] text-brand-accent-lt px-1">
+                    <span className="text-2xs text-brand-accent-lt px-1">
                       {formatTime(msg.createdAt)}
                     </span>
                   </div>
@@ -213,7 +213,7 @@ export default function ChatPage() {
                 <Send size={14} className="text-white" />
               </button>
             </div>
-            <p className="text-[10px] text-brand-accent-lt text-center mt-2">
+            <p className="text-2xs text-brand-accent-lt text-center mt-2">
               Press Enter to send · Shift+Enter for new line
             </p>
           </div>

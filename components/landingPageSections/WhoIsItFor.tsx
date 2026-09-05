@@ -36,7 +36,7 @@ export default function WhoIsItFor() {
         <span className="inline-block text-xs font-bold uppercase tracking-widest text-brand-accent bg-brand-accent/10 px-4 py-1.5 rounded-full mb-4">
           Who it's for
         </span>
-        <h2 className="font-display font-bold text-4xl sm:text-5xl text-brand-primary leading-tight">
+        <h2 className="font-display font-bold text-5xl text-brand-primary leading-tight">
           Built for <span className="text-brand-accent">learners like you</span>
         </h2>
         <p className="mt-4 text-brand-muted text-base max-w-xl mx-auto leading-relaxed">
@@ -53,7 +53,7 @@ export default function WhoIsItFor() {
           >
             <div className="absolute inset-0 bg-gradient-to-br from-brand-bg/0 to-brand-bg/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             <div className="relative z-10">
-              <span className="inline-block text-[10px] font-bold uppercase tracking-widest text-brand-accent bg-brand-bg/70 px-2.5 py-1 rounded-full mb-4">
+              <span className="inline-block text-2xs font-bold uppercase tracking-widest text-brand-accent bg-brand-bg/70 px-2.5 py-1 rounded-full mb-4">
                 {label}
               </span>
               <div className="w-11 h-11 bg-brand-bg/60 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 group-hover:bg-brand-accent/10 transition-all duration-300">

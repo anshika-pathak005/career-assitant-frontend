@@ -71,9 +71,9 @@ export default function EditableRow<T>({
       <button
         onClick={startEditing}
         aria-label={`Edit ${label}`}
-        className="opacity-0 group-hover:opacity-100 transition-opacity text-brand-muted hover:text-brand-accent"
+        className="opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity text-brand-muted hover:text-brand-accent p-1 shrink-0 ml-2"
       >
-        <Edit2 size={14} />
+        <Edit2 size={15} />
       </button>
     </div>
   );

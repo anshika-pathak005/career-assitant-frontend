@@ -19,7 +19,7 @@ export default function ProfilePage() {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-brand-bg py-8 px-4 sm:px-6">
+      <div className="page-shell">
         <div className="max-w-4xl mx-auto space-y-4">
           <Skeleton className="h-32" />
           <Skeleton className="h-64" />
@@ -35,12 +35,12 @@ export default function ProfilePage() {
   const handleUpdate = updateProfile.mutate;
 
   return (
-    <div className="min-h-screen bg-brand-bg py-8 px-4 sm:px-6">
-      <div className="max-w-4xl mx-auto">
+    <div className="page-shell">
+      <div className="page-container">
         {/* Header */}
-        <div className="mb-6">
-          <h1 className="font-display text-brand-primary text-3xl">Profile</h1>
-          <p className="text-sm text-brand-muted mt-0.5">
+        <div className="page-header">
+          <h1 className="page-title">Profile</h1>
+          <p className="page-subtitle">
             View and manage your personal information
           </p>
         </div>
@@ -50,7 +50,7 @@ export default function ProfilePage() {
         {/* Skills & Industries */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
           <Card variant="default" padding="lg">
-            <h3 className="font-semibold text-brand-primary text-md mb-3 flex items-center gap-2">
+            <h3 className="card-heading mb-3 flex items-center gap-2">
               <Wrench size={16} className="text-brand-accent" />
               Skills
             </h3>
@@ -61,7 +61,7 @@ export default function ProfilePage() {
           </Card>
 
           <Card variant="default" padding="lg">
-            <h3 className="font-semibold text-brand-primary text-md mb-3 flex items-center gap-2">
+            <h3 className="card-heading mb-3 flex items-center gap-2">
               <MapPin size={16} className="text-brand-accent" />
               Industries
             </h3>

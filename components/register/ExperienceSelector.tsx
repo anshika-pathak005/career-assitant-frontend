@@ -13,7 +13,7 @@ export default function ExperienceSelector({ value, onSelect }: Props) {
   return (
     <div className="animate-fade-up delay-6">
       <SectionTitle optional>Years of Experience</SectionTitle>
-      <div className="grid grid-cols-3 sm:grid-cols-5 gap-2">
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-2">
         {EXPERIENCE_OPTIONS.map((exp) => {
           const isSelected = value === exp;
           return (

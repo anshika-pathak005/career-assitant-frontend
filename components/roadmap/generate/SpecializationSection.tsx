@@ -26,7 +26,7 @@ export default function SpecializationSection({
 
   return (
     <Card variant="default" padding="lg">
-      <h2 className="font-semibold text-brand-primary text-lg mb-4">
+      <h2 className="card-title mb-4">
         Choose Specialization
       </h2>
       <p className="text-xs text-brand-muted mb-4 -mt-2">
@@ -68,7 +68,7 @@ export default function SpecializationSection({
                 {spec.coreTech.slice(0, 3).map((tech) => (
                   <span
                     key={tech}
-                    className={`text-[10px] px-2 py-0.5 rounded-full ${
+                    className={`text-2xs px-2 py-0.5 rounded-full ${
                       isSelected
                         ? "bg-white/20 text-white/80"
                         : "bg-brand-bg text-brand-muted"
@@ -85,7 +85,7 @@ export default function SpecializationSection({
 
       {/* Custom Specialization Input */}
       <div className="mt-4 pt-4 border-t border-brand-accent-lt/15">
-        <label className="text-xs font-semibold text-brand-secondary block mb-2">
+        <label className="field-label">
           Or specify your own specialization
         </label>
         <Input

@@ -235,24 +235,24 @@ export default function Header() {
             )}
 
             {/* Mobile menu toggle */}
-            {/* <button
-              className="md:hidden w-9 h-9 flex items-center justify-center rounded-md text-white/70 hover:text-white hover:bg-white/10 transition-colors ml-1"
+            <button
+              className="md:hidden w-9 h-9 flex items-center justify-center rounded-md text-white/80 hover:text-white hover:bg-white/10 transition-colors ml-1"
               onClick={() => setMobileOpen((v) => !v)}
               aria-label="Toggle menu"
             >
-              {mobileOpen ? <X size={18} /> : <Menu size={18} />}
-            </button> */}
+              {mobileOpen ? <X size={20} /> : <Menu size={20} />}
+            </button>
           </div>
         </div>
 
         {/* ── Mobile menu ──────────────────────────────────────── */}
         {mobileOpen && (
-          <div className="md:hidden border-t border-white/10 bg-brand-primary/98 backdrop-blur-md">
+          <div className="md:hidden border-t border-white/10 bg-brand-primary/98 backdrop-blur-md animate-fade-in">
             <nav className="max-w-7xl mx-auto px-4 py-3 flex flex-col gap-1">
               {(isAuthenticated ? APP_NAV : PUBLIC_NAV).map((item) => {
                 const href = item.href;
                 const label = item.label;
-                const Icon = "icon" in item ? item.icon : null;
+                const Icon = "icon" in item ? (item.icon as React.ElementType) : null;
                 const active = pathname === href;
 
                 return (
@@ -261,13 +261,13 @@ export default function Header() {
                     href={href}
                     onClick={() => setMobileOpen(false)}
                     className={[
-                      "flex items-center gap-2.5 px-3 py-2.5 rounded-md text-sm font-semibold transition-colors",
+                      "flex items-center gap-2.5 px-3.5 py-2.5 rounded-md text-sm font-semibold transition-colors",
                       active
                         ? "bg-white text-brand-primary"
-                        : "text-white/70 hover:text-white hover:bg-white/10",
+                        : "text-white/80 hover:text-white hover:bg-white/10",
                     ].join(" ")}
                   >
-                    {/* {Icon && <Icon size={15} />} */}
+                    {Icon && <Icon size={16} className="shrink-0" />}
                     {label}
                   </Link>
                 );
@@ -275,13 +275,13 @@ export default function Header() {
 
               {/* Mobile auth actions */}
               {!isAuthenticated && (
-                <div className="flex gap-2 pt-2 border-t border-white/10 mt-1">
+                <div className="flex gap-2 pt-3 border-t border-white/10 mt-2">
                   <Link
                     href="/login"
                     className="flex-1"
                     onClick={() => setMobileOpen(false)}
                   >
-                    <Button variant="ghost" size="sm" className="w-full">
+                    <Button variant="ghost" size="sm" className="w-full text-white">
                       Sign in
                     </Button>
                   </Link>
@@ -298,16 +298,32 @@ export default function Header() {
               )}
 
               {isAuthenticated && (
-                <button
-                  onClick={() => {
-                    setMobileOpen(false);
-                    logoutMutation.mutate();
-                  }}
-                  className="flex items-center gap-2.5 px-3 py-2.5 rounded-md text-sm font-semibold text-red-400 hover:bg-white/10 transition-colors mt-1 border-t border-white/10 pt-3"
-                >
-                  <LogOut size={15} />
-                  Log out
-                </button>
+                <div className="pt-2 border-t border-white/10 mt-2 flex flex-col gap-1">
+                  <Link
+                    href="/profile"
+                    onClick={() => setMobileOpen(false)}
+                    className="flex items-center gap-2.5 px-3.5 py-2 rounded-md text-sm font-medium text-white/80 hover:bg-white/10"
+                  >
+                    Profile
+                  </Link>
+                  <Link
+                    href="/settings"
+                    onClick={() => setMobileOpen(false)}
+                    className="flex items-center gap-2.5 px-3.5 py-2 rounded-md text-sm font-medium text-white/80 hover:bg-white/10"
+                  >
+                    Settings
+                  </Link>
+                  <button
+                    onClick={() => {
+                      setMobileOpen(false);
+                      logoutMutation.mutate();
+                    }}
+                    className="flex items-center gap-2.5 px-3.5 py-2.5 rounded-md text-sm font-semibold text-red-400 hover:bg-white/10 transition-colors mt-1"
+                  >
+                    <LogOut size={16} />
+                    Log out
+                  </button>
+                </div>
               )}
             </nav>
           </div>

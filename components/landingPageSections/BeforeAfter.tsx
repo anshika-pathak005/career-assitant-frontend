@@ -66,15 +66,15 @@ const after = [
 
 export default function BeforeAfter() {
   return (
-    <section className="max-w-6xl mx-auto px-6 py-24">
-      <div className="text-center mb-16">
-        <span className="inline-block text-xs font-bold uppercase tracking-widest text-brand-accent bg-brand-accent/10 px-4 py-1.5 rounded-full mb-4">
+    <section className="max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-24">
+      <div className="text-center mb-10 sm:mb-16">
+        <span className="inline-block text-xs font-bold uppercase tracking-widest text-brand-accent bg-brand-accent/10 px-4 py-1.5 rounded-full mb-3 sm:mb-4">
           The difference
         </span>
-        <h2 className="font-display font-bold text-4xl sm:text-5xl text-brand-primary leading-tight">
+        <h2 className="font-display font-bold text-5xl text-brand-primary leading-tight">
           Before vs <span className="text-brand-accent">After CareerPilot</span>
         </h2>
-        <p className="mt-4 text-brand-muted text-base max-w-xl mx-auto leading-relaxed">
+        <p className="mt-3 sm:mt-4 text-brand-muted text-base max-w-xl mx-auto leading-relaxed">
           Stop guessing. Start growing with a clear, AI-powered roadmap.
         </p>
       </div>
@@ -132,7 +132,7 @@ export default function BeforeAfter() {
                     {item.text}
                   </span>
                   {item.highlight && (
-                    <span className="text-[9px] font-bold text-brand-success bg-brand-success/10 px-1.5 py-0.5 rounded-full ml-auto">
+                    <span className="text-3xs font-bold text-brand-success bg-brand-success/10 px-1.5 py-0.5 rounded-full ml-auto">
                       KEY BENEFIT
                     </span>
                   )}
@@ -147,7 +147,7 @@ export default function BeforeAfter() {
       <div className="mt-8 text-center">
         <div className="inline-flex items-center gap-2 bg-white/60 backdrop-blur-sm rounded-full px-4 py-1.5 border border-brand-accent-lt/20">
           <Sparkles size={10} className="text-brand-accent" />
-          <span className="text-[10px] text-brand-muted">
+          <span className="text-2xs text-brand-muted">
             Join <span className="font-bold text-brand-accent">10,000+</span>{" "}
             learners who transformed their careers
           </span>

@@ -41,14 +41,14 @@ export default function ProfileInfoSection({
   const workPreference = watch("workPreference");
 
   const fromProfileBadge = (text: string) => (
-    <span className="text-[10px] text-brand-success bg-brand-bg px-2 py-0.5 rounded-full">
+    <span className="text-2xs font-semibold text-emerald-800 bg-emerald-50 border border-emerald-200 px-2.5 py-0.5 rounded-full shadow-sm">
       {text}
     </span>
   );
 
   return (
     <Card variant="default" padding="lg">
-      <h2 className="font-semibold text-brand-primary text-lg mb-4">
+      <h2 className="card-title mb-4">
         Professional Background
       </h2>
 
@@ -63,10 +63,10 @@ export default function ProfileInfoSection({
           {...register("currentRole")}
         />
 
-        {/* Industries — multi-select, so it doesn't use OptionCardGroup */}
+        {/* Industries — multi-select */}
         <div>
           <div className="flex items-center justify-between mb-2">
-            <label className="text-sm font-semibold text-brand-secondary">
+            <label className="field-label">
               Industries of Interest
             </label>
             {profile?.industries &&
@@ -82,10 +82,10 @@ export default function ProfileInfoSection({
                 type="button"
                 aria-pressed={selectedIndustries.includes(industry)}
                 onClick={() => toggleIndustry(industry)}
-                className={`px-3 py-1.5 rounded-md border text-xs font-medium transition-all duration-150 ${
+                className={`px-3 py-1 rounded-full border text-xs font-semibold shadow-sm transition-all duration-150 ${
                   selectedIndustries.includes(industry)
                     ? "bg-brand-primary border-brand-primary text-white"
-                    : "bg-white border-brand-accent-lt/30 text-brand-muted hover:border-brand-accent"
+                    : "bg-brand-bg/60 border-brand-accent-lt/35 text-brand-secondary hover:border-brand-accent"
                 }`}
               >
                 {industry}
@@ -97,7 +97,7 @@ export default function ProfileInfoSection({
         {/* Skills */}
         <div>
           <div className="flex items-center justify-between mb-2">
-            <label className="text-sm font-semibold text-brand-secondary">
+            <label className="field-label">
               Skills
             </label>
             {profile?.skills &&

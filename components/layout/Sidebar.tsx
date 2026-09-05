@@ -140,7 +140,7 @@ export default function Sidebar() {
           key={section.label}
           className={`mb-6 ${sectionIdx === 0 ? "" : "mt-2"}`}
         >
-          <p className="px-3 mb-2 text-[10px] font-bold uppercase tracking-wider text-brand-accent-lt">
+          <p className="px-3 mb-2 text-2xs font-bold uppercase tracking-wider text-brand-accent-lt">
             {section.label}
           </p>
           <div className="flex flex-col gap-1">
@@ -177,7 +177,7 @@ export default function Sidebar() {
                     <div className="flex flex-col">
                       <span className="text-sm font-semibold">{label}</span>
                       <span
-                        className={`text-[10px] transition-colors duration-200 ${
+                        className={`text-2xs transition-colors duration-200 ${
                           isActive
                             ? "text-white/60"
                             : "text-brand-accent-lt group-hover:text-brand-muted"
@@ -210,7 +210,7 @@ export default function Sidebar() {
               Unlock Full Potential
             </span>
           </div>
-          <p className="text-[11px] text-brand-muted mb-3 leading-relaxed">
+          <p className="text-2xs text-brand-muted mb-3 leading-relaxed">
             Get unlimited roadmaps, detailed analysis, and priority support.
           </p>
           <Link href="/pricing">
@@ -225,19 +225,20 @@ export default function Sidebar() {
 
   return (
     <>
-      {/* Mobile Hamburger Button */}
+      {/* Mobile Floating Tools Trigger */}
       <button
         onClick={() => setIsMobileMenuOpen(true)}
-        className="fixed top-20 right-4 z-50 md:hidden w-10 h-10 rounded-lg bg-brand-primary text-white flex items-center justify-center shadow-lg"
-        aria-label="Open menu"
+        className="fixed bottom-5 right-4 z-40 md:hidden bg-brand-primary text-white px-3.5 py-2.5 rounded-full shadow-lg flex items-center gap-2 text-xs font-semibold hover:bg-brand-secondary active:scale-95 transition-all duration-200"
+        aria-label="Open navigation menu"
       >
-        <Menu size={20} />
+        <Menu size={16} />
+        <span>Menu</span>
       </button>
 
       {/* Mobile Sidebar Overlay */}
       {isMobileMenuOpen && (
         <div
-          className="fixed inset-0 z-40 bg-brand-primary/60 backdrop-blur-sm md:hidden"
+          className="fixed inset-0 z-50 bg-brand-primary/60 backdrop-blur-sm md:hidden animate-fade-in"
           onClick={() => setIsMobileMenuOpen(false)}
         />
       )}
@@ -245,12 +246,15 @@ export default function Sidebar() {
       {/* Mobile Sidebar */}
       <div
         className={`
-          fixed top-0 left-0 z-50 h-full w-72 bg-white shadow-xl transition-transform duration-300 ease-in-out transform
+          fixed top-0 left-0 z-50 h-full w-[85vw] max-w-xs bg-white shadow-2xl transition-transform duration-300 ease-in-out transform
           md:hidden
           ${isMobileMenuOpen ? "translate-x-0" : "-translate-x-full"}
         `}
       >
-        <div className="flex justify-end p-4 border-b border-brand-accent-lt/20">
+        <div className="flex items-center justify-between p-4 border-b border-brand-accent-lt/20">
+          <span className="font-display font-bold text-brand-primary text-base">
+            Career Tools
+          </span>
           <button
             onClick={() => setIsMobileMenuOpen(false)}
             className="w-8 h-8 rounded-lg bg-brand-bg flex items-center justify-center text-brand-accent hover:bg-brand-accent hover:text-white transition-colors"
@@ -259,7 +263,7 @@ export default function Sidebar() {
             <X size={18} />
           </button>
         </div>
-        <div className="p-4 overflow-y-auto h-[calc(100%-68px)]">
+        <div className="p-4 overflow-y-auto h-[calc(100%-65px)]">
           {sidebarContent}
         </div>
       </div>

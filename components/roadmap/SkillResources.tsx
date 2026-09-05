@@ -41,7 +41,7 @@ export default function SkillResources({ resources }: { resources?: string }) {
           >
             <ExternalLink size={10} />
             {resource.name}
-            <span className="text-[9px] opacity-70 uppercase">
+            <span className="text-3xs opacity-70 uppercase">
               {resource.type}
             </span>
           </a>

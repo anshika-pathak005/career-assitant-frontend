@@ -34,7 +34,7 @@ export default function UsageCard({ limit }: { limit?: GenerationLimit }) {
             <p className="text-xs font-semibold text-brand-secondary">
               Monthly Roadmap Limit
             </p>
-            <p className="text-xs text-brand-muted">
+            <p className="meta-text">
               {used} / {total} roadmaps used this month
             </p>
           </div>
@@ -59,7 +59,7 @@ export default function UsageCard({ limit }: { limit?: GenerationLimit }) {
         />
       </div>
 
-      <p className="text-[10px] text-brand-accent-lt mt-1.5">
+      <p className="text-2xs text-brand-accent-lt mt-1.5">
         {limitReached && limit
           ? `Resets on ${new Date(limit.resetsOn).toLocaleDateString()}`
           : `${remaining} generation${remaining !== 1 ? "s" : ""} remaining this month`}

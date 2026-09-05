@@ -55,7 +55,7 @@ function PricingCard({
 }) {
   return (
     <div
-      className={`relative rounded-2xl ${isPopular ? "scale-105 shadow-2xl" : "shadow-lg"}`}
+      className={`relative rounded-2xl ${isPopular ? "md:scale-105 shadow-2xl" : "shadow-lg"}`}
     >
       {isPopular && (
         <div className="absolute -top-3 left-1/2 -translate-x-1/2">
@@ -71,8 +71,8 @@ function PricingCard({
         className={`h-full ${isPopular ? "border-brand-accent border-2" : "border-brand-accent-lt/20"}`}
       >
         <div className="text-center mb-6">
-          <h3 className="font-display text-brand-primary text-xl mb-1">{title}</h3>
-          <p className="text-xs text-brand-muted">{description}</p>
+          <h3 className="subsection-title mb-1">{title}</h3>
+          <p className="meta-text">{description}</p>
         </div>
 
         <div className="text-center mb-6">
@@ -119,18 +119,18 @@ export default function PricingPage() {
   };
 
   return (
-    <div className="min-h-screen bg-brand-bg py-12 px-4 sm:px-6">
-      <div className="max-w-6xl mx-auto">
+    <div className="page-shell">
+      <div className="page-container-wide">
         {/* Header */}
         <div className="text-center mb-10">
           <div className="inline-flex items-center gap-2 bg-white/50 backdrop-blur-sm rounded-full px-3 py-1 mb-4">
             <Sparkles size={12} className="text-brand-accent" />
-            <span className="text-[10px] font-medium text-brand-accent uppercase tracking-wider">
+            <span className="text-2xs font-medium text-brand-accent uppercase tracking-wider">
               Simple Pricing
             </span>
           </div>
 
-          <h1 className="animate-fade-up delay-1 font-display font-bold text-2xl sm:text-5xl lg:text-6xl leading-[1.1] mb-6 text-brand-primary">
+          <h1 className="animate-fade-up delay-1 text-6xl mb-fluid-md">
             Choose the plan that{" "}
             <span className="text-brand-accent">fits your journey</span>
           </h1>

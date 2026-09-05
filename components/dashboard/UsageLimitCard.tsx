@@ -41,7 +41,7 @@ export default function UsageLimitCard({ label, icon: Icon, limit }: Props) {
           </div>
           <div>
             <p className="text-xs font-semibold text-brand-secondary">{label}</p>
-            <p className="text-[10px] text-brand-muted">
+            <p className="text-2xs text-brand-muted">
               {limit.used} / {limit.total} used
             </p>
           </div>

@@ -47,27 +47,27 @@ export default function ActiveRoadmapCard({
         </div>
       </div>
 
-      <div className="grid grid-cols-3 gap-3 mb-5">
-        <div className="bg-brand-bg/30 rounded-lg p-2.5 text-center">
+      <div className="grid grid-cols-3 gap-1.5 sm:gap-3 mb-5">
+        <div className="bg-brand-bg/30 rounded-lg p-2 sm:p-2.5 text-center">
           <Calendar size={14} className="text-brand-accent mx-auto mb-1" />
           <p className="text-xs font-semibold text-brand-primary">
-            {roadmap.totalEstimatedWeeks} weeks
+            {roadmap.totalEstimatedWeeks} wks
           </p>
-          <p className="text-[10px] text-brand-muted">Total duration</p>
+          <p className="text-2xs text-brand-muted truncate">Duration</p>
         </div>
-        <div className="bg-brand-bg/30 rounded-lg p-2.5 text-center">
+        <div className="bg-brand-bg/30 rounded-lg p-2 sm:p-2.5 text-center">
           <Target size={14} className="text-brand-accent mx-auto mb-1" />
           <p className="text-xs font-semibold text-brand-primary">
             {phaseProgress.length} phases
           </p>
-          <p className="text-[10px] text-brand-muted">Learning phases</p>
+          <p className="text-2xs text-brand-muted truncate">Phases</p>
         </div>
-        <div className="bg-brand-bg/30 rounded-lg p-2.5 text-center">
+        <div className="bg-brand-bg/30 rounded-lg p-2 sm:p-2.5 text-center">
           <CheckCircle2 size={14} className="text-brand-accent mx-auto mb-1" />
           <p className="text-xs font-semibold text-brand-primary">
             {roadmap.overallProgress}%
           </p>
-          <p className="text-[10px] text-brand-muted">Completed</p>
+          <p className="text-2xs text-brand-muted truncate">Done</p>
         </div>
       </div>
 
@@ -89,7 +89,7 @@ export default function ActiveRoadmapCard({
                 <p className="text-sm font-medium text-brand-primary">
                   {phase.title}
                 </p>
-                <p className="text-xs text-brand-muted">{phase.progress}%</p>
+                <p className="meta-text">{phase.progress}%</p>
               </div>
               <div className="h-1 bg-brand-bg rounded-full overflow-hidden mt-1">
                 <div

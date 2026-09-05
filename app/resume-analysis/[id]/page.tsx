@@ -42,13 +42,13 @@ export default function ResumeAnalysisDetailPage() {
 
   if (!analysis) {
     return (
-      <div className="min-h-screen bg-brand-bg py-8 px-4 sm:px-6">
-        <div className="max-w-4xl mx-auto text-center">
+      <div className="page-shell">
+        <div className="page-container text-center">
           <Card variant="default" padding="lg">
             <p className="text-brand-primary font-semibold mb-2">
               Analysis not found
             </p>
-            <p className="text-sm text-brand-muted mb-4">
+            <p className="page-subtitle mx-auto mb-4">
               The resume analysis you&apos;re looking for doesn&apos;t exist.
             </p>
             <Button
@@ -70,10 +70,10 @@ export default function ResumeAnalysisDetailPage() {
   );
 
   return (
-    <div className="min-h-screen bg-brand-bg py-8 px-4 sm:px-6">
-      <div className="max-w-4xl mx-auto">
+    <div className="page-shell">
+      <div className="page-container">
         {/* Header */}
-        <div className="mb-6">
+        <div className="page-header">
           <button
             onClick={() => router.back()}
             className="flex items-center gap-2 text-sm text-brand-muted hover:text-brand-secondary transition-colors mb-4"
@@ -97,7 +97,7 @@ export default function ResumeAnalysisDetailPage() {
         {/* Summary */}
         <Card variant="default" padding="lg" className="mb-6">
           <SectionHeader icon={Lightbulb} title="Summary" />
-          <p className="text-sm text-brand-muted leading-relaxed">
+          <p className="body-text">
             {data.summary}
           </p>
 
@@ -105,7 +105,7 @@ export default function ResumeAnalysisDetailPage() {
             <p className="text-xs font-semibold text-brand-secondary mb-1">
               Recruiter&apos;s Perspective
             </p>
-            <p className="text-sm text-brand-muted leading-relaxed">
+            <p className="body-text">
               {data.recruiterPerspective}
             </p>
           </div>

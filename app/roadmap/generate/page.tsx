@@ -52,10 +52,10 @@ export default function RoadmapGeneratePage() {
 
   /* ─── Form ─────────────────────────────────────────────────────── */
   return (
-    <div className="min-h-screen bg-brand-bg py-8 px-4 sm:px-6">
-      <div className="max-w-4xl mx-auto">
+    <div className="page-shell">
+      <div className="page-container">
         {/* Header */}
-        <div className="mb-6">
+        <div className="page-header">
           <button
             onClick={() => router.back()}
             className="flex items-center gap-2 text-sm text-brand-muted hover:text-brand-secondary transition-colors mb-4"
@@ -65,7 +65,7 @@ export default function RoadmapGeneratePage() {
           </button>
 
           <div className="text-center mb-6">
-            <h1 className="font-display text-brand-primary text-3xl sm:text-4xl mb-2">
+            <h1 className="page-title mb-2">
               Configure Your Roadmap
             </h1>
             <p className="text-sm text-brand-muted max-w-md mx-auto">

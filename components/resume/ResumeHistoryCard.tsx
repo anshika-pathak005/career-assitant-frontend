@@ -11,8 +11,8 @@ import { getScoreColor } from "@/utils/score";
 import type { ResumeSummary } from "@/types/resume.types";
 
 const readinessStyles: Record<string, string> = {
-  advanced: "text-brand-success bg-brand-success/10",
-  intermediate: "text-brand-accent bg-brand-bg",
+  advanced: "text-emerald-800 bg-emerald-50 border-emerald-200",
+  intermediate: "text-brand-secondary bg-brand-bg/70 border-brand-accent-lt/35",
 };
 
 /** One row in the resume analysis history list. */
@@ -31,7 +31,7 @@ export default function ResumeHistoryCard({
   const readiness = resume.interviewReadiness || "Beginner";
   const badgeStyle =
     readinessStyles[readiness.toLowerCase()] ??
-    "text-brand-accent-lt bg-brand-bg";
+    "text-brand-muted bg-brand-bg/40 border-brand-accent-lt/25";
 
   const overallScore = resume.overallScore || 0;
   const atsScore = resume.atsScore || 0;
@@ -42,20 +42,20 @@ export default function ResumeHistoryCard({
       padding="md"
       className="hover:shadow-lg transition-all duration-200"
     >
-      <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
-        <div className="flex-1">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div className="flex-1 min-w-0">
           <div className="flex items-center gap-2 flex-wrap mb-1">
-            <h3 className="font-semibold text-brand-primary text-lg">
+            <h3 className="card-title truncate">
               {resume.fileName}
             </h3>
             <span
-              className={`text-[10px] font-semibold px-2 py-0.5 rounded-full ${badgeStyle}`}
+              className={`text-xs font-semibold px-3 py-0.5 rounded-full border shadow-sm ${badgeStyle}`}
             >
               {readiness}
             </span>
           </div>
 
-          <div className="flex items-center gap-3 text-xs text-brand-muted mb-3">
+          <div className="flex items-center gap-3 text-xs text-brand-muted mb-3 flex-wrap">
             <span className="flex items-center gap-1">
               <Calendar size={12} />
               {formattedDate}
@@ -87,7 +87,7 @@ export default function ResumeHistoryCard({
           size="md"
           rightIcon={<ArrowRight size={14} />}
           onClick={() => router.push(`/resume-analysis/${resume.resumeId}`)}
-          className="flex-shrink-0 bg-brand-primary text-white hover:bg-brand-secondary"
+          className="w-full sm:w-auto shrink-0 bg-brand-primary text-white hover:bg-brand-secondary"
         >
           View Analysis
         </Button>

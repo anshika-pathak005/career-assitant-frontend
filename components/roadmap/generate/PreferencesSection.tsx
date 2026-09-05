@@ -28,7 +28,7 @@ export default function PreferencesSection() {
 
   return (
     <Card variant="default" padding="lg">
-      <h2 className="font-semibold text-brand-primary text-lg mb-4">
+      <h2 className="card-title mb-4">
         Learning Preferences
       </h2>
 

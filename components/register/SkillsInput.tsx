@@ -81,7 +81,7 @@ export default function SkillsInput({
               type="button"
               onClick={() => onAdd(s)}
               disabled={selected.includes(s)}
-              className="text-xs bg-brand-bg text-brand-secondary font-medium px-2.5 py-1 rounded-full border border-brand-accent-lt/30 hover:bg-brand-accent hover:text-white hover:border-brand-accent disabled:opacity-30 disabled:cursor-not-allowed transition-all"
+              className="text-xs bg-brand-bg/70 text-brand-secondary font-semibold px-3 py-1 rounded-full border border-brand-accent-lt/35 shadow-sm hover:bg-brand-primary hover:text-white hover:border-brand-primary disabled:opacity-30 disabled:cursor-not-allowed transition-all duration-150"
             >
               + {s}
             </button>

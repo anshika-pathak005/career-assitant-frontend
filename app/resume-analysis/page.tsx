@@ -23,8 +23,8 @@ export default function ResumeAnalysisPage() {
   const hasResumes = !isLoading && resumes && resumes.length > 0;
 
   return (
-    <div className="min-h-screen bg-brand-bg py-8 px-4 sm:px-6">
-      <div className="max-w-4xl mx-auto">
+    <div className="page-shell">
+      <div className="page-container">
         {profile && (
           <div className="mb-8">
             <AnalyzeHeroCard
@@ -36,12 +36,12 @@ export default function ResumeAnalysisPage() {
 
         <div className="space-y-4">
           {/* Header */}
-          <div className="flex items-center justify-between">
+          <div className="page-header-row">
             <div>
-              <h1 className="font-display text-brand-primary text-2xl">
+              <h1 className="page-title">
                 My Resume Analyses
               </h1>
-              <p className="text-sm text-brand-muted mt-0.5">
+              <p className="page-subtitle">
                 Track your resume scores and improvement over time
               </p>
             </div>

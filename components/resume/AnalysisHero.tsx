@@ -31,10 +31,10 @@ export default function AnalysisHero({
               {fileName}
             </span>
           </div>
-          <h1 className="font-display text-brand-primary text-2xl sm:text-3xl mb-2">
+          <h1 className="page-title mb-2">
             {fullName || "Resume Analysis"}
           </h1>
-          <p className="text-sm text-brand-muted leading-relaxed">{verdict}</p>
+          <p className="body-text">{verdict}</p>
           <div className="flex items-center gap-3 mt-3 text-xs text-brand-muted">
             <span className="flex items-center gap-1">
               <Calendar size={12} />

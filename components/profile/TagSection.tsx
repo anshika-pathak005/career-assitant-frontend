@@ -62,11 +62,11 @@ export default function TagSection({
   return (
     <div>
       <div className="flex items-center justify-between mb-2">
-        <p className="text-xs text-brand-muted">{label}</p>
+        <p className="meta-text">{label}</p>
         <button
           onClick={startEditing}
           aria-label={`Edit ${label}`}
-          className="text-brand-muted hover:text-brand-accent transition-colors"
+          className="tap-target text-brand-muted hover:text-brand-accent transition-colors"
         >
           <Edit2 size={14} />
         </button>

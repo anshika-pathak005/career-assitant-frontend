@@ -26,7 +26,7 @@ export default function UsageBanner({ limit }: UsageBannerProps) {
             </span>
           </div>
           {limit.remaining <= 1 && (
-            <span className="text-[10px] text-brand-accent-lt">
+            <span className="text-2xs text-brand-accent-lt">
               Resets on{" "}
               {new Date(limit.resetsOn).toLocaleDateString(undefined, {
                 month: "short",

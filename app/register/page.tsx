@@ -78,7 +78,7 @@ export default function RegisterStep1Page() {
     });
 
   return (
-    <main className="min-h-screen bg-brand-bg flex items-center justify-center px-4 py-12">
+    <main className="page-shell-centered">
       {/* Background decorations */}
       <div
         aria-hidden
@@ -88,7 +88,7 @@ export default function RegisterStep1Page() {
         <div className="absolute -bottom-32 -left-32 w-96 h-96 bg-brand-accent/10 rounded-full blur-3xl" />
       </div>
 
-      <div className="w-full max-w-md relative">
+      <div className="page-container-form relative">
         {/* Brand */}
         <div className="flex justify-center mb-8 animate-fade-up">
           <Link href="/" className="flex items-center gap-2.5">
@@ -120,7 +120,7 @@ export default function RegisterStep1Page() {
 
           {/* Header */}
           <div className="mb-7">
-            <h1 className="font-display  text-brand-primary text-3xl mb-1">
+            <h1 className="page-title mb-1">
               Create your account
             </h1>
             <p className="text-sm text-brand-muted">
@@ -169,7 +169,7 @@ export default function RegisterStep1Page() {
                   <button
                     type="button"
                     onClick={() => setShowPassword((v) => !v)}
-                    className="text-brand-muted hover:text-brand-secondary transition-colors"
+                    className="tap-target text-brand-muted hover:text-brand-secondary transition-colors"
                     aria-label="Toggle password"
                   >
                     {showPassword ? <EyeOff size={15} /> : <Eye size={15} />}
@@ -228,7 +228,7 @@ export default function RegisterStep1Page() {
                   <button
                     type="button"
                     onClick={() => setShowConfirmPassword((v) => !v)}
-                    className="text-brand-muted hover:text-brand-secondary transition-colors"
+                    className="tap-target text-brand-muted hover:text-brand-secondary transition-colors"
                     aria-label="Toggle confirm password"
                   >
                     {showConfirmPassword ? (

@@ -25,7 +25,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
         {label && (
           <label
             htmlFor={inputId}
-            className="text-sm font-semibold text-brand-secondary font-body"
+            className="field-label"
           >
             {label}
           </label>
@@ -43,11 +43,11 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
             ref={ref}
             id={inputId}
             className={[
-              "w-full h-11 rounded-md font-body text-sm text-brand-primary",
+              "w-full h-10 sm:h-11 rounded-md font-body text-base text-brand-primary",
               "bg-white border transition-all duration-150 outline-none",
               "placeholder:text-brand-accent-lt",
-              leftIcon ? "pl-10" : "pl-3.5",
-              rightIcon ? "pr-10" : "pr-3.5",
+              leftIcon ? "pl-9 sm:pl-10" : "pl-3 sm:pl-3.5",
+              rightIcon ? "pr-9 sm:pr-10" : "pr-3 sm:pr-3.5",
               error
                 ? "border-red-400 focus:border-red-400 focus:ring-2 focus:ring-red-200"
                 : "border-brand-accent-lt/60 focus:border-brand-accent focus:ring-2 focus:ring-brand-accent/20",
@@ -79,7 +79,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
         {!error && hint && (
           <p
             id={`${inputId}-hint`}
-            className="text-xs text-brand-muted font-body"
+            className="field-hint"
           >
             {hint}
           </p>
