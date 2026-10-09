@@ -120,9 +120,7 @@ export default function RegisterStep1Page() {
 
           {/* Header */}
           <div className="mb-7">
-            <h1 className="page-title mb-1">
-              Create your account
-            </h1>
+            <h1 className="page-title mb-1">Create your account</h1>
             <p className="text-sm text-brand-muted">
               Your AI-powered career journey begins here.
             </p>
@@ -179,7 +177,7 @@ export default function RegisterStep1Page() {
                 {...register("password")}
               />
 
-              {/* Live password rules — only shown while typing */}
+              {/* Live password rules -only shown while typing */}
               {passwordValue.length > 0 && (
                 <ul className="mt-3 flex flex-col gap-1.5">
                   {passwordRules.map(({ label, test }) => {

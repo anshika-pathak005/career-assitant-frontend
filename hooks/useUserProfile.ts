@@ -13,7 +13,7 @@ export const useUserProfile = () =>
   useQuery({
     queryKey: USER_PROFILE_KEY,
     queryFn: getUserProfile,
-    // No staleTime / refetch overrides here — inherits the defaults from
+    // No staleTime / refetch overrides here -inherits the defaults from
     // lib/queryClient.ts. useUpdateProfile writes the fresh profile straight
     // into the cache on success, so a forced refetch was never needed.
   });

@@ -48,10 +48,11 @@ export default function HowItWorks() {
           How it works
         </span>
         <h2 className="font-display font-bold text-5xl text-brand-primary leading-tight">
-          Your journey to <span className="text-brand-accent">career success</span>
+          Your journey to{" "}
+          <span className="text-brand-accent">career success</span>
         </h2>
         <p className="mt-3 sm:mt-4 text-brand-muted text-base max-w-xl mx-auto leading-relaxed">
-          Fill your details, get your roadmap, and start learning — it's that
+          Fill your details, get your roadmap, and start learning -it's that
           simple.
         </p>
       </div>

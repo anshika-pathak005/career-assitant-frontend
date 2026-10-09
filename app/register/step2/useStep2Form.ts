@@ -35,7 +35,7 @@ export function useStep2Form() {
   const selectedSkills = watch("skills") ?? [];
   const selectedExp = watch("experienceYears");
 
-  /* Derive suggested skills from selected industries — deduped & sorted */
+  /* Derive suggested skills from selected industries -deduped & sorted */
   const suggestedSkills = useMemo(() => {
     if (selectedIndustries.length === 0) return DEFAULT_SKILLS;
     const combined = new Set<string>();

@@ -12,7 +12,7 @@ export const CHAT_QUERY_KEY = (sessionId: string) =>
   ["chat", "history", sessionId] as const;
 
 /**
- * useChat — manages chat session state, history fetching, and message sending.
+ * useChat -manages chat session state, history fetching, and message sending.
  */
 export const useChat = () => {
   const queryClient = useQueryClient();

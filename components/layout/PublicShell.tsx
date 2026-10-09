@@ -7,7 +7,7 @@ interface PublicShellProps {
 }
 
 /**
- * PublicShell — layout wrapper for public-facing pages (landing, etc.)
+ * PublicShell -layout wrapper for public-facing pages (landing, etc.)
  * Renders: Header → main content → Footer.
  */
 export default function PublicShell({ children }: PublicShellProps) {

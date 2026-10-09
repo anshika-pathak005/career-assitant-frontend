@@ -48,9 +48,7 @@ export default function ProfileInfoSection({
 
   return (
     <Card variant="default" padding="lg">
-      <h2 className="card-title mb-4">
-        Professional Background
-      </h2>
+      <h2 className="card-title mb-4">Professional Background</h2>
 
       <div className="space-y-4">
         <Input
@@ -63,12 +61,10 @@ export default function ProfileInfoSection({
           {...register("currentRole")}
         />
 
-        {/* Industries — multi-select */}
+        {/* Industries -multi-select */}
         <div>
           <div className="flex items-center justify-between mb-2">
-            <label className="field-label">
-              Industries of Interest
-            </label>
+            <label className="field-label">Industries of Interest</label>
             {profile?.industries &&
               profile.industries.length > 0 &&
               fromProfileBadge(
@@ -97,9 +93,7 @@ export default function ProfileInfoSection({
         {/* Skills */}
         <div>
           <div className="flex items-center justify-between mb-2">
-            <label className="field-label">
-              Skills
-            </label>
+            <label className="field-label">Skills</label>
             {profile?.skills &&
               profile.skills.length > 0 &&
               fromProfileBadge(
@@ -156,7 +150,9 @@ export default function ProfileInfoSection({
         <OptionCardGroup
           label="Work Preference"
           labelAccessory={
-            profile?.workPreference ? fromProfileBadge("Saved preference") : undefined
+            profile?.workPreference
+              ? fromProfileBadge("Saved preference")
+              : undefined
           }
           variant="pill"
           options={WORK_PREFERENCE_OPTIONS}

@@ -1,7 +1,7 @@
 // components/ui/FullPageSpinner.tsx
 
 /**
- * FullPageSpinner — centered loading state that fills the viewport.
+ * FullPageSpinner -centered loading state that fills the viewport.
  *
  * Replaces the identical inline spinner previously duplicated in
  * ClientLayoutWrapper, roadmap/generate, jobs, skills and progress.

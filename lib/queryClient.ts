@@ -13,7 +13,7 @@ const queryClient = new QueryClient({
       refetchOnReconnect: true, // Refetch when internet reconnects
     },
     mutations: {
-      retry: 0, // Do not retry failed POST/PUT/DELETE requests — show error immediately
+      retry: 0, // Do not retry failed POST/PUT/DELETE requests -show error immediately
     },
   },
 });

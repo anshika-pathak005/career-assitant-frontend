@@ -46,8 +46,15 @@ export default function RoadmapGeneratePage() {
     return <LimitReachedScreen limit={profile.generationLimit} />;
   }
 
-  if (profile && !profile.isProfileComplete) {
-    return <ProfileIncompleteScreen />;
+  if (profile && (!profile.isProfileComplete || !profile.dreamJob?.trim())) {
+    return (
+      <ProfileIncompleteScreen
+        title="Complete Your Profile First"
+        description="To generate a personalized career roadmap, we need some basic information about your background and career goals (including your target dream job)."
+        backHref="/dashboard"
+        backLabel="Back to Dashboard"
+      />
+    );
   }
 
   /* ─── Form ─────────────────────────────────────────────────────── */

@@ -31,7 +31,7 @@
 // };
 
 import axiosInstance from "@/lib/axiosInstance";
-import { GenerationLimit, UserProfile } from "@/types/profile.types";
+import { UserProfile } from "@/types/profile.types";
 
 /* ─── Types ──────────────────────────────────────────────────────── */
 
@@ -69,7 +69,7 @@ export const getUserProfile = async (): Promise<UserProfile> => {
   return data;
 };
 
-/** PUT /api/user/profile — partial update */
+/** PUT /api/user/profile -partial update */
 export const updateUserProfile = async (
   payload: Partial<UserProfile>,
 ): Promise<UserProfile> => {

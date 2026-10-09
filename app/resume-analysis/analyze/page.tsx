@@ -1,4 +1,4 @@
-// app/resume-analysis/analysis/page.tsx
+// app/resume-analysis/analyze/page.tsx
 
 "use client";
 
@@ -13,14 +13,15 @@ import {
   Sparkles,
   Shield,
   Clock,
-  ArrowRight,
-  BriefcaseBusiness,
 } from "lucide-react";
 import Button from "@/components/ui/Button";
 import Card from "@/components/ui/Card";
 import { useAuth } from "@/hooks/useAuth";
+import { useUserProfile } from "@/hooks/useUserProfile";
 import { useUploadResume } from "@/hooks/useResumeAnalysis";
 import FullPageSpinner from "@/components/ui/FullPageSpinner";
+import ProfileIncompleteScreen from "@/components/roadmap/ProfileIncompleteScreen";
+import LimitReachedScreen from "@/components/roadmap/LimitReachedScreen";
 
 /* ─── File size limit (5MB) ─────────────────────────────────────── */
 const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5MB
@@ -29,6 +30,7 @@ const ALLOWED_TYPES = ["application/pdf"];
 export default function ResumeUploadPage() {
   const router = useRouter();
   const { isAuthenticated, isLoading: authLoading } = useAuth();
+  const { data: profile, isLoading: profileLoading } = useUserProfile();
   const uploadMutation = useUploadResume();
 
   const [dragOver, setDragOver] = useState(false);
@@ -36,16 +38,51 @@ export default function ResumeUploadPage() {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
-   /* Auth guard */
-    useEffect(() => {
-      if (!authLoading && !isAuthenticated) router.replace("/login");
-    }, [authLoading, isAuthenticated, router]);
+  /* Auth guard */
+  useEffect(() => {
+    if (!authLoading && !isAuthenticated) router.replace("/login");
+  }, [authLoading, isAuthenticated, router]);
 
-  if (authLoading) {
+  if (authLoading || profileLoading) {
     return <FullPageSpinner />;
   }
 
   if (!isAuthenticated) return null;
+
+  /* Quota limit guard */
+  if (profile?.resumeUsage?.limitReached) {
+    return (
+      <LimitReachedScreen
+        limit={profile.resumeUsage}
+        title="Monthly resume limit reached"
+        description={
+          <p>
+            You&apos;ve used all{" "}
+            <span className="font-bold text-brand-primary">
+              {profile.resumeUsage.total}
+            </span>{" "}
+            free resume analyses this month. Upgrade to unlock unlimited
+            analyses and accelerate your career journey.
+          </p>
+        }
+        upgradeText="Upgrade to Pro – Unlimited Analyses"
+        backHref="/resume-analysis"
+        backLabel="Back to Analyses"
+      />
+    );
+  }
+
+  /* Profile incomplete guard */
+  if (profile && (!profile.isProfileComplete || !profile.dreamJob?.trim())) {
+    return (
+      <ProfileIncompleteScreen
+        title="Complete Your Profile First"
+        description="To analyze your resume against your target career goals, please complete your profile setup (including your dream job) first."
+        backHref="/resume-analysis"
+        backLabel="Back to Analyses"
+      />
+    );
+  }
 
   const validateFile = (file: File): boolean => {
     // Check file type

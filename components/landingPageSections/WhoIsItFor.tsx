@@ -40,8 +40,8 @@ export default function WhoIsItFor() {
           Built for <span className="text-brand-accent">learners like you</span>
         </h2>
         <p className="mt-4 text-brand-muted text-base max-w-xl mx-auto leading-relaxed">
-          Whether you're just starting out or leveling up — CareerPilot meets
-          you where you are.
+          Whether you're just starting out or leveling up -CareerPilot meets you
+          where you are.
         </p>
       </div>
 
@@ -59,7 +59,9 @@ export default function WhoIsItFor() {
               <div className="w-11 h-11 bg-brand-bg/60 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 group-hover:bg-brand-accent/10 transition-all duration-300">
                 <Icon size={20} className="text-brand-accent" />
               </div>
-              <h3 className="font-bold text-brand-primary text-sm mb-2">{title}</h3>
+              <h3 className="font-bold text-brand-primary text-sm mb-2">
+                {title}
+              </h3>
               <p className="text-brand-muted text-xs leading-relaxed">{desc}</p>
             </div>
           </div>

@@ -25,7 +25,11 @@ export default function DashboardPage() {
   const firstName = dashboard?.user?.name?.split(" ")[0] ?? "there";
 
   // Profile incomplete - show the banner instead of the real dashboard
-  if (!isLoading && profile && !profile.isProfileComplete) {
+  if (
+    !isLoading &&
+    profile &&
+    (!profile.isProfileComplete || !profile.dreamJob?.trim())
+  ) {
     return (
       <div className="min-h-screen bg-brand-bg flex">
         <Sidebar />

@@ -3,7 +3,7 @@
 import { z } from "zod";
 
 /* ─── Form data type ─────────────────────────────────────────────── */
-// Defined as a plain interface — single source of truth for the form shape.
+// Defined as a plain interface -single source of truth for the form shape.
 // zodResolver infers from this directly, avoiding Zod input/output conflicts.
 export interface Step2FormData {
   userCategory: string;

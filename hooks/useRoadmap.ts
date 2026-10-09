@@ -10,7 +10,6 @@ import {
   updateStepCompletion,
 } from "@/services/roadmapService";
 import type { RoadmapGenerationRequest } from "@/types/roadmap.types";
-import { skip } from "node:test";
 import { getApiErrorMessage } from "@/utils/apiError";
 
 /* ─── Query keys ─────────────────────────────────────────────────── */
@@ -37,12 +36,23 @@ export const useGenerateRoadmap = () => {
       router.push(`/roadmap/${roadmap.roadmapId}`);
     },
     onError: (error) => {
-      toast.error(
-        getApiErrorMessage(
-          error,
-          "Failed to generate roadmap. Please try again.",
-        ),
+      const message = getApiErrorMessage(
+        error,
+        "Failed to generate roadmap. Please try again.",
       );
+      if (
+        message.toLowerCase().includes("complete your profile") ||
+        message.toLowerCase().includes("dream job")
+      ) {
+        toast.error(message, {
+          action: {
+            label: "Complete Profile",
+            onClick: () => router.push("/register/step2"),
+          },
+        });
+      } else {
+        toast.error(message);
+      }
     },
   });
 };

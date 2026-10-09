@@ -34,7 +34,7 @@ const axiosInstance = axios.create({
   headers: { "Content-Type": "application/json" },
 });
 
-/* ─── Request interceptor — attach accessToken ───────────────────── */
+/* ─── Request interceptor -attach accessToken ───────────────────── */
 /* Request Interceptor:
    - Runs before every API request
    - 'config' contains request details (URL, method, headers, data)
@@ -57,7 +57,7 @@ axiosInstance.interceptors.request.use(
   (error) => Promise.reject(error), // forward request errors - request interceptor's error handler
 );
 
-/* ─── Response interceptor — handle 401 / token refresh ─────────── */
+/* ─── Response interceptor -handle 401 / token refresh ─────────── */
 /* Response Interceptor:
    - Handles API responses globally
    - If 401 (token expired), refreshes access token and retries request
@@ -90,12 +90,16 @@ axiosInstance.interceptors.response.use(
     };
 
     // SKIP refresh for login/register endpoints - prevents unnecessary refresh calls
-    const isAuthEndpoint = originalRequest.url?.includes("/api/auth/login") ||
-                           originalRequest.url?.includes("/api/auth/register");
+    const isAuthEndpoint =
+      originalRequest.url?.includes("/api/auth/login") ||
+      originalRequest.url?.includes("/api/auth/register");
 
     // If token expired (401) and request not retried yet
-    if (error.response?.status === 401 && !originalRequest._retry && !isAuthEndpoint) {
-      
+    if (
+      error.response?.status === 401 &&
+      !originalRequest._retry &&
+      !isAuthEndpoint
+    ) {
       // If a refresh request is already running,
       // do not start another one —
       // instead, add this request to a queue and wait for the new token

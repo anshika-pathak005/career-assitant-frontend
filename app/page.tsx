@@ -68,12 +68,16 @@ export default function LandingPage() {
 
         <p className="animate-fade-up delay-2 text-brand-muted text-lg max-w-xl mx-auto mb-8 sm:mb-10 leading-relaxed">
           Resume analysis, personalized career roadmap, AI career coach, and job
-          matching — all in one place.
+          matching -all in one place.
         </p>
 
         <div className="animate-fade-up delay-3 flex flex-col sm:flex-row gap-3 justify-center max-w-xs sm:max-w-none mx-auto">
           <Link href="/register">
-            <Button size="lg" className="w-full sm:w-auto" rightIcon={<ArrowRight size={16} />}>
+            <Button
+              size="lg"
+              className="w-full sm:w-auto"
+              rightIcon={<ArrowRight size={16} />}
+            >
               Start for free
             </Button>
           </Link>
@@ -85,8 +89,9 @@ export default function LandingPage() {
         </div>
 
         <p className="animate-fade-up delay-3 mt-8 sm:mt-10 text-brand-muted/70 text-xs">
-          Trusted by <span className="font-bold text-brand-accent">10,000+</span>{" "}
-          students and job seekers worldwide
+          Trusted by{" "}
+          <span className="font-bold text-brand-accent">10,000+</span> students
+          and job seekers worldwide
         </p>
       </section>
 

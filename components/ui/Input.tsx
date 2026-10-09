@@ -9,7 +9,7 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
 }
 
 /**
- * Input — consistent form input with label, optional icons, and error state.
+ * Input -consistent form input with label, optional icons, and error state.
  * Uses forwardRef so React Hook Form can attach its ref.
  */
 const Input = forwardRef<HTMLInputElement, InputProps>(
@@ -23,10 +23,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
       <div className="flex flex-col gap-1.5 w-full">
         {/* Label */}
         {label && (
-          <label
-            htmlFor={inputId}
-            className="field-label"
-          >
+          <label htmlFor={inputId} className="field-label">
             {label}
           </label>
         )}
@@ -77,10 +74,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
 
         {/* Hint */}
         {!error && hint && (
-          <p
-            id={`${inputId}-hint`}
-            className="field-hint"
-          >
+          <p id={`${inputId}-hint`} className="field-hint">
             {hint}
           </p>
         )}

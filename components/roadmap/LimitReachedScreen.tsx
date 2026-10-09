@@ -2,6 +2,7 @@
 
 "use client";
 
+import React from "react";
 import { useRouter } from "next/navigation";
 import { AlertCircle, Sparkles } from "lucide-react";
 import Button from "@/components/ui/Button";
@@ -10,14 +11,24 @@ import type { GenerationLimit } from "@/types/profile.types";
 
 interface LimitReachedScreenProps {
   limit: GenerationLimit;
+  title?: string;
+  description?: React.ReactNode;
+  upgradeText?: string;
+  backHref?: string;
+  backLabel?: string;
 }
 
 /**
- * Shown when the user has used every roadmap generation in their
+ * Shown when the user has used every roadmap generation or resume analysis in their
  * monthly quota. Offers an upgrade path and a way back out.
  */
 export default function LimitReachedScreen({
   limit,
+  title = "Monthly generation limit reached",
+  description,
+  upgradeText = "Upgrade to Pro – Unlimited Roadmaps",
+  backHref = "/dashboard",
+  backLabel = "Back to Dashboard",
 }: LimitReachedScreenProps) {
   const router = useRouter();
 
@@ -35,16 +46,20 @@ export default function LimitReachedScreen({
 
         {/* Title */}
         <h2 className="section-title mb-2">
-          Monthly generation limit reached
+          {title}
         </h2>
 
         {/* Subtitle */}
-        <p className="body-text mb-6">
-          You&apos;ve used all{" "}
-          <span className="font-bold text-brand-primary">{limit.total}</span> free
-          roadmap generations this month. Upgrade to unlock unlimited roadmaps
-          and accelerate your career journey.
-        </p>
+        <div className="body-text mb-6">
+          {description ?? (
+            <p>
+              You&apos;ve used all{" "}
+              <span className="font-bold text-brand-primary">{limit.total}</span> free
+              roadmap generations this month. Upgrade to unlock unlimited roadmaps
+              and accelerate your career journey.
+            </p>
+          )}
+        </div>
 
         {/* Stats Card */}
         <div className="bg-brand-bg/50 rounded-lg p-4 mb-6">
@@ -78,7 +93,7 @@ export default function LimitReachedScreen({
           onClick={() => router.push("/pricing")}
           rightIcon={<Sparkles size={16} />}
         >
-          Upgrade to Pro – Unlimited Roadmaps
+          {upgradeText}
         </Button>
 
         {/* Secondary action */}
@@ -86,9 +101,9 @@ export default function LimitReachedScreen({
           variant="ghost"
           size="md"
           className="w-full"
-          onClick={() => router.push("/dashboard")}
+          onClick={() => router.push(backHref)}
         >
-          Back to Dashboard
+          {backLabel}
         </Button>
 
         {/* Small note */}

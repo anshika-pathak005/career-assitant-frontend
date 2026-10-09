@@ -5,10 +5,14 @@ import Card from "@/components/ui/Card";
 import SectionHeader from "./SectionHeader";
 
 /**
- * Project ideas. The backend sends each one as "Title — description",
+ * Project ideas. The backend sends each one as "Title -description",
  * so we split on the em dash before rendering.
  */
-export default function ProjectSuggestions({ projects }: { projects: string[] }) {
+export default function ProjectSuggestions({
+  projects,
+}: {
+  projects: string[];
+}) {
   return (
     <Card variant="default" padding="lg" className="mb-6">
       <SectionHeader
@@ -18,10 +22,12 @@ export default function ProjectSuggestions({ projects }: { projects: string[] })
       />
       <div className="space-y-3">
         {projects.map((project, idx) => {
-          const [title, description] = project.split(" — ");
+          const [title, description] = project.split(" -");
           return (
             <div key={idx} className="p-3 bg-brand-bg/30 rounded-lg">
-              <p className="text-sm font-semibold text-brand-primary">{title}</p>
+              <p className="text-sm font-semibold text-brand-primary">
+                {title}
+              </p>
               <p className="page-subtitle">{description}</p>
             </div>
           );

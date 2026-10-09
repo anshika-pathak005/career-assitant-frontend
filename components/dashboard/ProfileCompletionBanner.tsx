@@ -9,8 +9,8 @@ interface Props {
 }
 
 export default function ProfileCompletionBanner({ profile }: Props) {
-  // Simply check backend's isProfileComplete flag
-  if (profile.isProfileComplete) return null;
+  // Simply check backend's isProfileComplete flag & dreamJob
+  if (profile.isProfileComplete && profile.dreamJob?.trim()) return null;
 
   return (
     <div className="relative overflow-hidden rounded-xl bg-gradient-to-br from-white to-brand-bg/20 border border-brand-accent-lt/20 shadow-md">

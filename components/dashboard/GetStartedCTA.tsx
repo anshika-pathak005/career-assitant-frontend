@@ -70,7 +70,7 @@ export default function GetStartedCTA({ userName }: Props) {
             </h2>
             <p className="text-brand-muted text-sm leading-relaxed max-w-md">
               Get a personalized career roadmap, skill gap analysis, and job
-              recommendations — powered by AI in seconds.
+              recommendations -powered by AI in seconds.
             </p>
           </div>
 
@@ -115,13 +115,13 @@ export default function GetStartedCTA({ userName }: Props) {
                 How would you like to start?
               </h3>
               <p className="text-sm text-brand-muted">
-                Choose an option — you can always do the other one later.
+                Choose an option -you can always do the other one later.
               </p>
             </div>
 
             {step === "choosing" && (
               <div className="flex flex-col gap-3">
-                {/* Option A — with resume */}
+                {/* Option A -with resume */}
                 <button
                   onClick={() => setStep("uploading")}
                   className="group flex items-start gap-4 p-4 rounded-xl border-2 border-brand-accent-lt/25 hover:border-brand-accent hover:bg-brand-bg/30 text-left transition-all duration-150"
@@ -149,7 +149,7 @@ export default function GetStartedCTA({ userName }: Props) {
                   </div>
                 </button>
 
-                {/* Option B — without resume */}
+                {/* Option B -without resume */}
                 <button
                   onClick={() => router.push("/profile-setup")}
                   className="group flex items-start gap-4 p-4 rounded-xl border-2 border-brand-accent-lt/25 hover:border-brand-accent hover:bg-brand-bg/30 text-left transition-all duration-150"
@@ -204,9 +204,7 @@ export default function GetStartedCTA({ userName }: Props) {
                   {uploadMutation.isPending ? (
                     <>
                       <div className="w-10 h-10 border-2 border-brand-accent border-t-transparent rounded-full animate-spin" />
-                      <p className="field-label">
-                        Analyzing your resume…
-                      </p>
+                      <p className="field-label">Analyzing your resume…</p>
                       <p className="meta-text">
                         This usually takes 10–20 seconds
                       </p>
@@ -221,7 +219,7 @@ export default function GetStartedCTA({ userName }: Props) {
                           Drop your resume here
                         </p>
                         <p className="meta-text">
-                          or click to browse — PDF only
+                          or click to browse -PDF only
                         </p>
                       </div>
                     </>

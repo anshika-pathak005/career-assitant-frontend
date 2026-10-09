@@ -7,7 +7,7 @@ import queryClient from "@/lib/queryClient";
 import { getApiErrorMessage } from "@/utils/apiError";
 
 /**
- * 
+ *
  * useMutation:
  * - Used to perform actions that change data on the server (POST, PUT, DELETE)
  * - Returns a mutation object (mutate, isPending, isError, data, etc.)
@@ -22,7 +22,7 @@ import { getApiErrorMessage } from "@/utils/apiError";
  *
  * - Used for actions like form submit, login, signup, update, delete, etc.
  * ____________________________________________________________________________
- * useLogin — wraps the login API call with React Query mutation.
+ * useLogin -wraps the login API call with React Query mutation.
  * On success: stores token, updates auth state, redirects to dashboard.
  * On error:   shows a toast notification.
  */
@@ -40,9 +40,7 @@ export const useLogin = () => {
       router.push("/dashboard");
     },
     onError: (error) => {
-      toast.error(
-        getApiErrorMessage(error, "Login failed. Please try again."),
-      );
+      toast.error(getApiErrorMessage(error, "Login failed. Please try again."));
     },
   });
 };

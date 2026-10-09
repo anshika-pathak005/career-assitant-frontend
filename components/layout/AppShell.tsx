@@ -10,7 +10,7 @@ interface AppShellProps {
 }
 
 /**
- * AppShell — layout wrapper for all authenticated app pages.
+ * AppShell -layout wrapper for all authenticated app pages.
  * Renders: Header → (Sidebar + main content) → Footer.
  */
 export default function AppShell({

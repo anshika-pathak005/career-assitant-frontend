@@ -40,7 +40,7 @@ interface OptionCardGroupProps {
 }
 
 /**
- * OptionCardGroup — a single-select group of buttons.
+ * OptionCardGroup -a single-select group of buttons.
  *
  * The roadmap form had five near-identical hand-rolled versions of this
  * (experience, career goal, project level, learning style, weekly hours),
@@ -68,11 +68,7 @@ export default function OptionCardGroup({
     <div>
       {(label || labelAccessory) && (
         <div className="flex items-center justify-between mb-2">
-          {label && (
-            <label className="field-label">
-              {label}
-            </label>
-          )}
+          {label && <label className="field-label">{label}</label>}
           {labelAccessory}
         </div>
       )}

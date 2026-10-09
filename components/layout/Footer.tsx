@@ -44,7 +44,7 @@ export default function Footer() {
   return (
     <footer className="bg-brand-primary text-white mt-auto border-t border-white/10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-10 sm:py-14">
-        {/* Top row — brand + links grid */}
+        {/* Top row -brand + links grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-10 mb-10 sm:mb-12">
           {/* Brand column */}
           <div className="flex flex-col gap-4">
@@ -57,7 +57,8 @@ export default function Footer() {
               </span>
             </Link>
             <p className="text-sm text-white/70 leading-relaxed max-w-xs">
-              AI-powered career guidance, roadmap generation, and resume analysis to accelerate your professional growth.
+              AI-powered career guidance, roadmap generation, and resume
+              analysis to accelerate your professional growth.
             </p>
 
             {/* Social icons */}
@@ -99,7 +100,7 @@ export default function Footer() {
           ))}
         </div>
 
-        {/* Bottom row — copyright + operational badge */}
+        {/* Bottom row -copyright + operational badge */}
         <div className="border-t border-white/10 pt-6 flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-xs text-white/60">
             © {year} CareerPilot. All rights reserved.
